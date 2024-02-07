@@ -3,19 +3,18 @@
 
 using namespace std;
 
-Samhan::Samhan():myCity{new Tehran}
+Samhan::Samhan():myCity{new Tehran ("Tehran")}
 {
-    cout << "object creat\n" ;
+
 }
 
 int Samhan::run()
 {
-    cout << "object run\n" ;
+    
     return 0;
 }
 Samhan::~Samhan()
 {
-    cout << "object destroid\n" ;
 
     clearCity();
 }

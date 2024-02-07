@@ -4,11 +4,12 @@
 
 using namespace std;
 
-Tehran::Tehran()
+Tehran::Tehran(string inputCityName) : City(inputCityName) 
 {
-    cout << "Tehran create\n";
+
+    cout << this->getCityName() << " create\n";
 } 
 Tehran::~Tehran()
 {
-    cout << "Tehran destroyed \n";
+    cout << this->getCityName() << " destroyed \n";
 }

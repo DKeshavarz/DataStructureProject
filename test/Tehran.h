@@ -6,7 +6,7 @@
 class Tehran : public City
 {
     public:
-        Tehran(); 
+        Tehran(std::string); 
         virtual ~Tehran();
     private:
 };
