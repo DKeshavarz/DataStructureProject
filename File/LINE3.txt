@@ -1,0 +1,15 @@
+Gha'em*Aghdasiyeh*4
+Aghdasiyeh*Shahid Zeynoddin*10
+Shahid Zeynoddin*Shahid Ghodousi*5
+Shahid Ghodousi*Sohrevardi*2
+Sohrevardi*Shahid Beheshti*1
+Shahid Beheshti*Merza-ye Shirazi*3
+Merza-ye Shirazi*Meydan-e Jahad*2
+Meydan-e Jahad*Meydan-e Hazrat-e ValiAsr*1
+Meydan-e Hazrat-e ValiAsr*Teatr-e Shahr*2
+Teatr-e Shahr*Moniriyeh*4
+Moniriyeh*Mahdiyeh*3
+Mahdiyeh*Rahahan*1
+Rahahan*Javadiyeh*2
+Javadiyeh*Zamzam*2
+Zamzam*Azadegan*8

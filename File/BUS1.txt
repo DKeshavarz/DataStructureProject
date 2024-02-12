@@ -1,0 +1,8 @@
+Tehran Pars*Ebn-e Sina*10
+Ebn-e Sina*Emam Hossein*4
+Emam Hossein*Darvazeh Dowlat*2
+Darvazeh Dowlat*Ferdowsi*1
+Ferdowsi*Meydan-e Enghelab-e Eslami*3
+Meydan-e Enghelab-e Eslami*Ostad Mo'in*4
+Ostad Mo'in*Meydan-e Azadi*4
+Meydan-e Azadi*Bimeh*3
