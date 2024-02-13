@@ -14,13 +14,16 @@ City::City(string inputCityName):cityName(inputCityName)
 {
     cout << getCityName() << " create in parent\n";
 
+    Vehicle* temp {new Vehicle};
 
+    
+    for(int i = 1 ; i < 10 && temp->readFile("BUS"+to_string(i)+".txt") ; ++i)
+    {
+        publicTransportation.push_back(temp);
+        temp = new Vehicle;
 
-    Vehicle* temp {new LinearVehicle};
-    publicTransportation.push_back(temp);
-
-    Vehicle* temp1 {new Taxi};
-    publicTransportation.push_back(temp1);
+    }
+    delete temp;
 
 }
 
@@ -34,6 +37,11 @@ City::~City()
     cout << getCityName() << "  destroyed in parent\n";
 
     for(auto item:publicTransportation)
+    {
         if(item)
+        {
             delete item;
+        }
+
+    }
 }

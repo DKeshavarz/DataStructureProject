@@ -1,13 +1,11 @@
-#include "mainwindow.h"
-
-#include <QApplication>
 #include <iostream>
 
-int main(int argc, char *argv[])
+#include "Samhan.h"
+
+using namespace std;
+
+int main()
 {
-    std::cout << "nigger" ;
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    return a.exec();
+    Samhan app;
+    return 0;
 }
