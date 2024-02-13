@@ -14,13 +14,13 @@ City::City(string inputCityName):cityName(inputCityName)
 {
     cout << getCityName() << " create in parent\n";
 
-    Vehicle* temp {new Vehicle};
+    Vehicle* temp {new LinearVehicle};
 
     
     for(int i = 1 ; i < 10 && temp->readFile("BUS"+to_string(i)+".txt") ; ++i)
     {
         publicTransportation.push_back(temp);
-        temp = new Vehicle;
+        temp = new LinearVehicle;
 
     }
     delete temp;

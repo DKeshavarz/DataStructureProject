@@ -7,6 +7,9 @@ class OnDemandVehicle : public Vehicle
 {
     public:
     OnDemandVehicle();
+
+    virtual void calculateMinDistance();
+    
     virtual ~OnDemandVehicle();
 
     private:

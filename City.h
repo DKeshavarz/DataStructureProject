@@ -13,7 +13,7 @@ class City
         std::string getCityName()const{return cityName;}
 
 
-        virtual void readFile();
+        virtual void readFile();// danny : useless function??
 
 
         virtual ~City();
