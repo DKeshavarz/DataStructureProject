@@ -133,24 +133,3 @@ class time
             return false;
         }
 };
-
-int main ()
-{
-    /*class time temp;
-
-    temp.addClock ("12:59 PM");
-    temp.addClock ("14:06 AM");
-    temp.addClock ("11:90 PM");
-    temp.addClock ("01:09 DM");
-
-    if (temp.isTimeExist ("12:59 PM"))
-    {
-        cout << "yes" << endl;
-        cout << temp.get_hour (0) << ':' << temp.get_min (0) << ' ' << temp.get_dayORnight (0) << endl;
-    }
-    if (temp.isTimeExist ("14:06 AM"))
-    {
-        cout << "no" << endl;
-    }*/
-    return 0;
-}

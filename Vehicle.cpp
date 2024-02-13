@@ -23,31 +23,28 @@ bool Vehicle::readFile(string fileName)
     
     myFile >> this->speedPerKilometre >> this->costPerkilometre;
     
-    string station  {};
-    string distance {};
+    string stationOne{};
+    string stationTwo{};
+    string distance  {};
 
-    getline(myFile,station);
-    //this getline will store any thing
+    getline(myFile,distance);
+    //this getline will not store any thing: just mean cin.ignore
 
-    getline(myFile,station);
-    this->line.push_back(station);
-
-    while(getline(myFile,station))
+    while(getline(myFile,stationOne))
     {
-        //getline(myFile,station);
-        //cout << "station :" << station << '\n';
-        this->line.push_back(station);
-
+        getline(myFile,stationTwo);
         getline(myFile,distance);
 
-        this->lineCost.push_back(stoi(distance));
+        this->line.push_back(stationOne);
 
-        getline(myFile,station);//this station have repeted station
+        addNewVertex(stationOne,stationTwo,stoi(distance));
     }
+    this->line.push_back(stationTwo);
+    addNewVertex(stationOne,stationTwo,stoi(distance));
 
-    cout << "vectorSize " << line.size() << '\n';
     myFile.close();
-    return true; //every thing 
+
+    return true; //reading file was successfull
 }
 void Vehicle::calculateMinDistance()
 {
@@ -63,8 +60,26 @@ Vehicle::~Vehicle()
     for(auto i : this->line)
         cout << i << ",";
     cout << '\n';
-    for(auto i : this->lineCost)
-        cout << i << ",";
+
+    for(auto i:neighbours)
+    {
+        cout << i.first << ":" ;
+        for(auto item: i.second)
+            cout << item.nodeName << ' ';
+        cout << '\n';
+    }
+    
     cout << "\nVehicle destrouyed\n";
     cout << "/*********************************/\n";
+}
+
+
+//**************************************************
+//                      private
+//**************************************************
+
+void Vehicle::addNewVertex(const string& firstVertex ,const string& secondVertex ,const int& distance)
+{
+    neighbours[firstVertex]. insert(NodeNeighbour(secondVertex,distance));
+    neighbours[secondVertex].insert(NodeNeighbour(firstVertex ,distance));
 }
