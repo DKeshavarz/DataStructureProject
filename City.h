@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
+
 #include "Vehicle.h"
+#include "NodeInfo.h"
 
 #ifndef CITY_H
 #define CITY_H

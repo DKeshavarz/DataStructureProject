@@ -1,6 +1,8 @@
 #include <vector>
 #include <string>
 
+#include "NodeInfo.h"
+
 #ifndef VEHICLE_H
 #define VEHICLE_H
 
