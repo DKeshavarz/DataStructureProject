@@ -12,7 +12,7 @@ struct NodeNeighbour
     std::string nodeName;
     int cost;
 
-    NodeNeighbour(std::string name="",int c=0):nodeName(name),cost(c) {}
+    NodeNeighbour(const std::string& name="",const int c=0):nodeName(name),cost(c) {}
 
     bool operator==(const NodeNeighbour& obj)const
     {
@@ -34,7 +34,7 @@ class Vehicle
 
         Vehicle();
 
-        bool readFile(std::string);
+        bool readFile(const std::string&);
 
         virtual void calculateMinDistance();
         

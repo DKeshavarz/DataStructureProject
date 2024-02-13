@@ -11,7 +11,7 @@ Vehicle::Vehicle()
     cout << "Vehicle created\n";
 }
 
-bool Vehicle::readFile(string fileName)
+bool Vehicle::readFile(const string& fileName)
 {
     ifstream myFile (fileName);
 
