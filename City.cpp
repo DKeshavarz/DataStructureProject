@@ -17,7 +17,7 @@ City::City(string inputCityName):cityName(inputCityName)
     Vehicle* temp {new LinearVehicle};
 
     
-    for(int i = 1 ; i < 10 && temp->readFile("BUS"+to_string(i)+".txt") ; ++i)
+    for(int i = 1 ; i < 10 && temp->readFile("METRO"+to_string(i)+".txt") ; ++i)
     {
         publicTransportation.push_back(temp);
         temp = new LinearVehicle;

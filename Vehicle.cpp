@@ -49,7 +49,10 @@ bool Vehicle::readFile(string fileName)
     myFile.close();
     return true; //every thing 
 }
-
+void Vehicle::calculateMinDistance()
+{
+    
+}
 Vehicle::~Vehicle()
 {
     cout << "/*********************************/\n";

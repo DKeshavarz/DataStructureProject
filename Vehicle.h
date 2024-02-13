@@ -14,7 +14,8 @@ class Vehicle
 
         bool readFile(std::string);
 
-        virtual void calculateMinDistance() = 0;
+        virtual void calculateMinDistance();
+        
         virtual ~Vehicle();
 
     private:

@@ -8,10 +8,6 @@ LinearVehicle::LinearVehicle()
     cout << "LinearVehicle creat \n";
 }
 
-void LinearVehicle::calculateMinDistance()
-{
-    
-}
 LinearVehicle::~LinearVehicle()
 {
     cout << "LinearVehicle destroyd \n";

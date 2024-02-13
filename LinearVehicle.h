@@ -8,8 +8,6 @@ class LinearVehicle:public Vehicle
     public:
         LinearVehicle();
 
-        virtual void calculateMinDistance();
-
         virtual ~LinearVehicle();
     private:
 
