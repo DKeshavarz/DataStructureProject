@@ -5,7 +5,8 @@ using namespace std;
 
 Samhan::Samhan():myCity{new Tehran ("Tehran")}
 {
-
+    myCity->readFile();
+    myCity->calculateMinDistance("Mirdamad","Rahahan");
 }
 
 int Samhan::run()

@@ -46,13 +46,17 @@ bool Vehicle::readFile(const string& fileName)
 
     return true; //reading file was successfull
 }
+
 void Vehicle::calculateMinDistance()
 {
     
 }
+
 Vehicle::~Vehicle()
 {
-    cout << "/*********************************/\n";
+    /*
+    
+    cout << "/********************************\n";
     cout << "speed "<< this->speedPerKilometre << '\n'
          << "cost " << this->costPerkilometre  << '\n';
 
@@ -70,7 +74,9 @@ Vehicle::~Vehicle()
     }
     
     cout << "\nVehicle destrouyed\n";
-    cout << "/*********************************/\n";
+    cout << "/*********************************\n";
+
+    */
 }
 
 
