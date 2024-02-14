@@ -1,135 +1,116 @@
+#ifndef _time
+#define _time
+
 #include <iostream>
-#include <vector>
 
 using namespace std;
-
-struct tClock
-{
-    unsigned int hour = 0;
-    unsigned int min = 0;
-    string dayORnight = "AM";
-};
 
 class time
 {
     private:
 
-        vector <struct tClock> times;
+        unsigned int hour;
+        unsigned int minute;
+        string dayORnight;
 
-        struct tClock temp;
-    
     public:
 
-        bool set_hour (unsigned int hour)
-        {
-            if (hour >= 1 && hour <= 12)
-            {
-                this->temp.hour = hour;
+        time (string time) {getTime (time);}
 
-                return true;
+        void set_hour (unsigned int hour)
+        {
+            if (hour <= 12 && hour >= 1)
+            {
+                this->hour = hour;
             }
             else
             {
-                return false;
+                throw invalid_argument ("Invalid hour");
             }
         }
 
-        unsigned int get_hour (unsigned int index)
+        unsigned int get_hour ()
         {
-            return times.at (index).hour;
+            return this->hour;
         }
 
-        bool set_min (unsigned int min)
+        void set_minute(unsigned int minute)
         {
-            if (min >= 0 && min <= 59)
+            if (minute <= 59 && minute >= 0)
             {
-                this->temp.min = min;
-
-                return true;
+                this->minute = minute;
             }
             else
             {
-                return false;
+                throw invalid_argument ("Invalid minute");
             }
         }
 
-        unsigned int get_min (unsigned int index)
+        unsigned int get_minute ()
         {
-            return times.at (index).min;
+            return this->minute;
         }
 
-        bool set_dayORnight (string dayORnight)
+        void set_dayORnight(string dayORnight)
         {
-            if (dayORnight == "AM" || dayORnight == "PM")
+            if (dayORnight == "AM" || dayORnight == "PM" || dayORnight == "am" || dayORnight == "pm")
             {
-                this->temp.dayORnight = dayORnight;
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        string get_dayORnight (unsigned int index)
-        {
-            return times.at (index).dayORnight;
-        }
-
-        bool addClock (string clock)
-        {
-            string hour;
-            hour += clock.at (0);
-            hour += clock.at (1);
-
-            string min;
-            min += clock.at (3);
-            min += clock.at (4);
-
-            string dayORnight;
-            dayORnight += clock.at (6);
-            dayORnight += clock.at (7);
-
-            unsigned int tHour = atoi (hour.c_str ());
-            unsigned int tMin = atoi (min.c_str ());
-
-            if (this->set_hour (tHour) && this->set_min (tMin) && this->set_dayORnight (dayORnight))
-            {
-                this->times.push_back (temp);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        bool isTimeExist (string clock)
-        {
-            string hour;
-            hour += clock.at (0);
-            hour += clock.at (1);
-
-            string min;
-            min += clock.at (3);
-            min += clock.at (4);
-
-            string dayORnight;
-            dayORnight += clock.at (6);
-            dayORnight += clock.at (7);
-
-            unsigned int tHour = atoi (hour.c_str ());
-            unsigned int tMin = atoi (min.c_str ());
-
-            for (unsigned int i = 0; i < times.size (); i++)
-            {
-                if (times.at (i).hour == tHour && times.at (i).min == tMin && times.at (i).dayORnight == dayORnight)
+                if (dayORnight == "AM" || dayORnight == "am")
                 {
-                    return true;
+                    this->dayORnight = "AM";
+                }
+                else if (dayORnight == "PM" || dayORnight == "pm")
+                {
+                    this->dayORnight = "PM";
                 }
             }
+            else
+            {
+                throw invalid_argument ("Invalid dayORnight");
+            }
+        }
 
-            return false;
+        string get_dayORnight ()
+        {
+            return this->dayORnight;
+        }
+
+        void getTime (string time)
+        {
+            unsigned int index = 0;
+            string tHour;
+            string tMinute;
+            string tDayORnight;
+
+            for (unsigned int i = index; time.at (i) != ':'; i++)
+            {
+                tHour += time.at (i);
+                index++;
+            }
+
+            index++;
+
+            for (unsigned int i = index; time.at (i) != ' '; i++)
+            {
+                tMinute += time.at (i);
+                index++;
+            }
+
+            index++;
+
+            for (unsigned int i = index; i < time.size (); i++)
+            {
+                tDayORnight += time.at (i);
+                index++;
+            }
+
+            unsigned int hour = atoi (tHour.c_str ());
+            unsigned int minute = atoi (tMinute.c_str ());
+
+            this->set_hour (hour);
+            this->set_minute (minute);
+            this->set_dayORnight (tDayORnight);
         }
 };
+
+#endif
