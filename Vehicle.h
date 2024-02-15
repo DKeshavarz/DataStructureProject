@@ -42,21 +42,29 @@ class Vehicle
 
         bool readFile(const std::string&);
 
+        int getCostPerKilometre () {return this->costPerKilometre ;}
+        int getSpeedPerKilometre() {return this->speedPerKilometre;}
+        const std::unordered_map<std::string,std::unordered_set< NodeNeighbour,NodeNeighbour::myHash>>& getNeighbours(){return neighbours;}
+
         virtual void calculateMinDistance(std::unordered_map<std::string,NodeInfo>&,const std::string&);
-        virtual void calculateCost       (std::unordered_map<std::string,NodeInfo>&,const std::string&) = 0;
+        virtual void calculateMinCost    (std::unordered_map<std::string,NodeInfo>&,const std::string&) = 0;
         
         virtual bool isOnVehchileRoad(const std::string&)const;
         virtual ~Vehicle();
 
     private:
         int speedPerKilometre ;
-        int costPerkilometre  ;
+        int costPerKilometre  ;
         
         
         std::vector<std::string> line;
         std::unordered_map <std::string , std::unordered_set< NodeNeighbour , NodeNeighbour::myHash> > neighbours;
 
         void addNewVertex(const std::string&,const std::string&,const int&);
+
+    protected:
+        const std::vector<std::string>& getLine () {return this->line;}
+        virtual int calculateCost(int) = 0;
 };
 
 #endif

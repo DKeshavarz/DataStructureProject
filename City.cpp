@@ -54,7 +54,7 @@ void City::readFile()
 
 void City::calculateMin(const string& start,const string& end,MeasurementMetric metric)
 {
-    Vehicle* temp = new LinearVehicle();
+    Vehicle* temp = new OnDemandVehicle();
     cout << temp->readFile("TAXI1.txt") << '\n';
 
     unordered_map <string , NodeInfo >dijkstraTable ;
@@ -72,12 +72,12 @@ void City::calculateMin(const string& start,const string& end,MeasurementMetric 
          switch(metric)
         {
             case DISTANCE:
-                temp->calculateMinDistance(dijkstraTable,strMinNode);
+                temp->calculateMinDistance(dijkstraTable,strMinNode); break;
             case COST:
-                //function = &NodeInfo::getCost; break;
+                temp->calculateMinCost(dijkstraTable,strMinNode); break;
 
             default :
-                cerr << "City::calculateMin";
+                cerr << "City::calculateMin\n\n";
         }
 
         
