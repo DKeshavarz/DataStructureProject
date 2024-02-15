@@ -4,6 +4,7 @@
 #include <fstream>
 #include <unordered_map>
 #include <stdexcept>
+#include <climits>
 
 #include "City.h"
 #include "Vehicle.h"
@@ -20,8 +21,6 @@ City::City(string inputCityName):cityName(inputCityName)
 
    
     //create 
-    
-
 }
 
 void City::setUpCity()
@@ -33,7 +32,7 @@ void City::setPublicTransportation()
 {
     //new every file
 }
-void setNodesMap()
+void City::setNodesMap()
 {
     //
 }
@@ -55,16 +54,51 @@ void City::readFile()
 
 void City::calculateMinDistance(const string& start,const string& end)
 {
-    
+    Vehicle* temp = new LinearVehicle();
+    cout << temp->readFile("TAXI1.txt") << '\n';
+
     unordered_map <string , NodeInfo >dijkstraTable ;
+
     for(const auto& i : this->nodesMap)
         dijkstraTable[i.first];
 
     dijkstraTable[start].setCost(0);
     dijkstraTable[start].setDistance(0);
 
+    for(size_t i {} ; i < 1 ; ++i)
+    {
+        string strMinNode {findMinNode(dijkstraTable)};
+        cout << "...   " << strMinNode << "   ....\n"  ;
+        temp->calculateMinDistance(dijkstraTable,strMinNode);
+        
+    }
+
+    
+    for(const auto& i : dijkstraTable)
+    {
+        cout <<  i.first ;
+        for(size_t j {(i.first).size()} ; j < 32 ; ++j)
+            cout << " ";
+        cout << (i.second).print() << '\n';
+    }
+        
+    delete temp;
 }
 
+string City::findMinNode(const unordered_map <string,NodeInfo>& table)
+{
+    int    minNodeCost = INT_MAX;
+    string minNodeName {};
+
+    for(const auto& i : table)
+        if(!(i.second).getVis() && (i.second).getCost() <= minNodeCost)
+            {
+                minNodeName = i.first;
+                minNodeCost = (i.second).getCost();
+            }
+
+    return minNodeName;
+}
 City::~City()
 {
     cout << getCityName() << "  destroyed in parent\n";

@@ -11,7 +11,7 @@ Vehicle::Vehicle()
     cout << "Vehicle created\n";
 }
 
-bool Vehicle::readFile(const string& fileName)
+bool Vehicle::readFile(const string& fileName) ///add execption
 {
     ifstream myFile (fileName);
 
@@ -47,19 +47,30 @@ bool Vehicle::readFile(const string& fileName)
     return true; //reading file was successfull
 }
 
-void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& dijkstraTable,const string& minNodeName)
+void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const std::string& nodeName )
 {
+
     
+    for(const auto& i :  this->neighbours[nodeName])
+        if(!table[i.nodeName].getVis() && table[i.nodeName].getCost() > table[nodeName].getCost() + i.cost)
+        {
+            table[i.nodeName].setCost(table[nodeName].getCost() + i.cost);
+            table[i.nodeName].setParent(nodeName);
+        }
+
+    cout << "\nin call\n";
+    cout << '\n';
 }
+
 bool Vehicle::isOnVehchileRoad(const string& input)const
 {
     return neighbours.count(input);
 }
 Vehicle::~Vehicle()
 {
-    /*
     
-    cout << "/********************************\n";
+    /*
+    cout << "********************************\n";
     cout << "speed "<< this->speedPerKilometre << '\n'
          << "cost " << this->costPerkilometre  << '\n';
 
@@ -67,7 +78,7 @@ Vehicle::~Vehicle()
     for(auto i : this->line)
         cout << i << ",";
     cout << '\n';
-
+    
     for(auto i:neighbours)
     {
         cout << i.first << ":" ;

@@ -1,4 +1,4 @@
-#ifndef _time//????????
+#ifndef _time
 #define _time
 
 #include <iostream>
@@ -15,7 +15,7 @@ class time //Time
         string dayORnight;
 
     public:
-        // over load + , > , == , <  
+        // over load + , > , == , < 
 
         time (string time) {getTime (time);}
 

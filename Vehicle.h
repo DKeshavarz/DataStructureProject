@@ -7,6 +7,7 @@
 
 #ifndef VEHICLE_H
 #define VEHICLE_H
+
 struct NodeNeighbour
 {
     std::string nodeName;

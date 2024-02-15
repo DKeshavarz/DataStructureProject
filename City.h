@@ -18,7 +18,9 @@ class City
         virtual void setNodesMap();            // concect node to all vechle : after setPublicTransportation
         virtual void readFile   ();            // create nodesMap -> connecet node with it's vehichle
         
-        virtual void calculateMinDistance(const std::string&,const std::string&);
+        void calculateMinDistance(const std::string&,const std::string&/*Time */  );
+        std::string findMinNode  (const std::unordered_map <std::string,NodeInfo>&);
+
 
         std::string getCityName()const{return cityName;}
 
