@@ -13,8 +13,10 @@ class City
     public:
         City(std::string);
 
-
-        virtual void readFile();//danny : useless function??
+        virtual void setUpCity();              // wath to set all data member correctly
+        virtual void setPublicTransportation();// find and create all Vehichle
+        virtual void setNodesMap();            // concect node to all vechle : after setPublicTransportation
+        virtual void readFile   ();            // create nodesMap -> connecet node with it's vehichle
         
         virtual void calculateMinDistance(const std::string&,const std::string&);
 
@@ -25,7 +27,8 @@ class City
     private:
         const std::string cityName;
         std::vector<Vehicle*> publicTransportation;
-        std::unordered_set<std::string> nodesSet ;
+        std::unordered_map<std::string,std::vector<Vehicle*>> nodesMap ;
+        
         
 };
 

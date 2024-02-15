@@ -47,11 +47,14 @@ bool Vehicle::readFile(const string& fileName)
     return true; //reading file was successfull
 }
 
-void Vehicle::calculateMinDistance()
+void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& dijkstraTable,const string& minNodeName)
 {
     
 }
-
+bool Vehicle::isOnVehchileRoad(const string& input)const
+{
+    return neighbours.count(input);
+}
 Vehicle::~Vehicle()
 {
     /*

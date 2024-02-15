@@ -1,11 +1,12 @@
-#ifndef _time
+#ifndef _time//????????
 #define _time
 
 #include <iostream>
 
 using namespace std;
+//separate .h to .cpp
 
-class time
+class time //Time
 {
     private:
 
@@ -14,6 +15,7 @@ class time
         string dayORnight;
 
     public:
+        // over load + , > , == , <  
 
         time (string time) {getTime (time);}
 
@@ -75,7 +77,7 @@ class time
             return this->dayORnight;
         }
 
-        void getTime (string time)
+        void getTime (string time) 
         {
             unsigned int index = 0;
             string tHour;

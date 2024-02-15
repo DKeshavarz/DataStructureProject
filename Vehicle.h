@@ -36,8 +36,9 @@ class Vehicle
 
         bool readFile(const std::string&);
 
-        virtual void calculateMinDistance();
+        virtual void calculateMinDistance(std::unordered_map<std::string,NodeInfo>&,const std::string&);
         
+        virtual bool isOnVehchileRoad(const std::string&)const;
         virtual ~Vehicle();
 
     private:

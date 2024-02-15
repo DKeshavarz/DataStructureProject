@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <unordered_map>
+#include <stdexcept>
 
 #include "City.h"
 #include "Vehicle.h"
@@ -17,21 +18,25 @@ City::City(string inputCityName):cityName(inputCityName)
 {
     cout << getCityName() << " create in parent\n";
 
-   /*
-    Vehicle* temp {new LinearVehicle};
-
+   
+    //create 
     
-    for(int i = 1 ; i < 10 && temp->readFile("METRO"+to_string(i)+".txt") ; ++i)
-    {
-        publicTransportation.push_back(temp);
-        temp = new LinearVehicle;
-
-    }
-    delete temp;
-    */ 
 
 }
 
+void City::setUpCity()
+{
+    //setPublicTransportation()
+    //setNodesMap()
+}
+void City::setPublicTransportation()
+{
+    //new every file
+}
+void setNodesMap()
+{
+    //
+}
 void City::readFile()
 {
     ifstream file (cityName + ".txt");
@@ -43,7 +48,7 @@ void City::readFile()
 
     string temp;
     while(getline(file,temp))
-        nodesSet.insert(temp);
+        nodesMap[temp];
 
     file.close();
 }
@@ -52,11 +57,12 @@ void City::calculateMinDistance(const string& start,const string& end)
 {
     
     unordered_map <string , NodeInfo >dijkstraTable ;
-    for(const auto& i : this->nodesSet)
-        dijkstraTable[i];
-    
-    
-        
+    for(const auto& i : this->nodesMap)
+        dijkstraTable[i.first];
+
+    dijkstraTable[start].setCost(0);
+    dijkstraTable[start].setDistance(0);
+
 }
 
 City::~City()
