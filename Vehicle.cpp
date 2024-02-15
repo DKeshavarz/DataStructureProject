@@ -47,15 +47,14 @@ bool Vehicle::readFile(const string& fileName) ///add execption
     return true; //reading file was successfull
 }
 
-void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const std::string& nodeName )
+void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const std::string& srcNode )
 {
 
-    
-    for(const auto& i :  this->neighbours[nodeName])
-        if(!table[i.nodeName].getVis() && table[i.nodeName].getCost() > table[nodeName].getCost() + i.cost)
+    for(const auto& neighbourNode : this->neighbours[srcNode])
+        if(!table[neighbourNode.nodeName].getVis() && table[neighbourNode.nodeName].getDistance() - table[srcNode].getDistance() >  + neighbourNode.distance)//what happend if min = int_max
         {
-            table[i.nodeName].setCost(table[nodeName].getCost() + i.cost);
-            table[i.nodeName].setParent(nodeName);
+            table[neighbourNode.nodeName].setDistance(table[srcNode].getDistance() + neighbourNode.distance);
+            table[neighbourNode.nodeName].setParent(srcNode);
         }
 
     cout << "\nin call\n";

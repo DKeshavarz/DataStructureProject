@@ -8,23 +8,28 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
 
+enum MeasurementMetric {
+    DISTANCE,
+    COST,
+    TIME
+};
 struct NodeNeighbour
 {
     std::string nodeName;
-    int cost;
+    int  distance;
 
-    NodeNeighbour(const std::string& name="",const int c=0):nodeName(name),cost(c) {}
+    NodeNeighbour(const std::string& name="",const int c=0):nodeName(name),distance(c) {}
 
     bool operator==(const NodeNeighbour& obj)const
     {
-        return (cost == obj.cost && nodeName == obj.nodeName);
+        return (distance == obj.distance && nodeName == obj.nodeName);
     }
 
     struct myHash
     {
         size_t operator()(const NodeNeighbour& obj) const
         {
-            return std::hash<int>{}(obj.cost) ^ std::hash<std::string>{}(obj.nodeName);
+            return std::hash<int>{}(obj.distance) ^ std::hash<std::string>{}(obj.nodeName);
         }
     };
 
@@ -38,6 +43,7 @@ class Vehicle
         bool readFile(const std::string&);
 
         virtual void calculateMinDistance(std::unordered_map<std::string,NodeInfo>&,const std::string&);
+        virtual void calculateCost       (std::unordered_map<std::string,NodeInfo>&,const std::string&) = 0;
         
         virtual bool isOnVehchileRoad(const std::string&)const;
         virtual ~Vehicle();

@@ -52,7 +52,7 @@ void City::readFile()
     file.close();
 }
 
-void City::calculateMinDistance(const string& start,const string& end)
+void City::calculateMin(const string& start,const string& end,MeasurementMetric metric)
 {
     Vehicle* temp = new LinearVehicle();
     cout << temp->readFile("TAXI1.txt") << '\n';
@@ -67,9 +67,20 @@ void City::calculateMinDistance(const string& start,const string& end)
 
     for(size_t i {} ; i < 1 ; ++i)
     {
-        string strMinNode {findMinNode(dijkstraTable)};
-        cout << "...   " << strMinNode << "   ....\n"  ;
-        temp->calculateMinDistance(dijkstraTable,strMinNode);
+        string strMinNode {findMinNode(dijkstraTable, metric)};
+
+         switch(metric)
+        {
+            case DISTANCE:
+                temp->calculateMinDistance(dijkstraTable,strMinNode);
+            case COST:
+                //function = &NodeInfo::getCost; break;
+
+            default :
+                cerr << "City::calculateMin";
+        }
+
+        
         
     }
 
@@ -85,18 +96,33 @@ void City::calculateMinDistance(const string& start,const string& end)
     delete temp;
 }
 
-string City::findMinNode(const unordered_map <string,NodeInfo>& table)
+string City::findMinNode(const unordered_map <string,NodeInfo>& table,MeasurementMetric metric)
 {
     int    minNodeCost = INT_MAX;
     string minNodeName {};
 
+    int (NodeInfo::*function)()const = nullptr;
+
+    switch(metric)
+    {
+        case DISTANCE:
+            function = &NodeInfo::getDistance; break;
+        case COST:
+            function = &NodeInfo::getCost; break;
+
+        default :
+            function = nullptr;
+            cerr << "error in City::findMinNode";
+    }
+
+
     for(const auto& i : table)
-        if(!(i.second).getVis() && (i.second).getCost() <= minNodeCost)
+        if(!(i.second).getVis() && ((i.second).*function)() <= minNodeCost)
             {
                 minNodeName = i.first;
-                minNodeCost = (i.second).getCost();
+                minNodeCost = ((i.second).*function)();
             }
-
+    
     return minNodeName;
 }
 City::~City()
