@@ -44,7 +44,7 @@ class Vehicle
 
         int getCostPerKilometre () {return this->costPerKilometre ;}
         int getSpeedPerKilometre() {return this->speedPerKilometre;}
-        const std::unordered_map<std::string,std::unordered_set< NodeNeighbour,NodeNeighbour::myHash>>& getNeighbours(){return neighbours;}
+        const std::unordered_set< NodeNeighbour,NodeNeighbour::myHash>& getNeighboursSet(std::string input){return neighbours[input];}
 
         virtual void calculateMinDistance(std::unordered_map<std::string,NodeInfo>&,const std::string&);
         virtual void calculateMinCost    (std::unordered_map<std::string,NodeInfo>&,const std::string&) = 0;
