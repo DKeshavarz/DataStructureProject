@@ -12,13 +12,13 @@ Window {
     {
         anchors.centerIn:parent
         text:"go to map"
-        onClicked: load.source="Map.qml"
+         onClicked: load.source="Map.qml"
 
 
     }
 Loader
 {
-    id:load
+     id:load
        anchors{top:parent.top;bottom:parent.bottom;left:parent.left;right:parent.right}
 
 }
