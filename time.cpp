@@ -95,6 +95,18 @@ void time::getTime (string time)
     this->set_dayORnight (tDayORnight);
 }
 
+unsigned int time::getTime () const
+{
+    if (this->get_dayORnight () == "PM")
+    {
+        return (((this->get_hour () + 12) % 24) * 60) + (this->get_minute ());
+    }
+    else
+    {
+        return ((this->get_hour () * 60) + (this->get_minute ()));
+    }
+}
+
 class time time::operator+ (const time & first) const
 {
     class time temp ("01:00 AM");
@@ -233,20 +245,8 @@ bool time::operator> (const time &second) const
     unsigned int minute2 = second.get_minute();
     string dayORnight2 = second.get_dayORnight();
 
-    unsigned int tMinute1;
-    unsigned int tMinute2;
-
-    if (dayORnight1 == "PM")
-    {
-        hour1 = (hour1 + 12) % 24;
-    }
-    if (dayORnight2 == "PM")
-    {
-        hour2 = (hour2 + 12) % 24;
-    }
-
-    tMinute1 = hour1 * 60 + minute1;
-    tMinute2 = hour2 * 60 + minute2;
+    unsigned int tMinute1 = this->getTime ();
+    unsigned int tMinute2 = second.getTime ();
 
     return tMinute1 > tMinute2;
 }
@@ -260,20 +260,8 @@ bool time::operator< (const time &second) const
     unsigned int minute2 = second.get_minute();
     string dayORnight2 = second.get_dayORnight();
 
-    unsigned int tMinute1;
-    unsigned int tMinute2;
-
-    if (dayORnight1 == "PM")
-    {
-        hour1 = (hour1 + 12) % 24;
-    }
-    if (dayORnight2 == "PM")
-    {
-        hour2 = (hour2 + 12) % 24;
-    }
-
-    tMinute1 = hour1 * 60 + minute1;
-    tMinute2 = hour2 * 60 + minute2;
+    unsigned int tMinute1 = this->getTime ();
+    unsigned int tMinute2 = second.getTime ();
 
     return tMinute1 < tMinute2;
 }
