@@ -11,7 +11,7 @@ Window {
      Button
     {
         anchors.centerIn:parent
-        text:"go to map"
+         text:"go to map"
          onClicked: load.source="Map.qml"
 
 

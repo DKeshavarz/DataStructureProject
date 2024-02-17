@@ -522,6 +522,108 @@ Item
        id:d36;s_width: 50 ; s_height: 50 ; s_text: "Line3" ; s_color_text: "yellow"
        anchors{top:d34.top;left:d35.right;topMargin:-10}
    }
+   Rectangle
+   {
+       id:ghaem_pirouzi_1
+       width:size ; height:105; color:"green";
+       anchors{top:b11.bottom;left:b11.left;topMargin:50;leftMargin:26}
+
+   }
+   Rectangle
+   {
+       id:ghaem_pirouzi_2
+       width:size ; height:105; color:"green";
+       anchors{top:b11.bottom;left:b11.left;topMargin:50;leftMargin:21}
+
+   }
+   Rectangle
+   {
+       id:ghaem_pirouzi_3
+       width:241 ; height:size ; color:"green";
+       anchors{top:ghaem_pirouzi_1.bottom;right:ghaem_pirouzi_1.left;topMargin:-6}
+
+   }
+   Rectangle
+   {
+       id:ghaem_pirouzi_4
+       width:241 ; height:size ; color:"green";
+       anchors{top:ghaem_pirouzi_1.bottom;right:ghaem_pirouzi_1.left;topMargin:-1}
+
+   }
+   Rectangle
+   {
+       id:ghaem_pirouzi_5
+       width:2 ; height:180; color:"green";
+       anchors{top:ghaem_pirouzi_3.bottom;right:ghaem_pirouzi_3.left;rightMargin:-7}
+
+   }
+   Rectangle
+   {
+       id:ghaem_pirouzi_6
+       width:2 ; height:180; color:"green";
+       anchors{top:ghaem_pirouzi_3.bottom;right:ghaem_pirouzi_3.left;rightMargin:-2}
+
+   }
+   Rectangle
+   {
+       id:pirouzi_R_1
+       width:2 ; height:118; color:"green";
+       anchors{top:d30.bottom;right:d30.left;topMargin:30;rightMargin:-13}
+
+   }
+   Rectangle
+   {
+       id:pirouzi_R_2
+       width:2 ; height:118; color:"green";
+       anchors{top:d30.bottom;right:d30.left;topMargin:30;rightMargin:-18}
+
+   }
+   Rectangle
+   {
+       id:pirouzi_R_3
+       width:138 ; height:size ; color:"green";
+       anchors{top:pirouzi_R_2.bottom;right:pirouzi_R_2.left;topMargin:-7}
+
+   }
+   Rectangle
+   {
+       id:pirouzi_R_4
+       width:138 ; height:size ; color:"green";
+       anchors{top:pirouzi_R_2.bottom;right:pirouzi_R_2.left;topMargin:-2}
+
+   }
+   Rectangle
+   {
+       id:r_javanmard_1
+       width:100 ; height:size ; color:"green";
+       anchors{top:pirouzi_R_3.top;right:c6.left;}
+
+   }
+   Rectangle
+   {
+       id:r_javanmard_2
+       width:100 ; height:size ; color:"green";
+       anchors{top:pirouzi_R_4.top;right:c6.left;}
+
+   }
+   Rectangle
+   {
+       id:r_javanmard_3
+       width:size ; height:175 ; color:"green";
+       anchors{top:r_javanmard_2.bottom;right:r_javanmard_1.left;topMargin:-5;rightMargin:-7}
+
+   }
+   Rectangle
+   {
+       id:r_javanmard_4
+       width:size ; height:175 ; color:"green";
+       anchors{top:r_javanmard_2.bottom;right:r_javanmard_1.left;topMargin:-5;rightMargin:-2}
+
+   }
+   Station{
+       id:javanmard ;s_width: 50 ; s_height: 50 ; s_text: "BUS2" ; s_color: "#00ff55" ; s_boarder_width: 0
+       anchors{top:r_javanmard_3.bottom;right:r_javanmard_3.left;rightMargin:25}
+   }
  }
 
 }
