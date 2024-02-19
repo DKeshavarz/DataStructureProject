@@ -28,10 +28,8 @@ class City
 
     private:
         const std::string cityName;
-        std::vector<Vehicle*> publicTransportation;
+        std::vector<Vehicle *> publicTransportation;
         std::unordered_map<std::string,std::vector<Vehicle*>> nodesMap ;
-        
-        
 };
 
 #endif

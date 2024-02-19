@@ -30,7 +30,42 @@ void City::setUpCity()
 }
 void City::setPublicTransportation()
 {
-    //new every file
+    class Vehicle * LinearVehicleBus[3];
+    class Vehicle * LinearVehicleMetro[4];
+    class Vehicle * OnDemandVehicleTaxi[4];
+
+    for (unsigned int i = 0; i < sizeof (LinearVehicleBus) / sizeof (class vehicle *); i++)
+    {
+        LinearVehicleBus[i] = new LinearVehicle;
+
+        publicTransportation.push_back (LinearVehicleBus[i]);
+    }
+    for (unsigned int i = 0; i < sizeof (LinearVehicleMetro) / sizeof (class vehicle *); i++)
+    {
+        LinearVehicleMetro[i] = new LinearVehicle;
+
+        publicTransportation.push_back (LinearVehicleMetro[i]);
+    }
+    for (unsigned int i = 0; i < sizeof (OnDemandVehicleTaxi) / sizeof (class vehicle *); i++)
+    {
+        OnDemandVehicleTaxi[i] = new OnDemandVehicle;
+
+        publicTransportation.push_back (OnDemandVehicleTaxi[i]);
+    }
+
+    publicTransportation.at (0)->readFile ("BUS1.txt");
+    publicTransportation.at (1)->readFile ("BUS2.txt");
+    publicTransportation.at (2)->readFile ("BUS3.txt");
+
+    publicTransportation.at (3)->readFile ("METRO1.txt");
+    publicTransportation.at (4)->readFile ("METRO2.txt");
+    publicTransportation.at (5)->readFile ("METRO3.txt");
+    publicTransportation.at (6)->readFile ("METRO4.txt");
+
+    publicTransportation.at (7)->readFile ("TAXI1.txt");
+    publicTransportation.at (8)->readFile ("TAXI2.txt");
+    publicTransportation.at (9)->readFile ("TAXI3.txt");
+    publicTransportation.at (10)->readFile ("TAXI4.txt");
 }
 void City::setNodesMap()
 {
