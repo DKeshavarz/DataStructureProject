@@ -69,7 +69,16 @@ void City::setPublicTransportation()
 }
 void City::setNodesMap()
 {
-    //
+    for (auto & temp : this->nodesMap)
+    {
+        for (unsigned int i = 0; i < this->publicTransportation.size (); i++)
+        {
+            if (publicTransportation.at (i)->isOnVehchileRoad (temp.first))
+            {
+                temp.second.push_back (publicTransportation.at (i));
+            }
+        }
+    }
 }
 void City::readFile()
 {
