@@ -27,6 +27,7 @@ class time
         string get_dayORnight () const;
 
         void getTime (string);
+        unsigned int getTime () const;
         
         class time operator+ (const time &) const;
         class time operator- (const time &) const;
