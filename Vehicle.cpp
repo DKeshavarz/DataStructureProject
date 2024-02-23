@@ -44,6 +44,7 @@ bool Vehicle::readFile(const string& fileName) ///add execption
 
     myFile.close();
 
+    cout << "suc to open " << fileName << '\n' ;
     return true; //reading file was successfull
 }
 
@@ -56,9 +57,6 @@ void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const 
             table[neighbourNode.nodeName].setDistance(table[srcNode].getDistance() + neighbourNode.distance);
             table[neighbourNode.nodeName].setParent(srcNode);
         }
-
-    cout << "\nin call\n";
-    cout << '\n';
 }
 
 bool Vehicle::isOnVehchileRoad(const string& input)const
@@ -67,29 +65,7 @@ bool Vehicle::isOnVehchileRoad(const string& input)const
 }
 Vehicle::~Vehicle()
 {
-    
-   /* 
-    cout << "********************************\n";
-    cout << "speed "<< this->speedPerKilometre << '\n'
-         << "cost " << this->costPerKilometre  << '\n';
-
-    cout << "vectorSize " << line.size() << " myline is :" ;
-    for(auto i : this->line)
-        cout << i << ",";
-    cout << '\n';
-    
-    for(auto i:neighbours)
-    {
-        cout << i.first << ":" ;
-        for(auto item: i.second)
-            cout << item.nodeName << ' ';
-        cout << '\n';
-    }
-    
-    cout << "\nVehicle destrouyed\n";
-    cout << "/*********************************\n";
-    */
-    
+      
 }
 
 

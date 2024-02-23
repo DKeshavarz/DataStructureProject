@@ -18,15 +18,15 @@ using namespace std;
 City::City(string inputCityName):cityName(inputCityName)
 {
     cout << getCityName() << " create in parent\n";
-
-   
-    //create 
 }
 
 void City::setUpCity()
 {
-    //setPublicTransportation()
-    //setNodesMap()
+    readFile();
+
+    setPublicTransportation();
+
+    setNodesMap();
 }
 void City::setPublicTransportation()
 {
@@ -67,14 +67,18 @@ void City::setPublicTransportation()
     publicTransportation.at (9)->readFile ("TAXI3.txt");
     publicTransportation.at (10)->readFile ("TAXI4.txt");
 }
-void City::setNodesMap()
+void City::setNodesMap()//todo : pass by refrence not copy
 {
+    //cout << "fuck node map size is:" << this->nodesMap.size();
     for (auto & temp : this->nodesMap)
     {
+        //cout << "1\n";
         for (unsigned int i = 0; i < this->publicTransportation.size (); i++)
         {
+            //cout << "2\n";
             if (publicTransportation.at (i)->isOnVehchileRoad (temp.first))
             {
+                //cout << "inser\n";
                 temp.second.push_back (publicTransportation.at (i));
             }
         }
@@ -98,9 +102,6 @@ void City::readFile()
 
 void City::calculateMin(const string& start,const string& end,MeasurementMetric metric)
 {
-    Vehicle* temp = new OnDemandVehicle();
-    cout << temp->readFile("TAXI1.txt") << '\n';
-
     unordered_map <string , NodeInfo >dijkstraTable ;
 
     for(const auto& i : this->nodesMap)
@@ -109,35 +110,40 @@ void City::calculateMin(const string& start,const string& end,MeasurementMetric 
     dijkstraTable[start].setCost(0);
     dijkstraTable[start].setDistance(0);
 
-    for(size_t i {} ; i < 1 ; ++i)
+    for(size_t i {} ; i < dijkstraTable.size() ; ++i)
     {
+        
         string strMinNode {findMinNode(dijkstraTable, metric)};
-
-         switch(metric)
+        
+        const auto& vec {nodesMap[strMinNode]} ;
+        //cout << "num : " << i << "  min node:" << strMinNode << "  vec size" << vec.size() << '\n';
+        for(const auto& i : vec)
         {
-            case DISTANCE:
-                temp->calculateMinDistance(dijkstraTable,strMinNode); break;
-            case COST:
-                temp->calculateMinCost(dijkstraTable,strMinNode); break;
+            switch(metric)
+            {
+                case DISTANCE:
+                    i->calculateMinDistance(dijkstraTable,strMinNode); break;
+                case COST:
+                    i->calculateMinCost(dijkstraTable,strMinNode); break;
 
-            default :
-                cerr << "City::calculateMin\n\n";
+                default :
+                    cerr << "City::calculateMin\n\n";
+            }
         }
 
-        
-        
+        dijkstraTable[strMinNode].setVis(true);
     }
 
-    
+    int index {1};
     for(const auto& i : dijkstraTable)
     {
+        cout << index++ << "   " ; 
         cout <<  i.first ;
         for(size_t j {(i.first).size()} ; j < 32 ; ++j)
             cout << " ";
         cout << (i.second).print() << '\n';
     }
         
-    delete temp;
 }
 
 string City::findMinNode(const unordered_map <string,NodeInfo>& table,MeasurementMetric metric)
