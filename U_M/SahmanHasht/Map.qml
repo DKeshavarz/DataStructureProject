@@ -4,20 +4,20 @@ import QtQml 2.3
 Item
 {
   anchors.fill:parent
-  property int size: 2
+  property int size: 3 ; property int size_b: 2
   Rectangle
   {
    anchors.fill:parent
    color:"#CECECE"
    Station
    {
-     id:a;  s_width: 50 ;  s_height: 50; s_text: "Line1" ; s_color_text: "red"
+     id:tajrish;  s_width: 50 ;  s_height: 50; s_text: "<b>Line1</b>" ; s_color_text: "red"
      anchors{horizontalCenter: parent.horizontalCenter;top:parent.top;topMargin: 13}
    }
    Rectangle
    {
-       id:a1; height: 30; width: size; color:"red";
-       anchors{right:a.left;rightMargin:-25;top:parent.top;topMargin: 60}
+       id:a1; height: 40; width: size; color:"red";
+       anchors{right:tajrish.left;rightMargin:-25;top:parent.top;topMargin: 62}
    }
    Station
    {
@@ -25,8 +25,8 @@ Item
    }
    Rectangle
    {
-       id:a3;height: 30; width: size ;color:"red";
-       anchors{right:a2.left; rightMargin:-15;top:parent.top; topMargin: 120}
+       id:a3;height: 40; width: size ;color:"red";
+       anchors{right:a2.left; rightMargin:-15;top:parent.top; topMargin: 130}
    }
    Station
    {
@@ -34,7 +34,7 @@ Item
    }
    Rectangle
    {
-       id:a5 ;height: 30;width: size ;color:"red";
+       id:a5 ;height: 40;width: size ;color:"red";
        anchors{right:a4.left;rightMargin:-15; top:a4.top; topMargin:30}
    }
    Station
@@ -43,7 +43,7 @@ Item
    }
    Rectangle
    {
-       id:a7; height: 30; width: size ;color:"red";
+       id:a7; height: 40; width: size ;color:"red";
        anchors{right:a6.left;rightMargin:-15;top:a6.top;  topMargin:30}
    }
    Station
@@ -53,7 +53,7 @@ Item
    Rectangle
    {
        id:a9;
-       height: 40;  width: size ; color:"red";anchors{right:a8.left; rightMargin:-15; top:a8.top;topMargin:30}
+       height: 30;  width: size ; color:"red";anchors{right:a8.left; rightMargin:-15; top:a8.top;topMargin:30}
    }
    Station
    {
@@ -102,7 +102,7 @@ Item
    }
    Rectangle
    {
-       id:a21;height: 30;width: 2; color:"red";
+       id:a21;height: 30;width:size ; color:"red";
        anchors{right:a20.left; rightMargin:-15;  top:a20.top;topMargin:30}
    }
    Station
@@ -133,7 +133,7 @@ Item
        anchors{right:a26.left; rightMargin:-15; top:a26.top; topMargin:30}
    }
    Station{
-       id:a28;s_width: 50;s_height: 50;  s_text: "Line1";  s_color_text: "red"
+       id:kahrizak ;s_width: 50;s_height: 50;  s_text: "<b>Line1</b>";  s_color_text: "red"
        anchors{ top:a27.bottom;right:a27.left; rightMargin:23}
    }
    Rectangle
@@ -148,13 +148,13 @@ Item
    }
    Rectangle
    {
-     id:b2; height: 2 ;width:20 ; color:"#333CFF"
+     id:b2; height: size ;width:20 ; color:"#333CFF"
      anchors{top:b.top;left:b1.right;leftMargin:30}
    }
    Rectangle
    {
      id:b3; height: 50 ;width:size ; color:"#333CFF"
-     anchors{bottom:b2.top;left:b2.right;bottomMargin:-2}
+     anchors{bottom:b2.top;left:b2.right;bottomMargin:-2;leftMargin:-3}
    }
    Rectangle
    {
@@ -193,7 +193,7 @@ Item
    }
    Station
    {
-       id:b11; s_width: 50 ;s_height: 50 ; s_text:"Line3" ; s_color_text: "#333CFF"
+       id:b11; s_width: 50 ;s_height: 50 ; s_text:"<b>Line3</b>" ; s_color_text: "#333CFF"
        anchors{top:b9.top;left:b10.right;topMargin:-10}
    }
    Rectangle
@@ -214,7 +214,7 @@ Item
    Rectangle
    {
      id:b15 ; height:30 ;width:size ; color:"#3355FF"
-     anchors{top:b14.bottom;right:b14.left;topMargin:-2}
+     anchors{top:b14.bottom;right:b14.left;topMargin:-2;rightMargin:-3}
    }
    Station
    {
@@ -298,18 +298,18 @@ Item
    }
    Station
    {
-       id:b32;s_width: 50 ; s_height: 50 ; s_text: "Line3" ; s_color_text: "#333CFF"
+       id:azadegan ;s_width: 50 ; s_height: 50 ; s_text: "<b>Line3</b>" ; s_color_text: "#333CFF"
        anchors{top:b31.bottom;right:b31.left;rightMargin:22}
    }
    Rectangle
    {
-     id:c; height:2 ;width:200 ; color:"#ff1493"
+     id:c; height:size ;width:200 ; color:"#ff1493"
      anchors{top:a14.bottom;left:a14.right;topMargin:14;leftMargin:30}
    }
    Rectangle
    {
      id:c1; height:20 ;width:size ; color:"#ff1493"
-     anchors{top:c.bottom;left:c.right;topMargin:-2}
+     anchors{top:c.bottom;left:c.right;topMargin:-2;leftMargin:-3}
    }
    Station
    {
@@ -344,16 +344,16 @@ Item
    Rectangle
    {
      id:c8; height:size ;width:365 ; color:"#ff1493"
-     anchors{top:c7.bottom;left:c7.right;leftMargin:-2}
+     anchors{top:c7.bottom;left:c7.right;leftMargin:-3}
    }
    Station
    {
-       id:c9;s_width: 50 ; s_height: 50 ; s_text: "Line6" ; s_color_text: "#ff1493"
+       id:h ;s_width: 50 ; s_height: 50 ; s_text: "<b>Line6</b>" ; s_color_text: "#ff1493"
        anchors{top:c8.top;left:c8.right;topMargin:-25}
    }
    Rectangle
    {
-     id:c10; height:size ; width:167 ; color:"#ff1493"
+     id:c10; height:size ; width:163 ; color:"#ff1493"
      anchors{top:c.top;right:a14.left;}
    }
    Rectangle
@@ -398,7 +398,7 @@ Item
    }
    Station
    {
-       id:c19;s_width: 50 ; s_height: 50 ; s_text: "Line6" ; s_color_text: "#ff1493"
+       id:c19;s_width: 50 ; s_height: 50 ; s_text: "<b>Line6</b>" ; s_color_text: "#ff1493"
        anchors{top:c17.top;right:c18.left;topMargin:-10}
    }
    Rectangle
@@ -408,7 +408,7 @@ Item
    }
    Station
    {
-       id:d1 ;s_width: 50 ; s_height: 50 ; s_text: "Line4" ; s_color_text: "yellow"
+       id:d1 ;s_width: 50 ; s_height: 50 ; s_text: "<b>Line4</b>" ; s_color_text: "yellow"
        anchors{bottom:d.top;right:d.left;bottomMargin:20;rightMargin:23}
    }
    Rectangle
@@ -483,7 +483,7 @@ Item
    }
    Rectangle
    {
-     id:d16 ; height:size ; width:85 ; color:"yellow"
+     id:d16 ; height:size ; width:86 ; color:"yellow"
      anchors{top:d14.top;left:d15.right;leftMargin: 30}
    }
    Rectangle{id:d17 ; height:size ; width:50 ; color:"yellow";anchors{top:d16.top;left:b20.right;leftMargin: 30}}
@@ -492,15 +492,15 @@ Item
        anchors{top:b20.top;left:d17.right}
    }
    Rectangle{id:d19 ; height:size ; width:30 ; color:"yellow";anchors{top:d16.top;left:d18.right;leftMargin: 30}}
-   Rectangle{id:d20 ; height:60 ; width:size ; color:"yellow";anchors{top:d19.bottom;left:d19.right;topMargin:-2}}
-   Rectangle{id:d21 ; height:size ; width:55 ; color:"yellow";anchors{top:d20.bottom;left:d20.right;leftMargin: -2}}
+   Rectangle{id:d20 ; height:60 ; width:size ; color:"yellow";anchors{top:d19.bottom;left:d19.right;topMargin:-3;}}
+   Rectangle{id:d21 ; height:size ; width:52 ; color:"yellow";anchors{top:d20.bottom;left:d20.right;leftMargin: -3}}
    Rectangle{id:d22 ; height:size ; width:65 ; color:"yellow";anchors{top:d21.top;left:a18.right;leftMargin: 30}}
    Station{
        id:d23;anchors{top:a18.top;left:d22.right}
    }
    Rectangle{id:d24 ; height:size ; width:30 ; color:"yellow";anchors{top:d22.top;left:d23.right;leftMargin: 30}}
-   Rectangle{id:d25 ; height:43 ; width:size ; color:"yellow";anchors{top:d24.bottom;left:d24.right;leftMargin: -2}}
-   Rectangle{id:d26 ; height:size ; width:64 ; color:"yellow";anchors{top:d25.bottom;left:d25.right;leftMargin: -2}}
+   Rectangle{id:d25 ; height:43 ; width:size ; color:"yellow";anchors{top:d24.bottom;left:d24.right;leftMargin: -3}}
+   Rectangle{id:d26 ; height:size ; width:63 ; color:"yellow";anchors{top:d25.bottom;left:d25.right;topMargin:-3;leftMargin: -3}}
    Rectangle{id:d27 ; height:size ; width:60 ; color:"yellow";anchors{top:d26.top;left:c4.right;leftMargin: 30}}
    Station{
        id:d28;anchors{top:c4.top;left:d27.right}
@@ -519,104 +519,104 @@ Item
    }
    Rectangle{id:d35 ; height:size ; width:60 ; color:"yellow";anchors{top:d33.top;left:d34.right;leftMargin: 30}}
    Station{
-       id:d36;s_width: 50 ; s_height: 50 ; s_text: "Line3" ; s_color_text: "yellow"
+       id:d36;s_width: 50 ; s_height: 50 ; s_text: "<b>Line4</b>" ; s_color_text: "yellow"
        anchors{top:d34.top;left:d35.right;topMargin:-10}
    }
    Rectangle
    {
        id:ghaem_pirouzi_1
-       width:size ; height:105; color:"green";
+       width:size_b ; height:105; color:"green";
        anchors{top:b11.bottom;left:b11.left;topMargin:50;leftMargin:26}
 
    }
    Rectangle
    {
        id:ghaem_pirouzi_2
-       width:size ; height:105; color:"green";
+       width:size_b ; height:105; color:"green";
        anchors{top:b11.bottom;left:b11.left;topMargin:50;leftMargin:21}
 
    }
    Rectangle
    {
        id:ghaem_pirouzi_3
-       width:241 ; height:size ; color:"green";
+       width:244 ; height:size_b ; color:"green";
        anchors{top:ghaem_pirouzi_1.bottom;right:ghaem_pirouzi_1.left;topMargin:-6}
 
    }
    Rectangle
    {
        id:ghaem_pirouzi_4
-       width:241 ; height:size ; color:"green";
+       width:244 ; height:size_b ; color:"green";
        anchors{top:ghaem_pirouzi_1.bottom;right:ghaem_pirouzi_1.left;topMargin:-1}
 
    }
    Rectangle
    {
        id:ghaem_pirouzi_5
-       width:2 ; height:180; color:"green";
+       width:size_b ; height:182; color:"green";
        anchors{top:ghaem_pirouzi_3.bottom;right:ghaem_pirouzi_3.left;rightMargin:-7}
 
    }
    Rectangle
    {
        id:ghaem_pirouzi_6
-       width:2 ; height:180; color:"green";
+       width:size_b ; height:182; color:"green";
        anchors{top:ghaem_pirouzi_3.bottom;right:ghaem_pirouzi_3.left;rightMargin:-2}
 
    }
    Rectangle
    {
        id:pirouzi_R_1
-       width:2 ; height:118; color:"green";
+       width:size_b ; height:118; color:"green";
        anchors{top:d30.bottom;right:d30.left;topMargin:30;rightMargin:-13}
 
    }
    Rectangle
    {
        id:pirouzi_R_2
-       width:2 ; height:118; color:"green";
+       width:size_b ; height:118; color:"green";
        anchors{top:d30.bottom;right:d30.left;topMargin:30;rightMargin:-18}
 
    }
    Rectangle
    {
        id:pirouzi_R_3
-       width:138 ; height:size ; color:"green";
+       width:138 ; height:size_b ; color:"green";
        anchors{top:pirouzi_R_2.bottom;right:pirouzi_R_2.left;topMargin:-7}
 
    }
    Rectangle
    {
        id:pirouzi_R_4
-       width:138 ; height:size ; color:"green";
+       width:138 ; height:size_b ; color:"green";
        anchors{top:pirouzi_R_2.bottom;right:pirouzi_R_2.left;topMargin:-2}
 
    }
    Rectangle
    {
        id:r_javanmard_1
-       width:100 ; height:size ; color:"green";
+       width:100 ; height:size_b ; color:"green";
        anchors{top:pirouzi_R_3.top;right:c6.left;}
 
    }
    Rectangle
    {
        id:r_javanmard_2
-       width:100 ; height:size ; color:"green";
+       width:100 ; height:size_b ; color:"green";
        anchors{top:pirouzi_R_4.top;right:c6.left;}
 
    }
    Rectangle
    {
        id:r_javanmard_3
-       width:size ; height:175 ; color:"green";
+       width:size_b ; height:173 ; color:"green";
        anchors{top:r_javanmard_2.bottom;right:r_javanmard_1.left;topMargin:-5;rightMargin:-7}
 
    }
    Rectangle
    {
        id:r_javanmard_4
-       width:size ; height:175 ; color:"green";
+       width:size_b ; height:173 ; color:"green";
        anchors{top:r_javanmard_2.bottom;right:r_javanmard_1.left;topMargin:-5;rightMargin:-2}
 
    }
@@ -624,6 +624,510 @@ Item
        id:javanmard ;s_width: 50 ; s_height: 50 ; s_text: "BUS2" ; s_color: "#00ff55" ; s_boarder_width: 0
        anchors{top:r_javanmard_3.bottom;right:r_javanmard_3.left;rightMargin:25}
    }
+   Rectangle
+   {
+       id:ghaem_ansary_1
+       width:size_b ; height:30 ; color:"green";
+       anchors{bottom:b11.top;right:b11.left;rightMargin:-22}
+
+   }
+   Rectangle
+   {
+       id:ghaem_ansary_2
+       width:size_b ; height:30 ; color:"green";
+       anchors{bottom:b11.top;right:b11.left;rightMargin:-27}
+
+   }
+   Rectangle
+   {
+       id:ghaem_ansary_3
+       width:380 ; height:size_b  ; color:"green";
+       anchors{top:ghaem_ansary_2.top;right:ghaem_ansary_2.left;}
+
+   }
+   Rectangle
+   {
+       id:ghaem_ansary_4
+       width:380 ; height:size_b ; color:"green";
+       anchors{top:ghaem_ansary_2.top;right:ghaem_ansary_2.left;topMargin:5}
+
+   }
+   Station{
+       id:ansary ;s_width: 50 ; s_height: 50 ; s_text: "BUS2" ; s_color: "#00ff55" ; s_boarder_width: 0
+       anchors{top:ghaem_ansary_3.bottom ;right:ghaem_ansary_3.left;topMargin:-23;rightMargin:30}
+   }
+   Rectangle
+   {
+       id:ebnesina_tehranpars_1
+       width:size_b ; height:73 ; color:"green";
+       anchors{top:d27.bottom;right:d28.left;topMargin:13;rightMargin:-18}
+
+   }
+   Rectangle
+   {
+       id:ebnesina_tehranpars_2
+       width:size_b ; height:73  ; color:"green";
+      anchors{top:d27.bottom;right:d28.left;topMargin:13;rightMargin:-13}
+
+   }
+   Rectangle
+   {
+       id:ebnesina_tehranpars_3
+       width:260 ; height:size_b  ; color:"green";
+       anchors{top:ebnesina_tehranpars_2.bottom;left:ebnesina_tehranpars_2.right;topMargin:-7}
+
+   }
+   Rectangle
+   {
+       id:ebnesina_tehranpars_4
+       width:260 ; height:size_b ; color:"green";
+       anchors{top:ebnesina_tehranpars_2.bottom;left:ebnesina_tehranpars_2.right;topMargin:-2}
+
+   }
+   Station{
+       id:tehranpars ;s_width: 50 ; s_height: 50 ; s_text: "BUS1" ; s_color: "#00ff55" ; s_boarder_width: 0
+       anchors{top:ebnesina_tehranpars_3.top ;left:ghaem_ansary_3.right;topMargin:-20;leftMargin:-40}
+   }
+   Rectangle
+   {
+       id:emam_ebnesina_1
+       width:size_b ; height:118  ; color:"green";
+      anchors{bottom:d28.bottom;right:d28.left;rightMargin:-13}
+
+   }
+   Rectangle
+   {
+       id:emam_ebnesina_2
+       width:size_b ; height:118  ; color:"green";
+       anchors{bottom:d28.bottom;right:d28.left;rightMargin:-18}
+
+   }
+   Rectangle
+   {
+       id:emam_ebnesina_3
+       width:77 ; height:size_b  ; color:"green";
+       anchors{top:emam_ebnesina_2.top;right:emam_ebnesina_2.left;}
+
+   }
+   Rectangle
+   {
+       id:emam_ebnesina_4
+       width:77 ; height:size_b ; color:"green";
+       anchors{top:emam_ebnesina_2.top;right:emam_ebnesina_2.left;topMargin: 5}
+
+   }
+   Rectangle
+   {
+       id:dowlat_emam_1
+       width:145 ; height:size_b  ; color:"green";
+       anchors{top:emam_ebnesina_3.top;right:c2.left;}
+
+   }
+   Rectangle
+   {
+       id:dowlat_emam_2
+       width:145 ; height:size_b ; color:"green";
+       anchors{top:emam_ebnesina_4.top;right:c2.left;}
+
+   }
+   Rectangle
+   {
+       id:dowlat_emam_3
+       width:size_b ; height:90  ; color:"green";
+       anchors{top:dowlat_emam_1.top;right:dowlat_emam_2.left;}
+
+   }
+   Rectangle
+   {
+       id:dowlat_emam_4
+       width:size_b ; height:90 ; color:"green";
+       anchors{top:dowlat_emam_1.top;right:dowlat_emam_2.left;rightMargin:-5}
+
+   }
+   Rectangle
+   {
+       id:dowlat_emam_5
+       width:47 ; height:size_b  ; color:"green";
+       anchors{top:dowlat_emam_3.bottom;right:dowlat_emam_3.left;rightMargin:-7}
+
+   }
+   Rectangle
+   {
+       id:dowlat_emam_6
+       width:47 ; height:size_b ; color:"green";
+       anchors{top:dowlat_emam_3.bottom;right:dowlat_emam_3.left;topMargin:-5;rightMargin:-7}
+
+   }
+   Rectangle
+   {
+       id:ferdowsi_dowlat_1
+       width:size_b ; height:25  ; color:"green";
+       anchors{top:a18.bottom;right:a18.left;topMargin:28;rightMargin:-13}
+
+   }
+   Rectangle
+   {
+       id:ferdowsi_dowlat_2
+       width:size_b ; height:25 ; color:"green";
+       anchors{top:a18.bottom;right:a18.left;topMargin:28;rightMargin:-18}
+
+   }
+   Rectangle
+   {
+       id:ferdowsi_dowlat_3
+       width:117 ; height:size_b  ; color:"green";
+       anchors{top:ferdowsi_dowlat_2.bottom;right:ferdowsi_dowlat_2.left;topMargin:-2}
+
+   }
+   Rectangle
+   {
+       id:ferdowsi_dowlat_4
+       width:117 ; height:size_b ; color:"green";
+       anchors{top:ferdowsi_dowlat_2.bottom;right:ferdowsi_dowlat_2.left;topMargin:-7;}
+
+   }
+   Rectangle
+   {
+       id:ferdowsi_dowlat_5
+       width:size_b ; height:65  ; color:"green";
+       anchors{bottom:ferdowsi_dowlat_3.top;right:ferdowsi_dowlat_3.left;rightMargin:-2}
+
+   }
+   Rectangle
+   {
+       id:ferdowsi_dowlat_6
+       width:size_b ; height:65 ; color:"green";
+       anchors{bottom:ferdowsi_dowlat_3.top;right:ferdowsi_dowlat_3.left;rightMargin:-7}
+
+   }
+   Rectangle
+   {
+       id:enghelab_ferdowsi_1
+       width:200 ; height:size_b  ; color:"green";
+       anchors{top:ferdowsi_dowlat_5.top;right:ferdowsi_dowlat_5.left;topMargin:-5;rightMargin:-5}
+
+   }
+   Rectangle
+   {
+       id:enghelab_ferdowsi_2
+       width:200 ; height:size_b ; color:"green";
+       anchors{top:ferdowsi_dowlat_5.top;right:ferdowsi_dowlat_5.left;rightMargin:-5}
+
+   }
+   Rectangle
+   {
+       id:lines_1
+       width:size_b ; height:18  ; color:"green";
+       anchors{top:d18.bottom;right:d18.left;topMargin:30;rightMargin:-13}
+
+   }
+   Rectangle
+   {
+       id:lines_2
+       width:size_b ; height:18 ; color:"green";
+       anchors{top:d18.bottom;right:d18.left;topMargin:30;rightMargin:-18}
+
+   }
+   Rectangle
+   {
+       id:lines_3
+       width:size_b ; height:18  ; color:"green";
+       anchors{top:d15.bottom;right:d15.left;topMargin:30;rightMargin:-13}
+
+   }
+   Rectangle
+   {
+       id:lines_4
+       width:size_b ; height:18 ; color:"green";
+       anchors{top:d15.bottom;right:d15.left;topMargin:30;rightMargin:-18}
+
+   }
+   Rectangle
+   {
+       id:lines_5
+       width:size_b ; height:18  ; color:"green";
+       anchors{top:d9.bottom;right:d9.left;topMargin:30;rightMargin:-13}
+
+   }
+   Rectangle
+   {
+       id:lines_6
+       width:size_b ; height:18 ; color:"green";
+       anchors{top:d9.bottom;right:d9.left;topMargin:30;rightMargin:-18}
+
+   }
+   Rectangle
+   {
+       id:lines_7
+       width:size_b ; height:18  ; color:"green";
+       anchors{top:d7.bottom;right:d7.left;topMargin:30;rightMargin:-13}
+
+   }
+   Rectangle
+   {
+       id:lines_8
+       width:size_b ; height:18 ; color:"green";
+       anchors{top:d7.bottom;right:d7.left;topMargin:30;rightMargin:-18}
+
+   }
+   Rectangle
+   {
+       id:moein_enghelab_1
+       width:237 ; height:size_b  ; color:"green";
+       anchors{top:enghelab_ferdowsi_1.top;right:enghelab_ferdowsi_1.left;rightMargin:-5}
+
+   }
+   Rectangle
+   {
+       id:moein_enghelab_2
+       width:237 ; height:size_b ; color:"green";
+       anchors{top:enghelab_ferdowsi_2.top;right:enghelab_ferdowsi_2.left;rightMargin:-5}
+
+   }
+   Rectangle
+   {
+       id:azadi_moein_1
+       width:65 ; height:size_b  ; color:"green";
+       anchors{top:moein_enghelab_1.top;right:moein_enghelab_1.left;rightMargin:-5}
+
+   }
+   Rectangle
+   {
+       id:azadi_moein_2
+       width:65 ; height:size_b ; color:"green";
+       anchors{top:moein_enghelab_2.top;right:moein_enghelab_2.left;rightMargin:-5}
+
+   }
+   Rectangle
+   {
+       id:bimeh_azadi_1
+       width:196 ; height:size_b  ; color:"green";
+       anchors{top:d7.top;right:d7.left;topMargin:11}
+
+   }
+   Rectangle
+   {
+       id:bimeh_azadi_2
+       width:196 ; height:size_b ; color:"green";
+       anchors{top:d7.top;right:d7.left;topMargin:16}
+   }
+   Station{
+       id:bimeh ;s_width: 50 ; s_height: 50 ; s_text: "BUS2" ; s_color: "#00ff55" ; s_boarder_width: 0
+       anchors{top:bimeh_azadi_1.top ;right:bimeh_azadi_1.left;topMargin:-22;leftMargin:-40}
+   }
+   Rectangle
+   {
+       id:sadr_tajrish_1
+       width:140 ; height:size_b  ; color:"green";
+       anchors{top:tajrish.top;right:tajrish.left;topMargin:22}
+
+   }
+   Rectangle
+   {
+       id:sadr_tajrish_2
+       width:140 ; height:size_b ; color:"green";
+       anchors{top:tajrish.top;right:tajrish.left;topMargin:27}
+   }
+   Rectangle
+   {
+       id:sadr_tajrish_3
+       width:size_b ; height:80  ; color:"green";
+       anchors{top:sadr_tajrish_1.bottom;right:sadr_tajrish_1.left;rightMargin:-2}
+
+   }
+   Rectangle
+   {
+       id:sadr_tajrish_4
+       width:size_b ; height:80 ; color:"green";
+       anchors{top:sadr_tajrish_1.bottom;right:sadr_tajrish_1.left;rightMargin:-7}
+
+   }
+   Station{
+       id:sadr ;s_width: 50 ; s_height: 50 ; s_text: "BUS3" ; s_color: "#00ff55" ; s_boarder_width: 0
+       anchors{top:sadr_tajrish_3.bottom ;right:sadr_tajrish_3.left;rightMargin:20}
+   }
+   Rectangle
+   {
+       id:tajrish_mirdamad_1
+       width:30 ; height:size_b  ; color:"green";
+       anchors{top:sadr_tajrish_1.top;left:sadr_tajrish_1.right;leftMargin:50}
+
+   }
+   Rectangle
+   {
+       id:tajrish_mirdamad_2
+       width:30 ; height:size_b ; color:"green";
+        anchors{top:sadr_tajrish_2.top;left:sadr_tajrish_2.right;leftMargin:50}
+
+   }
+   Rectangle
+   {
+       id:tajrish_mirdamad_3
+       width:size_b ; height:222  ; color:"green";
+       anchors{top:tajrish_mirdamad_1.bottom;right:tajrish_mirdamad_1.left;rightMargin:-25}
+
+   }
+   Rectangle
+   {
+       id:tajrish_mirdamad_4
+       width:size_b ; height:222 ; color:"green";
+       anchors{top:tajrish_mirdamad_1.bottom;right:tajrish_mirdamad_1.left;rightMargin:-30}
+
+   }
+   Rectangle
+   {
+       id:tajrish_mirdamad_5
+       width:41 ; height:size_b  ; color:"green";
+       anchors{top:tajrish_mirdamad_3.bottom;right:tajrish_mirdamad_3.left;topMargin:-2;rightMargin:-5}
+
+   }
+   Rectangle
+   {
+       id:tajrish_mirdamad_6
+       width:41 ; height:size_b ; color:"green";
+       anchors{top:tajrish_mirdamad_3.bottom;right:tajrish_mirdamad_3.left;topMargin:-7;rightMargin:-5}
+   }
+   Rectangle
+   {
+       id:mirdamad_v_1
+       width:295 ; height:size_b  ; color:"green";
+       anchors{top:tajrish_mirdamad_5.top;right:tajrish_mirdamad_5.left;rightMargin:30}
+
+   }
+   Rectangle
+   {
+       id:mirdamad_v_2
+       width:295 ; height:size_b ; color:"green";
+       anchors{top:tajrish_mirdamad_6.top;right:tajrish_mirdamad_6.left;rightMargin:30}
+   }
+   Rectangle
+   {
+       id:mirdamad_v_3
+       width:size_b ; height:245  ; color:"green";
+       anchors{top:mirdamad_v_1.bottom;right:mirdamad_v_1.left;topMargin:-5;rightMargin:-2}
+
+   }
+   Rectangle
+   {
+       id:mirdamad_v_4
+      width:size_b ; height:245  ; color:"green";
+       anchors{top:mirdamad_v_1.bottom;right:mirdamad_v_1.left;topMargin:-5;rightMargin:-7}
+   }
+   Rectangle
+   {
+       id:mirdamad_v_5
+       width:98 ; height:size_b  ; color:"green";
+       anchors{top:mirdamad_v_3.bottom;left:mirdamad_v_3.right;topMargin:-2}
+
+   }
+   Rectangle
+   {
+       id:mirdamad_v_6
+       width:98 ; height:size_b ; color:"green";
+       anchors{top:mirdamad_v_3.bottom;left:mirdamad_v_3.right;topMargin:-7}
+   }
+   Rectangle
+   {
+       id:v_rahahan_1
+       width:30 ; height:size_b  ; color:"green";
+       anchors{top:mirdamad_v_5.top;left:b18.right;leftMargin:30}
+
+   }
+   Rectangle
+   {
+       id:v_rahahan_2
+       width:30 ; height:size_b ; color:"green";
+       anchors{top:mirdamad_v_6.top;left:b18.right;leftMargin:30}
+   }
+   Rectangle
+   {
+       id:v_rahahan_3
+       width:size_b ; height:281  ; color:"green";
+       anchors{top:v_rahahan_1.bottom;left:v_rahahan_1.right;topMargin:-5;leftMargin:-7}
+
+   }
+   Rectangle
+   {
+       id:v_rahahan_4
+      width:size_b ; height:281  ; color:"green";
+       anchors{top:v_rahahan_1.bottom;left:v_rahahan_1.right;topMargin:-5;leftMargin:-2}
+   }
+   Rectangle
+   {
+       id:v_rahahan_5
+       width:32 ; height:size_b  ; color:"green";
+       anchors{top:v_rahahan_3.bottom;right:v_rahahan_3.left;topMargin:-2;rightMargin:-5}
+
+   }
+   Rectangle
+   {
+       id:v_rahahan_6
+       width:32 ; height:size_b ; color:"green";
+       anchors{top:v_rahahan_3.bottom;right:v_rahahan_3.left;topMargin:-7;rightMargin:-5}
+   }
+   Rectangle
+   {
+       id:rahahan_shahrak_1
+       width:130 ; height:size_b  ; color:"green";
+       anchors{top:v_rahahan_5.top;right:b26.left;}
+
+   }
+   Rectangle
+   {
+       id:rahahan_shahrak_2
+       width:130 ; height:size_b ; color:"green";
+       anchors{top:v_rahahan_6.top;right:b26.left;}
+   }
+   Rectangle
+   {
+       id:rahahan_shahrak_3
+       width:size_b ; height:190  ; color:"green";
+       anchors{top:rahahan_shahrak_1.bottom;right:rahahan_shahrak_2.left;topMargin:-5;rightMargin:-2}
+
+   }
+   Rectangle
+   {
+       id:rahahan_shahrak_4
+      width:size_b ; height:190  ; color:"green";
+       anchors{top:rahahan_shahrak_1.bottom;right:rahahan_shahrak_2.left;topMargin:-5;rightMargin:-7}
+   }
+   Station{
+       id:shahrak ;s_width: 50 ; s_height: 50 ; s_text: "BUS3" ; s_color: "#00ff55" ; s_boarder_width: 0
+       anchors{top:rahahan_shahrak_3.bottom ;right:rahahan_shahrak_3.left;rightMargin:20}
+   }
+   //name
+
+       Text{text:"<i>Kahrizak</i>"; anchors{top:kahrizak.bottom ; left:kahrizak.left ; topMargin:54}}
+
+
+
+       Text{text:"<i>Shahrak-e Shari'ati</i>";
+           anchors{top:shahrak.bottom ; left:shahrak.left ; topMargin:53 ; leftMargin:-27}}
+
+
+
+       Text{
+           text:"<i>Azadegan</i>";
+         anchors{top:azadegan.bottom ; left:azadegan.left ; topMargin:54;}
+       }
+
+
+
+       Text{
+           text:"<i>Payaneh Javanmard</i>";
+        anchors{top:javanmard.bottom ; left:javanmard.left ; topMargin:54 ; leftMargin:-25}
+       }
+
+
+        Text{
+          text:"<i>Haram-e Hazrat-e Abdolazim</i>";
+          anchors{top:h.bottom ; left:h.left ; topMargin:52;leftMargin:-55}
+       }
+
+
+
+
+
  }
 
 }
