@@ -3,7 +3,7 @@
 #ifndef NODEINFO_H
 #define NODEINFO_H
 
-class Vehichle;
+class Vehicle;
 
 class NodeInfo 
 {
@@ -14,13 +14,13 @@ class NodeInfo
         void setCost       (const int         input) {this->cost        = input;}//tip:get by refrence of what??
         void setDistance   (const int         input) {this->distance    = input;}
         void setParent     (const std::string input) {this->parent      = input;}   
-        void setNodeVehicle(Vehichle* const   input) {this->nodeVehicle = input;}
+        void setNodeVehicle(Vehicle* const    input) {this->nodeVehicle = input;}
 
         bool        getVis        ()const {return this->vis     ;}
         int         getCost       ()const {return this->cost    ;}
         int         getDistance   ()const {return this->distance;}//tip:pass by refrence or what???
         std::string getParent     ()const {return this->parent  ;}
-        Vehichle*   getNodeVehicle()const {return this->nodeVehicle;}
+        Vehicle*   getNodeVehicle()const {return this->nodeVehicle;}
 
         std::string print()const;
     private:
@@ -29,7 +29,8 @@ class NodeInfo
         int  distance;
 
         std::string parent;
-        Vehichle* nodeVehicle;//todo: better if ptr to const
+        Vehicle* nodeVehicle;//todo: better if ptr to const
+        //tip : should be const???
 };
 
 #endif

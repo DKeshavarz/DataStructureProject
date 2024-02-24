@@ -105,11 +105,8 @@ void City::calculateMin(const string& start,const string& end,MeasurementMetric 
     dijkstraTable[start].setCost(0);
     dijkstraTable[start].setDistance(0);
 
-    cout << "dijestra : " << dijkstraTable.size() << '\n';
-    //warrning : bug on size
     for(size_t i {} ; i < dijkstraTable.size() ; ++i)
-    {
-        
+    { 
         string strMinNode {findMinNode(dijkstraTable, metric)};
         
         const auto& vec {nodesMap[strMinNode]} ;
@@ -121,7 +118,7 @@ void City::calculateMin(const string& start,const string& end,MeasurementMetric 
                 case DISTANCE:
                     i->calculateMinDistance(dijkstraTable,strMinNode); break;
                 case COST:
-                    i->calculateMinCost(dijkstraTable,strMinNode); break;
+                    i->calculateMinCost    (dijkstraTable,strMinNode); break;
 
                 default :
                     cerr << "City::calculateMin\n\n";

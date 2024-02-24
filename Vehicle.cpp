@@ -53,17 +53,16 @@ bool Vehicle::readFile(const string& fileName) //add execption
 
 void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const std::string& srcNode )
 {
-    //cout << "src is:" << srcNode << string(35-srcNode.size(),' ');
     for(const auto& neighbourNode : this->neighbours[srcNode])
     {
-        //cout << neighbourNode.nodeName << "_";
         if(!table[neighbourNode.nodeName].getVis() && table[neighbourNode.nodeName].getDistance() - table[srcNode].getDistance() >  + neighbourNode.distance)//what happend if min = int_max
         {
-            table[neighbourNode.nodeName].setDistance(table[srcNode].getDistance() + neighbourNode.distance);
+            table[neighbourNode.nodeName].setDistance(table[srcNode].getDistance() + neighbourNode.distance); //all of this should be function
             table[neighbourNode.nodeName].setParent(srcNode);
+            table[neighbourNode.nodeName].setNodeVehicle(this);//father pointer or what????????
+            table[neighbourNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(neighbourNode.distance));
         }
     }
-    //cout << '\n';
         
 }
 

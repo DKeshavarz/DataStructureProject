@@ -11,7 +11,7 @@ void LinearVehicle::calculateMinCost(unordered_map<string,NodeInfo>& table,const
     for(const auto& neighbourNode:getLine())
         if(!table[neighbourNode].getVis() && table[neighbourNode].getCost() > table[srcNode].getCost() + calculateCost(0))
         {
-            table[neighbourNode].setCost(table[srcNode].getCost() + calculateCost(0));
+            table[neighbourNode].setCost(table[srcNode].getCost() + calculateCost(0));//why zero ?? 
             table[neighbourNode].setParent(srcNode);
         }
        
