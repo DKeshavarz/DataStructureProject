@@ -113,7 +113,8 @@ void City::calculateMin(const string& start,const string& end,MeasurementMetric 
         string strMinNode {findMinNode(dijkstraTable, metric)};
         
         const auto& vec {nodesMap[strMinNode]} ;
-        for(const auto& i : vec)
+
+        for(const auto& i : vec)//implement with map
         {
             switch(metric)
             {

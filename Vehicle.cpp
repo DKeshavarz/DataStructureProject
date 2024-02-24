@@ -53,13 +53,18 @@ bool Vehicle::readFile(const string& fileName) //add execption
 
 void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const std::string& srcNode )
 {
-    cout << "src is:" << srcNode << '\n';
+    //cout << "src is:" << srcNode << string(35-srcNode.size(),' ');
     for(const auto& neighbourNode : this->neighbours[srcNode])
+    {
+        //cout << neighbourNode.nodeName << "_";
         if(!table[neighbourNode.nodeName].getVis() && table[neighbourNode.nodeName].getDistance() - table[srcNode].getDistance() >  + neighbourNode.distance)//what happend if min = int_max
         {
             table[neighbourNode.nodeName].setDistance(table[srcNode].getDistance() + neighbourNode.distance);
             table[neighbourNode.nodeName].setParent(srcNode);
         }
+    }
+    //cout << '\n';
+        
 }
 
 bool Vehicle::isOnVehchileRoad(const string& input)const
@@ -68,7 +73,7 @@ bool Vehicle::isOnVehchileRoad(const string& input)const
 }
 Vehicle::~Vehicle()
 {
-    cout << fileName << string (15-fileName.size(),' ') << "destroid\n" ;
+    //cout << fileName << string (15-fileName.size(),' ') << "destroid\n" ;
 }
 
 
