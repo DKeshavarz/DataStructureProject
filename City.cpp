@@ -128,14 +128,11 @@ void City::calculateMin(const string& start,const string& end,MeasurementMetric 
         dijkstraTable[strMinNode].setVis(true);
     }
 
-    int index {1};
+    //  "Shahrak-e Shari'ati" ,  "Sohrevardi"  , "Shoush"
     for(const auto& i : dijkstraTable)
     {
-        cout << index++ << "   " ; 
-        cout <<  i.first ;
-        for(size_t j {(i.first).size()} ; j < 32 ; ++j)
-            cout << " ";
-        cout << (i.second).print() << '\n';
+        if(i.first == "Shoush")
+        cout<<  i.first << string(32-(i.first).size(),' ')  << (i.second).print() << '\n';
     }
         
 }

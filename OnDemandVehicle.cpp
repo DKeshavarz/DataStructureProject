@@ -17,6 +17,7 @@ void OnDemandVehicle::calculateMinCost(unordered_map<string,NodeInfo>& table,con
             table[neighbourNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(neighbourNode.distance));
             table[neighbourNode.nodeName].setDistance(table[srcNode].getDistance() + neighbourNode.distance);
             table[neighbourNode.nodeName].setParent(srcNode);
+            table[neighbourNode.nodeName].setNodeVehicle(this);
         }
     
 }
