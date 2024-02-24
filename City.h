@@ -24,6 +24,9 @@ class City
 
         std::string getCityName()const{return cityName;}
 
+        void printNodeVehicle();
+
+
         virtual ~City();
 
     private:

@@ -21,6 +21,10 @@ bool Vehicle::readFile(const string& fileName) //add execption
         return false ; //faild to open
     }
     
+    //************for debug**********
+    this->fileName = fileName;
+    //*******************************
+
     myFile >> this->speedPerKilometre >> this->costPerKilometre;
     
     string stationOne{};
@@ -64,7 +68,7 @@ bool Vehicle::isOnVehchileRoad(const string& input)const
 }
 Vehicle::~Vehicle()
 {
-      
+    cout << fileName << string (15-fileName.size(),' ') << "destroid\n" ;
 }
 
 

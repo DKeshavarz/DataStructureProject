@@ -52,9 +52,13 @@ class Vehicle
         virtual bool isOnVehchileRoad(const std::string&)const;
         virtual ~Vehicle();
 
+        std::string getVehicleName() {return this->fileName;}
+
     private:
         int speedPerKilometre ;
         int costPerKilometre  ;
+
+        std::string fileName ;
         
         
         std::vector<std::string> line;

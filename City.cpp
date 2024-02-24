@@ -173,8 +173,23 @@ string City::findMinNode(const unordered_map <string,NodeInfo>& table,Measuremen
 }
 City::~City()
 {
+    //printNodeVehicle();
     for(auto item:publicTransportation)
         if(item)
             delete item;
-        
+    
+}
+
+
+//****************** DEBUG *********************
+void City::printNodeVehicle()
+{
+    for(const auto& item:nodesMap)
+    {
+        cout << item.first << string (40-(item.first).size() , ' '); 
+        for(const auto& i:item.second)
+            cout << i->getVehicleName() << ' ';
+
+        cout << '\n';
+    }
 }
