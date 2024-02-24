@@ -28,6 +28,7 @@ Item
            anchors.centerIn: parent
            text:s_text
            color:s_color_text
+
        }
        MouseArea
        {
