@@ -6,7 +6,7 @@ using namespace std;
 
 OnDemandVehicle::OnDemandVehicle()
 {
-    cout << "OnDemandVehicle creat \n";
+
 }
 
 void OnDemandVehicle::calculateMinCost(unordered_map<string,NodeInfo>& table,const string& srcNode) 
@@ -23,7 +23,7 @@ void OnDemandVehicle::calculateMinCost(unordered_map<string,NodeInfo>& table,con
 
 OnDemandVehicle::~OnDemandVehicle()
 {
-    cout << "OnDemandVehicle delete \n";
+    
 }
 
 //*****************protected

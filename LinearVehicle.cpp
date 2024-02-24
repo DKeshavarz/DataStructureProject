@@ -5,11 +5,9 @@ using namespace std;
 
 LinearVehicle::LinearVehicle()
 {
-    cout << "LinearVehicle creat \n";
 }
 void LinearVehicle::calculateMinCost(unordered_map<string,NodeInfo>& table,const string& srcNode) 
 {
-    cout << "\n\n\nLinearVehicle::calculateCost\n\n\n" ;
     for(const auto& neighbourNode:getLine())
         if(!table[neighbourNode].getVis() && table[neighbourNode].getCost() > table[srcNode].getCost() + calculateCost(0))
         {
@@ -20,7 +18,6 @@ void LinearVehicle::calculateMinCost(unordered_map<string,NodeInfo>& table,const
 }
 LinearVehicle::~LinearVehicle()
 {
-    cout << "LinearVehicle destroyd \n";
 }
 
 

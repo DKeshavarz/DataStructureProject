@@ -8,10 +8,10 @@ using namespace std;
 
 Vehicle::Vehicle()
 {
-    cout << "Vehicle created\n";
+
 }
 
-bool Vehicle::readFile(const string& fileName) ///add execption
+bool Vehicle::readFile(const string& fileName) //add execption
 {
     ifstream myFile (fileName);
 
@@ -44,13 +44,12 @@ bool Vehicle::readFile(const string& fileName) ///add execption
 
     myFile.close();
 
-    cout << "suc to open " << fileName << '\n' ;
     return true; //reading file was successfull
 }
 
 void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const std::string& srcNode )
 {
-
+    cout << "src is:" << srcNode << '\n';
     for(const auto& neighbourNode : this->neighbours[srcNode])
         if(!table[neighbourNode.nodeName].getVis() && table[neighbourNode.nodeName].getDistance() - table[srcNode].getDistance() >  + neighbourNode.distance)//what happend if min = int_max
         {

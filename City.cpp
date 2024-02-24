@@ -17,7 +17,7 @@ using namespace std;
 
 City::City(string inputCityName):cityName(inputCityName)
 {
-    cout << getCityName() << " create in parent\n";
+
 }
 
 void City::setUpCity()
@@ -69,16 +69,12 @@ void City::setPublicTransportation()
 }
 void City::setNodesMap()//todo : pass by refrence not copy
 {
-    //cout << "fuck node map size is:" << this->nodesMap.size();
     for (auto & temp : this->nodesMap)
     {
-        //cout << "1\n";
         for (unsigned int i = 0; i < this->publicTransportation.size (); i++)
         {
-            //cout << "2\n";
             if (publicTransportation.at (i)->isOnVehchileRoad (temp.first))
             {
-                //cout << "inser\n";
                 temp.second.push_back (publicTransportation.at (i));
             }
         }
@@ -90,13 +86,12 @@ void City::readFile()
 
     if(!file)
         cerr << "faild to open " << cityName << ".txt\n";
-    else
-        cout <<  "suc to open " << cityName << ".txt\n";
 
     string temp;
     while(getline(file,temp))
+    {
         nodesMap[temp];
-
+    }
     file.close();
 }
 
@@ -110,13 +105,14 @@ void City::calculateMin(const string& start,const string& end,MeasurementMetric 
     dijkstraTable[start].setCost(0);
     dijkstraTable[start].setDistance(0);
 
+    cout << "dijestra : " << dijkstraTable.size() << '\n';
+    //warrning : bug on size
     for(size_t i {} ; i < dijkstraTable.size() ; ++i)
     {
         
         string strMinNode {findMinNode(dijkstraTable, metric)};
         
         const auto& vec {nodesMap[strMinNode]} ;
-        //cout << "num : " << i << "  min node:" << strMinNode << "  vec size" << vec.size() << '\n';
         for(const auto& i : vec)
         {
             switch(metric)
@@ -130,7 +126,7 @@ void City::calculateMin(const string& start,const string& end,MeasurementMetric 
                     cerr << "City::calculateMin\n\n";
             }
         }
-
+        
         dijkstraTable[strMinNode].setVis(true);
     }
 
@@ -177,18 +173,8 @@ string City::findMinNode(const unordered_map <string,NodeInfo>& table,Measuremen
 }
 City::~City()
 {
-    cout << getCityName() << "  destroyed in parent\n";
-/*
-    for(auto i : this->nodesSet)
-        cout << i << ' ';
-    cout << endl;
-*/
     for(auto item:publicTransportation)
-    {
         if(item)
-        {
             delete item;
-        }
-
-    }
+        
 }
