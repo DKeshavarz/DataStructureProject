@@ -28,7 +28,7 @@ bool Vehicle::readFile(const string& fileName) //add execption
     this->fileName = fileName;
     //*******************************
 
-    myFile >> this->speedPerKilometre >> this->costPerKilometre;
+    myFile >> this->changeLineTime >> this->speedPerKilometre >> this->costPerKilometre;
     
     string stationOne{};
     string stationTwo{};
@@ -75,7 +75,15 @@ bool Vehicle::isOnVehchileRoad(const string& input)const
 }
 Vehicle::~Vehicle()
 {
-    //cout << fileName << string (15-fileName.size(),' ') << "destroid\n" ;
+    /*
+    cout << "change line" << changeLineTime << " speed " << speedPerKilometre << " cost " << costPerKilometre  << '\n';
+
+    for(auto i : line)
+        cout << i << ' ';
+    cout << '\n';
+    
+    cout << fileName << string (15-fileName.size(),' ') << "destroid\n" ;
+    */
 }
 
 vector<string> Vehicle::backTrackPath (string start,string end)const
