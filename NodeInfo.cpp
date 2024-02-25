@@ -1,5 +1,6 @@
 #include <climits>
 #include <sstream>
+#include <iomanip>
 #include "NodeInfo.h"
 
 using namespace std;
@@ -12,9 +13,9 @@ NodeInfo::NodeInfo()
 string NodeInfo::print()const
 {
     ostringstream out;
-    out << "vis "    << getVis()  << " dis "  << getDistance()
-        << " cost "  << getCost() << "time " << nodeTime
-        <<"  parent "<< getParent();
+    out << "vis: "   << setw(4)  << left << getVis()  << "dis: " << setw(10) << getDistance()
+        << "cost: "  << setw(10) <<         getCost() << "time: "<< nodeTime
+        <<"    parent: "<< getParent();
 
     return out.str();
 }
