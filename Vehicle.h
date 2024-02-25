@@ -49,10 +49,12 @@ class Vehicle
         virtual void calculateMinDistance(std::unordered_map<std::string,NodeInfo>&,const std::string&);
         virtual void calculateMinCost    (std::unordered_map<std::string,NodeInfo>&,const std::string&) = 0;
         
+
         virtual bool isOnVehchileRoad(const std::string&)const;
         virtual ~Vehicle();
 
         std::string getVehicleName() {return this->fileName;}
+        std::vector<std::string> backTeackPath (std::string,std::string)const;
 
     private:
         int speedPerKilometre ;

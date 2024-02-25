@@ -1,6 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
+#include <algorithm>
+#include <vector>
 
 #include "Vehicle.h"
 
@@ -75,6 +78,30 @@ Vehicle::~Vehicle()
     //cout << fileName << string (15-fileName.size(),' ') << "destroid\n" ;
 }
 
+vector<string> Vehicle::backTeackPath (string start,string end)const
+{
+    //validate they are in line
+    vector<string> vec;
+
+    for(size_t i {} ; i < line.size() ; ++i)
+    {
+        if(line.at(i) == start)
+        {
+            for(size_t j {i} ; j < line.size() && line.at(j) != end ; ++j)
+                vec.push_back(line.at(j));
+            vec.push_back(end);
+        }
+        else if(line.at(i) == end  )
+        {
+            for(size_t j {i} ; j < line.size() && line.at(j) != start ; ++j)
+                vec.push_back(line.at(j));
+            vec.push_back(start);
+            reverse(vec.begin(), vec.end());
+        }
+    }
+    return vec;
+
+}
 
 //**************************************************
 //                      private
