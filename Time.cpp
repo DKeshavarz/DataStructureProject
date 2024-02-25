@@ -1,6 +1,6 @@
-#include "time.h"
+#include "Time.h"
 
-void time::set_hour (unsigned int hour)
+void Time::set_hour (unsigned int hour)
 {
     if (hour <= 12 && hour >= 1)
     {
@@ -12,12 +12,12 @@ void time::set_hour (unsigned int hour)
     }
 }
 
-unsigned int time::get_hour () const
+unsigned int Time::get_hour () const
 {
     return this->hour;
 }
 
-void time::set_minute(unsigned int minute)
+void Time::set_minute(unsigned int minute)
 {
     if (minute <= 59 && minute >= 0)
     {
@@ -29,12 +29,12 @@ void time::set_minute(unsigned int minute)
     }
 }
 
-unsigned int time::get_minute () const
+unsigned int Time::get_minute () const
 {
     return this->minute;
 }
 
-void time::set_dayORnight(string dayORnight)
+void Time::set_dayORnight(string dayORnight)
 {
     if (dayORnight == "AM" || dayORnight == "PM" || dayORnight == "am" || dayORnight == "pm")
     {
@@ -53,12 +53,12 @@ void time::set_dayORnight(string dayORnight)
     }
 }
 
-string time::get_dayORnight () const
+string Time::get_dayORnight () const
 {
     return this->dayORnight;
 }
 
-void time::getTime (string time)
+void Time::getTime (string time)
 {
     unsigned int index = 0;
     string tHour;
@@ -95,7 +95,7 @@ void time::getTime (string time)
     this->set_dayORnight (tDayORnight);
 }
 
-unsigned int time::getTime () const
+unsigned int Time::getTime () const
 {
     if (this->get_dayORnight () == "PM")
     {
@@ -107,9 +107,9 @@ unsigned int time::getTime () const
     }
 }
 
-class time time::operator+ (const time & first) const
+class Time Time::operator+ (const Time & first) const
 {
-    class time temp ("01:00 AM");
+    class Time temp ("01:00 AM");
 
     unsigned int hour1 = this->get_hour ();
     unsigned int minute1 = this->get_minute ();
@@ -162,9 +162,9 @@ class time time::operator+ (const time & first) const
 
     return temp;
 }
-class time time::operator- (const time & second) const
+class Time Time::operator- (const Time & second) const
 {
-    class time temp ("01:00 AM");
+    class Time temp ("01:00 AM");
 
     unsigned int hour1 = this->get_hour ();
     unsigned int minute1 = this->get_minute ();
@@ -224,7 +224,7 @@ class time time::operator- (const time & second) const
 
     return temp;
 }
-bool time::operator== (const class time & third) const
+bool Time::operator== (const class Time & third) const
 {
     if (this->get_hour() == third.get_hour () && this->get_minute () == third.get_minute () && this->get_dayORnight () == third.get_dayORnight ())
     {
@@ -235,7 +235,7 @@ bool time::operator== (const class time & third) const
         return false;
     }
 }
-bool time::operator> (const time &second) const
+bool Time::operator> (const Time &second) const
 {
     unsigned int hour1 = this->get_hour();
     unsigned int minute1 = this->get_minute();
@@ -250,7 +250,7 @@ bool time::operator> (const time &second) const
 
     return tMinute1 > tMinute2;
 }
-bool time::operator< (const time &second) const
+bool Time::operator< (const Time &second) const
 {
     unsigned int hour1 = this->get_hour();
     unsigned int minute1 = this->get_minute();

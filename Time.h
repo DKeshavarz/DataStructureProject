@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class time
+class Time
 {
     private:
 
@@ -15,7 +15,7 @@ class time
 
     public:
 
-        time (string time) {getTime (time);}
+        Time (string time) {getTime (time);}
 
         void set_hour (unsigned int);
         unsigned int get_hour () const;
@@ -29,11 +29,11 @@ class time
         void getTime (string);
         unsigned int getTime () const;
         
-        class time operator+ (const time &) const;
-        class time operator- (const time &) const;
-        bool operator== (const class time &) const;
-        bool operator> (const time &) const;
-        bool operator< (const time &) const;
+        class Time operator+ (const Time &) const;
+        class Time operator- (const Time &) const;
+        bool operator== (const class Time &) const;
+        bool operator> (const Time &) const;
+        bool operator< (const Time &) const;
 
 };
 
