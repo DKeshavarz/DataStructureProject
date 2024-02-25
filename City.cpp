@@ -95,7 +95,7 @@ void City::readFile()
     file.close();
 }
 
-void City::calculateMin(const string& start,const string& end,MeasurementMetric metric,Time CurrentTime)
+unordered_map <string , NodeInfo > City::calculateMin(const string& start,const string& end,MeasurementMetric metric,Time CurrentTime)
 {
     unordered_map <string , NodeInfo >dijkstraTable ;
 
@@ -134,6 +134,8 @@ void City::calculateMin(const string& start,const string& end,MeasurementMetric 
         //if(i.first == "Shoush")
         cout<<  i.first << string(32-(i.first).size(),' ')  << (i.second).print() << '\n';
     }
+
+    return dijkstraTable;
         
 }
 

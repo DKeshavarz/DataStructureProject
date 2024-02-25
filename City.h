@@ -18,7 +18,7 @@ class City
         virtual void setNodesMap();            // concect node to all vechle : after setPublicTransportation
         virtual void readFile   ();            // create nodesMap -> connecet node with it's vehichle
         
-        void calculateMin(const std::string&,const std::string&/*Time */  ,MeasurementMetric, Time);
+        std::unordered_map <std::string , NodeInfo > calculateMin(const std::string&,const std::string&/*Time */  ,MeasurementMetric, Time);
         std::string findMinNode  (const std::unordered_map <std::string,NodeInfo>&,MeasurementMetric=DISTANCE);
 
 

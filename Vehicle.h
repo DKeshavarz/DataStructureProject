@@ -54,7 +54,7 @@ class Vehicle
         virtual ~Vehicle();
 
         std::string getVehicleName() {return this->fileName;}
-        std::vector<std::string> backTeackPath (std::string,std::string)const;
+        std::vector<std::string> backTrackPath (std::string,std::string)const;
 
     private:
         int speedPerKilometre ;

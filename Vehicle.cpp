@@ -78,7 +78,7 @@ Vehicle::~Vehicle()
     //cout << fileName << string (15-fileName.size(),' ') << "destroid\n" ;
 }
 
-vector<string> Vehicle::backTeackPath (string start,string end)const
+vector<string> Vehicle::backTrackPath (string start,string end)const
 {
     //validate they are in line
     vector<string> vec;
@@ -90,6 +90,7 @@ vector<string> Vehicle::backTeackPath (string start,string end)const
             for(size_t j {i} ; j < line.size() && line.at(j) != end ; ++j)
                 vec.push_back(line.at(j));
             vec.push_back(end);
+            break;
         }
         else if(line.at(i) == end  )
         {
@@ -97,6 +98,7 @@ vector<string> Vehicle::backTeackPath (string start,string end)const
                 vec.push_back(line.at(j));
             vec.push_back(start);
             reverse(vec.begin(), vec.end());
+            break;
         }
     }
     return vec;
