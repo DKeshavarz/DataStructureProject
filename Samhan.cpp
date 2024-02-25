@@ -6,7 +6,7 @@ using namespace std;
 Samhan::Samhan():myCity{new Tehran ("Tehran")}
 {
     myCity->setUpCity();
-    myCity->calculateMin("Mirdamad","Rahahan",COST);
+    myCity->calculateMin("Mirdamad","Rahahan",COST,Time("01:12 pm"));
 }
 
 int Samhan::run()
