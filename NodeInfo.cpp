@@ -5,15 +5,15 @@
 using namespace std;
 
 NodeInfo::NodeInfo()
-:vis(false),cost(INT_MAX),distance(INT_MAX),parent("nothing"),nodeVehicle(nullptr)
+:vis(false),distance(INT_MAX),cost(INT_MAX),nodeTime("12:59 pm"),parent("nothing"),nodeVehicle(nullptr)
 {
-
 }
 string NodeInfo::print()const
 {
     ostringstream out;
-    out << "vis " << getVis()      << " cost " << getCost() 
-        << " dis "<< getDistance() << "parent "<< getParent();
+    out << "vis "    << getVis()  << " dis "  << getDistance()
+        << " cost "  << getCost() << "time " << nodeTime
+        <<"  parent "<< getParent();
 
     return out.str();
 }

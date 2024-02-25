@@ -14,8 +14,13 @@ class Time
         string dayORnight;
 
     public:
+        friend std::ostream& operator<<(std::ostream& out,const Time& obj)
+        {
+            out << obj.hour << ':' << obj.minute << ' ' << obj.dayORnight;
+            return out;
+        }
 
-        Time (string time) {getTime (time);}
+        Time (string time) { getTime (time);}
 
         void set_hour (unsigned int);
         unsigned int get_hour () const;
@@ -34,6 +39,8 @@ class Time
         bool operator== (const class Time &) const;
         bool operator> (const Time &) const;
         bool operator< (const Time &) const;
+
+        std::string toString() const;
 
 };
 

@@ -218,6 +218,7 @@ class Time Time::operator- (const Time & second) const
         tHour = 12;
     }
 
+    cout << "operator- " << tHour << ':' << tMinute << ' ' << tDayORnight << '\n';
     temp.set_hour (tHour);
     temp.set_minute (tMinute);
     temp.set_dayORnight (tDayORnight);
