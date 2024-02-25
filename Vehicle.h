@@ -22,14 +22,14 @@ struct NodeNeighbour
 
     bool operator==(const NodeNeighbour& obj)const
     {
-        return (distance == obj.distance && nodeName == obj.nodeName);
+        return (/*distance == obj.distance && */nodeName == obj.nodeName);
     }
 
     struct myHash
     {
         size_t operator()(const NodeNeighbour& obj) const
         {
-            return std::hash<int>{}(obj.distance) ^ std::hash<std::string>{}(obj.nodeName);
+            return /*std::hash<int>{}(obj.distance) ^*/ std::hash<std::string>{}(obj.nodeName);
         }
     };
 

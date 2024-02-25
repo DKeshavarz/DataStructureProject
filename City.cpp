@@ -132,7 +132,7 @@ void City::calculateMin(const string& start,const string& end,MeasurementMetric 
     for(const auto& i : dijkstraTable)
     {
         //if(i.first == "Shoush")
-        cout<<  i.first << string(32-(i.first).size(),' ')  << (i.s econd).print() << '\n';
+        cout<<  i.first << string(32-(i.first).size(),' ')  << (i.second).print() << '\n';
     }
         
 }
