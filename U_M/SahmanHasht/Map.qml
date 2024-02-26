@@ -8,19 +8,31 @@ Item
   anchors.fill:parent
   property int size: 3 ; property int size_b: 2 ; property color bus_2: "#667C26";property color bus_1: "#1B8A6B"
   property color bus_3: "#2C3539"
+
   Rectangle
   {
+
+      Button{
+          id:a
+      }
+
+   id:rec
    anchors.fill:parent
    color:"#DFD3E3"
+
    Station
    {
+
      id:tajrish;  s_width: 50 ;  s_height: 50; s_text: "<b>Line1</b>" ; s_color_text: "red"
      anchors{horizontalCenter: parent.horizontalCenter;top:parent.top;topMargin: 13}
+     onMyclick: a.text="salam"
    }
    Rectangle
    {
+
        id:a1; height: 40; width: size; color:"red";
        anchors{right:tajrish.left;rightMargin:-25;top:parent.top;topMargin: 62}
+
    }
    Station
    {
@@ -1185,29 +1197,7 @@ Rectangle{id:a15;height:30; width: size; color:"red";anchors {right:hafte_tir.le
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- }
+   }
 
 }
+

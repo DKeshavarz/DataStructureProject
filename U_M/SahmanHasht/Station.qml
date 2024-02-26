@@ -16,6 +16,7 @@ Item
     signal myclick()
     Rectangle
     {
+
        id:mystion
        width:  s_width
        height: s_height

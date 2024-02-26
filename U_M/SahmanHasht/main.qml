@@ -4,9 +4,10 @@ import QtQuick.Controls 2.5
 import QtQml 2.3
 
 Window {
-    flags: Screen.width > Screen.height ?   Qt.NoItemFlags :Qt.FramelessWindowHint
+   flags: Screen.width > Screen.height ?   Qt.NoItemFlags :Qt.FramelessWindowHint
     width: Screen.width > Screen.height ? 1980 :Screen.width
     height:  Screen.width > Screen.height ? 1080 :Screen.height
+    //width: 1980 ; height : 1080
     visible: true
     title: qsTr("Sahmanhasht")
     Shortcut {

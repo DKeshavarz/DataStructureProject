@@ -4,5 +4,6 @@
         <file>Station.qml</file>
         <file>Map.qml</file>
         <file>First_page.qml</file>
+        <file>Line.qml</file>
     </qresource>
 </RCC>
