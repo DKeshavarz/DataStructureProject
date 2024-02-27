@@ -106,12 +106,11 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
     dijkstraTable[start].setDistance(0);
     dijkstraTable[start].setTime(CurrentTime);
 
-    for(size_t i {} ; i < dijkstraTable.size() ; ++i)
+    for(size_t i {} ; i < 1 ; ++i)
     { 
         string strMinNode {findMinNode(dijkstraTable, metric)};
         
-        const auto& vec {nodesMap[strMinNode]} ;
-
+        const auto& vec {nodesMap[strMinNode]};
         for(const auto& i : vec)//implement with map
         {
             switch(metric)
@@ -121,7 +120,7 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
                 case COST:
                     i->calculateMinCost    (dijkstraTable,strMinNode); break;
                 case TIME:
-                    break;
+                    i->calculateMinTime    (dijkstraTable,strMinNode); break;
 
                 default :
                     cerr << "City::calculateMin eroro\n\n";

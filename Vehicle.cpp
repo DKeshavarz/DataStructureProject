@@ -4,6 +4,8 @@
 #include <sstream>
 #include <algorithm>
 #include <vector>
+#include <queue>
+#include <utility>
 
 #include "Vehicle.h"
 
@@ -68,6 +70,32 @@ void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const 
         }
     }
         
+}
+
+void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table, const std::string& srcNode )
+{
+    unordered_set   <string> visitedNodes;
+    queue <pair<string,int>> searchQueue ;
+    searchQueue.push({srcNode,table[srcNode].getDistance()});
+
+    while(!searchQueue.empty())
+    {
+        pair<string,int> currentNode = searchQueue.front();
+        searchQueue.pop();
+        table[currentNode.first].setDistance(currentNode.second);
+
+        cout << currentNode.first << "->" << table[currentNode.first].getDistance() << '\n';
+
+        for(auto item :  neighbours[currentNode.first])
+        {
+            if(!visitedNodes.count(item.nodeName))
+            {
+                searchQueue.push({item.nodeName,table[currentNode.first].getDistance()+item.distance});
+            }
+        }
+        visitedNodes.insert(currentNode.first);
+    }
+
 }
 
 bool Vehicle::isOnVehchileRoad(const string& input)const

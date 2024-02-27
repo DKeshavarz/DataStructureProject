@@ -50,8 +50,8 @@ class Vehicle
 
         virtual void calculateMinDistance(std::unordered_map<std::string,NodeInfo>&,const std::string&);
         virtual void calculateMinCost    (std::unordered_map<std::string,NodeInfo>&,const std::string&) = 0;
+        virtual void calculateMinTime    (std::unordered_map<std::string,NodeInfo>&,const std::string&);
         
-
         virtual bool isOnVehchileRoad(const std::string&)const;
         virtual ~Vehicle();
 
@@ -67,6 +67,7 @@ class Vehicle
         
         
         std::vector<std::string> line;
+        
         std::unordered_map <std::string , std::unordered_set< NodeNeighbour , NodeNeighbour::myHash> > neighbours;
 
         void addNewVertex(const std::string&,const std::string&,const int&);
