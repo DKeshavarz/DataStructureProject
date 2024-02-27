@@ -17,7 +17,8 @@ class Time
     public:
         friend std::ostream& operator<<(std::ostream& out,const Time& obj)
         {
-            return out << ((obj.hour == 0 || obj.hour == 12) ? 12 : obj.hour % 12) << ":" << setw(2) << obj.minute << ":" <<(obj.hour < 12 ? " AM" : " PM");
+            return out << ((obj.hour == 0 || obj.hour == 12) ? 12 : obj.hour % 12) << ":" << setfill('0')<< setw(2) 
+            << obj.minute << " " <<(obj.hour < 12 ? " AM" : " PM") << " day " << setw(5) << obj.day;
         }
 
         Time (string time) { getTime (time);}

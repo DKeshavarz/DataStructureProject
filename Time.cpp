@@ -5,10 +5,7 @@ void Time::set_hour (unsigned int hour)
     if ( 0 <= hour && hour <= 23)
         this->hour = hour;
     else
-    {
-        cout << "hour is:" << hour << '\n';
         throw invalid_argument ("Invalid hour");
-    }
 }
 
 void Time::set_minute(unsigned int minute)
@@ -57,13 +54,11 @@ void Time::getTime (string time)
 }
 void Time::getTime (int time)
 {
-    cout << "in time -> " << time << '\n';
     int day    = time / (60*24);
     time %= (60*24);
     int hour   = time / 60;
     int minute = time % 60;
 
-    cout << "Time::getTime ->" << day << " " << hour << ":" << minute << '\n';
     this->day = day;
     set_hour  (hour);
     set_minute(minute);

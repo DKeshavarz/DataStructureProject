@@ -10,7 +10,7 @@ Samhan::Samhan():myCity{new Tehran ("Tehran")}
     
     string start = "Pirouzi";
     string end   = "Ostad Mo'in";
-    unordered_map <string , NodeInfo > result = myCity->calculateMin(start,end,COST,Time("01:12 pm"));
+    unordered_map <string , NodeInfo > result = myCity->calculateMin(start,end,TIME,Time("01:12 pm"));
 
     string parent = result[end].getParent();
     vector<string> vec = (result[end].getNodeVehicle())->backTrackPath(parent,end);

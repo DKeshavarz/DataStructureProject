@@ -21,6 +21,7 @@ class NodeInfo
         bool        getVis        ()const {return this->vis     ;}
         int         getDistance   ()const {return this->distance;}//tip:pass by refrence or what???
         int         getCost       ()const {return this->cost    ;}
+        int         getNodeTimeInt()const {return (int)(this->nodeTime);}
         Time        getNodeTime   ()const {return this->nodeTime;}
         std::string getParent     ()const {return this->parent  ;}
         Vehicle*    getNodeVehicle()const {return this->nodeVehicle;}

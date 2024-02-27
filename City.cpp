@@ -100,10 +100,11 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
     unordered_map <string , NodeInfo >dijkstraTable ;
 
     for(const auto& i : this->nodesMap)
-        dijkstraTable[i.first].setTime(CurrentTime);
+        dijkstraTable[i.first].setTime(INT_MAX);
 
     dijkstraTable[start].setCost(0);
     dijkstraTable[start].setDistance(0);
+    dijkstraTable[start].setTime(CurrentTime);
 
     for(size_t i {} ; i < dijkstraTable.size() ; ++i)
     { 
@@ -119,15 +120,16 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
                     i->calculateMinDistance(dijkstraTable,strMinNode); break;
                 case COST:
                     i->calculateMinCost    (dijkstraTable,strMinNode); break;
+                case TIME:
+                    break;
 
                 default :
-                    cerr << "City::calculateMin\n\n";
+                    cerr << "City::calculateMin eroro\n\n";
             }
         }
-        
+
         dijkstraTable[strMinNode].setVis(true);
     }
-
     //  "Shahrak-e Shari'ati" ,  "Sohrevardi"  , "Shoush"
     for(const auto& i : dijkstraTable)
     {
@@ -151,7 +153,9 @@ string City::findMinNode(const unordered_map <string,NodeInfo>& table,Measuremen
         case DISTANCE:
             function = &NodeInfo::getDistance; break;
         case COST:
-            function = &NodeInfo::getCost; break;
+            function = &NodeInfo::getCost;     break;
+        case TIME:
+            function = &NodeInfo::getNodeTimeInt; break;
 
         default :
             function = nullptr;
