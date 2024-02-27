@@ -2,6 +2,7 @@
 #define _time
 
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -11,13 +12,12 @@ class Time
 
         unsigned int hour;
         unsigned int minute;
-        unsigned int day;
+        unsigned int day {0};
 
     public:
         friend std::ostream& operator<<(std::ostream& out,const Time& obj)
         {
-            out << obj.hour << ':' << obj.minute ;
-            return out;
+            return out << ((obj.hour == 0 || obj.hour == 12) ? 12 : obj.hour % 12) << ":" << setw(2) << obj.minute << ":" <<(obj.hour < 12 ? " AM" : " PM");
         }
 
         Time (string time) { getTime (time);}
