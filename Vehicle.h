@@ -73,6 +73,7 @@ class Vehicle
     protected:
         const std::vector<std::string>& getLine () {return this->line;}
         virtual int calculateCost(int) = 0;
+        int calculateTime(int); // const ???????
 };
 
 #endif

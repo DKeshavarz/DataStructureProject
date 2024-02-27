@@ -58,7 +58,8 @@ void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const 
 {
     for(const auto& neighbourNode : this->neighbours[srcNode])
     {
-        if(!table[neighbourNode.nodeName].getVis() && table[neighbourNode.nodeName].getDistance() - table[srcNode].getDistance() >  + neighbourNode.distance)//what happend if min = int_max
+        if(!table[neighbourNode.nodeName].getVis() && 
+            table[neighbourNode.nodeName].getDistance() - table[srcNode].getDistance() >  + neighbourNode.distance)//what happend if min = int_max
         {
             table[neighbourNode.nodeName].setDistance(table[srcNode].getDistance() + neighbourNode.distance); //all of this should be function
             table[neighbourNode.nodeName].setParent(srcNode);
@@ -113,6 +114,10 @@ vector<string> Vehicle::backTrackPath (string start,string end)const
 
 }
 
+int Vehicle::calculateTime(int distance)
+{
+    return this->speedPerKilometre * distance;
+}
 //**************************************************
 //                      private
 //**************************************************
