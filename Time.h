@@ -11,28 +11,30 @@ class Time
 
         unsigned int hour;
         unsigned int minute;
-        string dayORnight;
+        unsigned int day;
 
     public:
         friend std::ostream& operator<<(std::ostream& out,const Time& obj)
         {
-            out << obj.hour << ':' << obj.minute << ' ' << obj.dayORnight;
+            out << obj.hour << ':' << obj.minute ;
             return out;
         }
 
         Time (string time) { getTime (time);}
+        Time (int    time) { getTime (time);}
 
-        void set_hour (unsigned int);
-        unsigned int get_hour () const;
-        
+        void set_hour  (unsigned int);
         void set_minute(unsigned int);
-        unsigned int get_minute () const;
 
-        void set_dayORnight(string);
-        string get_dayORnight () const;
+        unsigned int get_hour  () const{return this->hour;  }
+        unsigned int get_minute() const{return this->minute;}
+        
+
 
         void getTime (string);
-        unsigned int getTime () const;
+        void getTime (int);
+        
+        explicit operator int() const;
         
         class Time operator+ (const Time &) const;
         class Time operator- (const Time &) const;

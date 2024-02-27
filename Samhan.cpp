@@ -7,7 +7,7 @@ Samhan::Samhan():myCity{new Tehran ("Tehran")}
 {
     myCity->setUpCity();
 
-    /*
+    
     string start = "Mirdamad";
     string end   = "Rahahan";
     unordered_map <string , NodeInfo > result = myCity->calculateMin(start,end,DISTANCE,Time("01:12 pm"));
@@ -19,7 +19,7 @@ Samhan::Samhan():myCity{new Tehran ("Tehran")}
         cout << item << " ";
 
     cout << '\n';
-    */
+    
 }
 
 int Samhan::run()
