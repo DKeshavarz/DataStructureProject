@@ -12,15 +12,15 @@ Window {
     Rectangle
     {
 
-        anchors.fill:parent
-        color:"pink"
+        anchors.fill:parent   // #C0C0C0  "#DADBDD"  "#EEEEEE"  "#87CEFA"  "#DFD3E3"
+        color:"#DADBDD"
     }
 
     property string origin: "null" ;  property string  distination: "null" ; property var current
-
+    property string  c_type;
     Text{id:n_origin ;}
     Text{id:n_distination ; x:100}
-    function a(s , name)
+    function a(s , name , type)
     {
         if(origin==="null" && distination!==name)
         {
@@ -30,28 +30,32 @@ Window {
         else if(distination==="null" &&  origin!==name)
         {
             distination=name ; n_distination.text=name ;  s.color="pink" ; current=s
+            c_type=type
         }
         else
         {
             if(origin===name)
             {
-               origin="null"  ;  n_origin.text="" ;  s.color="#dcdcdc" ; s.border.color="#a9a9a9"
+               origin="null"  ;  n_origin.text="" ;
+               if(type==="l"){s.color="#dcdcdc";  s.border.color="#a9a9a9"}
+               else{s.color="#00ff55"}
             }
             else if(distination===name)
             {
-                distination="null"  ; n_distination.text="" ;  s.color="#dcdcdc";  current=null ;  s.border.color="#a9a9a9"
+                distination="null"  ; n_distination.text="" ;
+                if(type==="l"){s.color="#dcdcdc";  s.border.color="#a9a9a9"}
+                else{s.color="#00ff55"}
             }
             else
             {
-                distination=name ; n_distination.text=name ; current.color="#dcdcdc" ; s.color="pink" ;  s.border.color="#a9a9a9"
-                current=s;
+                distination=name ; n_distination.text=name ;  s.color="pink" ;
+                if(c_type==="l"){current.color="#dcdcdc";  current.border.color="#a9a9a9"}
+                else{current.color="#00ff55"}
+                current=s;c_type=type;
             }
         }
     }
 
-
-
-property bool f: true
     InputPanel {
         id: inputPanel
         z: 99
@@ -90,7 +94,7 @@ property bool f: true
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(tajrish , "Tajrish")
+               a(tajrish , "Tajrish" ,"l")
             }
         }
     }
@@ -111,7 +115,7 @@ property bool f: true
             anchors.fill:parent
             onClicked:
             {
-               a(gheytariyeh , "Gheytariyeh")
+               a(gheytariyeh , "Gheytariyeh","l")
             }
         }
 
@@ -131,7 +135,7 @@ property bool f: true
             anchors.fill:parent
             onClicked:
             {
-               a(gholhak , "Gholhak")
+               a(gholhak , "Gholhak","l")
             }
         }
 
@@ -151,7 +155,7 @@ property bool f: true
             anchors.fill:parent
             onClicked:
             {
-               a(mirdamad , "Mirdamad")
+               a(mirdamad , "Mirdamad","l")
             }
         }
     }
@@ -168,7 +172,7 @@ property bool f: true
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(ha , "Shahid Haghani")
+              a(ha , "Shahid Haghani","l")
            }
        }
     }
@@ -185,7 +189,7 @@ property bool f: true
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(beheshti , "Shahid Beheshti")
+               a(beheshti , "Shahid Beheshti","l")
             }
         }
     }
@@ -202,7 +206,7 @@ property bool f: true
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(mofatteh , "Shahid Mofatteh")
+              a(mofatteh , "Shahid Mofatteh","l")
            }
        }
     }
@@ -219,7 +223,7 @@ property bool f: true
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(hafte_tir , "Haftom-e Tir")
+              a(hafte_tir , "Haftom-e Tir","l")
            }
        }
     }
@@ -236,7 +240,7 @@ property bool f: true
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(taleghani , "Taleghani")
+              a(taleghani , "Taleghani","l")
            }
        }
     }
@@ -253,7 +257,7 @@ property bool f: true
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(dowlat , "Darvazeh Dowlat")
+              a(dowlat , "Darvazeh Dowlat","l")
            }
        }
     }
@@ -270,7 +274,7 @@ property bool f: true
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(khordad , "Panzdah-e Khordad")
+              a(khordad , "Panzdah-e Khordad","l")
            }
        }
     }
@@ -287,7 +291,7 @@ property bool f: true
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(shoush , "Shoush")
+               a(shoush , "Shoush","l")
             }
         }
     }
@@ -304,7 +308,7 @@ property bool f: true
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(jonoub, "Jonoub Terminal")
+               a(jonoub, "Jonoub Terminal","l")
             }
         }
     }
@@ -320,7 +324,7 @@ property bool f: true
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(rey, "Shahr-e Rey")
+               a(rey, "Shahr-e Rey","l")
             }
         }
     }
@@ -338,7 +342,7 @@ property bool f: true
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(kahrizak, "Kahrizak")
+               a(kahrizak, "Kahrizak","l")
             }
         }
     }
@@ -355,7 +359,7 @@ property bool f: true
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(sohrevardi, "Sohrevardi")
+               a(sohrevardi, "Sohrevardi","l")
             }
         }
     }
@@ -382,7 +386,7 @@ property bool f: true
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(gh, "Shahid Ghodousi")
+              a(gh, "Shahid Ghodousi","l")
            }
        }
     }
@@ -399,7 +403,7 @@ property bool f: true
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a( z  , "Shahid Zeynoddin")
+               a( z  , "Shahid Zeynoddin","l")
             }
         }
     }
@@ -416,7 +420,7 @@ property bool f: true
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a( aghdasiyeh , "Aghdasiyeh")
+               a( aghdasiyeh , "Aghdasiyeh","l")
             }
         }
     }
@@ -434,7 +438,7 @@ property bool f: true
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a( ghaem, "Gha'em")
+               a( ghaem, "Gha'em","l")
             }
         }
     }
@@ -451,7 +455,7 @@ property bool f: true
          MouseArea{
              anchors.fill:parent
              onClicked:{
-                a( shirazi, "Merza-ye Shirazi")
+                a( shirazi, "Merza-ye Shirazi","l")
              }
          }
     }
@@ -473,7 +477,7 @@ property bool f: true
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a( jahad , "Meydan-e Jahad")
+               a( jahad , "Meydan-e Jahad","l")
             }
         }
     }
@@ -490,7 +494,7 @@ property bool f: true
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a( v , "Meydan-e Hazrat-e ValiAsr")
+               a( v , "Meydan-e Hazrat-e ValiAsr","l")
             }
         }
     }
@@ -507,7 +511,7 @@ property bool f: true
       MouseArea{
           anchors.fill:parent
           onClicked:{
-             a( teatr , "Teatr-e Shahr")
+             a( teatr , "Teatr-e Shahr","l")
           }
       }
     }
@@ -524,7 +528,7 @@ property bool f: true
       MouseArea{
           anchors.fill:parent
           onClicked:{
-             a( moniriyeh , "Moniriyeh")
+             a( moniriyeh , "Moniriyeh","l")
           }
       }
     }
@@ -541,7 +545,7 @@ property bool f: true
       MouseArea{
           anchors.fill:parent
           onClicked:{
-             a( mahdiyeh , "Mahdiyeh")
+             a( mahdiyeh , "Mahdiyeh","l")
           }
       }
     }
@@ -558,7 +562,7 @@ property bool f: true
       MouseArea{
           anchors.fill:parent
           onClicked:{
-             a( rahahan , "Rahahanh")
+             a( rahahan , "Rahahanh","l")
           }
       }
     }
@@ -575,7 +579,7 @@ property bool f: true
       MouseArea{
           anchors.fill:parent
           onClicked:{
-             a( javadiyeh , "Javadiyeh")
+             a( javadiyeh , "Javadiyeh","l")
           }
       }
     }
@@ -592,7 +596,7 @@ property bool f: true
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a( zamzam , "Zamzam")
+               a( zamzam , "Zamzam","l")
             }
         }
     }
@@ -610,7 +614,7 @@ property bool f: true
           MouseArea{
               anchors.fill:parent
               onClicked:{
-                 a( azadegan , "Azadegan")
+                 a( azadegan , "Azadegan","l")
               }
           }
     }
@@ -629,6 +633,12 @@ property bool f: true
         id:e;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:c1.bottom;right:c1.left;rightMargin:-17}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(e, "Emam Hossein","l")
+            }
+        }
     }
     Rectangle
     {
@@ -640,6 +650,12 @@ property bool f: true
         id:sh;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:c3.bottom;right:c3.left;rightMargin:-17}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(sh , "Meydan-e Shohada","l")
+            }
+        }
     }
     Rectangle
     {
@@ -651,6 +667,12 @@ property bool f: true
         id:r;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:c5.bottom;right:c5.left;rightMargin:-17}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(r , "Shahid Rezaei","l")
+            }
+        }
     }
     Rectangle
     {
@@ -668,6 +690,12 @@ property bool f: true
         width: 50 ;  height : 50 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         Text{text:qsTr("<b>Line6</b>") ; color:"#ff1493";anchors.centerIn:parent}
         anchors{top:c8.top;left:c8.right;topMargin:-25}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(h , "Haram-e Hazrat-e Abdolazim","l")
+            }
+        }
     }
     Rectangle
     {
@@ -684,6 +712,12 @@ property bool f: true
         id:boostan;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:v.top;right:c11.left;}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(boostan , "Boostan-e laleh","l")
+            }
+        }
     }
     Rectangle
     {
@@ -700,6 +734,12 @@ property bool f: true
         id:yadegar;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
          anchors{top:c14.top;right:c14.left;topMargin:-15;}
+         MouseArea{
+             anchors.fill:parent
+             onClicked:{
+                a(yadegar , "Yadegar-e Emam","l")
+             }
+         }
     }
     Rectangle
     {
@@ -711,6 +751,12 @@ property bool f: true
         id:kashani;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{top:yadegar.top;right:c16.left;}
+       MouseArea{
+           anchors.fill:parent
+           onClicked:{
+              a(kashani , "Kashani","l")
+           }
+       }
     }
     Rectangle
     {
@@ -723,6 +769,12 @@ property bool f: true
         width: 50 ;  height : 50 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         Text{text:qsTr("<b>Line6</b>") ; color: "#ff1493";anchors.centerIn:parent}
         anchors{top:kashani.top;right:c18.left;topMargin:-10}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(kouhsar , "Kouhsar","l")
+            }
+        }
     }
     Rectangle
     {
@@ -735,6 +787,12 @@ property bool f: true
         width: 50 ;  height : 50 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         Text{text:qsTr("<b>Line4</b>") ; color: "yellow" ;anchors.centerIn:parent}
         anchors{bottom:d.top;right:d.left;rightMargin:-27}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(chaharbagh , "Chaharbagh","l")
+            }
+        }
     }
     Rectangle
     {
@@ -746,6 +804,12 @@ property bool f: true
         id:jafari;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
          anchors{top:d2.bottom;right:d2.left;rightMargin:-17}
+         MouseArea{
+             anchors.fill:parent
+             onClicked:{
+                a(jafari , "Allameh Jafari","l")
+             }
+         }
     }
     Rectangle
     {
@@ -757,6 +821,12 @@ property bool f: true
         id:sabz;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:d4.bottom;right:d4.left;rightMargin:-17}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(sabz , "Eram-e Sabz","l")
+            }
+        }
     }
     Rectangle
     {
@@ -768,6 +838,12 @@ property bool f: true
         id:azadi;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:d6.bottom;right:d6.left;rightMargin:-17}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(azadi , "Meydan-e Azadi","l")
+            }
+        }
     }
     Rectangle
     {
@@ -779,6 +855,12 @@ property bool f: true
         id:moein;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:azadi.top;left:d8.right}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(moein , "Ostad Mo'in","l")
+            }
+        }
     }
     Rectangle
     {
@@ -790,6 +872,12 @@ property bool f: true
         id:shadman;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:moein.top;left:d10.right}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(shadman , "Shademan","l")
+            }
+        }
     }
     Rectangle
     {
@@ -801,6 +889,12 @@ property bool f: true
         id:tohid;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{top:shadman.top;left:d12.right}
+       MouseArea{
+           anchors.fill:parent
+           onClicked:{
+              a(tohid , "Towhid","l")
+           }
+       }
     }
     Rectangle
     {
@@ -812,6 +906,13 @@ property bool f: true
         id:meydan;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:tohid.top;left:d14.right}
+        anchors{top:shadman.top;left:d12.right}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(meydan , "Meydan-e Enghelab-e Eslami","l")
+            }
+        }
     }
     Rectangle
     {
@@ -824,6 +925,12 @@ property bool f: true
         id:ferdowsi;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:teatr.top;left:d17.right}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(ferdowsi , "Ferdowsi","l")
+            }
+        }
     }
     Rectangle{id:d19 ; height:3 ; width:30 ; color:"yellow";anchors{top:d16.top;left:ferdowsi.right;}}
     Rectangle{id:d20 ; height:55 ; width:3 ; color:"yellow";anchors{top:d19.bottom;left:d19.right;topMargin:-3;}}
@@ -834,6 +941,12 @@ property bool f: true
         id:shemiran;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{top:dowlat.top;left:d22.right}
+       MouseArea{
+           anchors.fill:parent
+           onClicked:{
+              a(shemiran , "Darvazeh Shemiran","l")
+           }
+       }
     }
     Rectangle{id:d24 ; height:3 ; width:30 ; color:"yellow";anchors{top:d22.top;left:shemiran.right;}}
     Rectangle{id:d25 ; height:48 ; width:3 ; color:"yellow";anchors{top:d24.bottom;left:d24.right;leftMargin: -3}}
@@ -844,6 +957,12 @@ property bool f: true
         id:eb;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:sh.top;left:d27.right}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(eb , "Ebn-e Sina","l")
+            }
+        }
     }
      Rectangle{id:d29 ; height:3 ; width:30 ; color:"yellow";anchors{top:d27.top;left:eb .right}}
      Rectangle
@@ -851,6 +970,12 @@ property bool f: true
          id:pirouzi;
          width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:eb .top;left:d29.right}
+        MouseArea{
+            anchors.fill:parent
+            onClicked:{
+               a(pirouzi , "Pirouzi","l")
+            }
+        }
      }
      Rectangle{id:d31 ; height:3 ; width:30 ; color:"yellow";anchors{top:d29.top;left:pirouzi.right;}}
      Rectangle
@@ -858,6 +983,12 @@ property bool f: true
          id:nabard
          width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{top:pirouzi.top;left:d31.right}
+       MouseArea{
+           anchors.fill:parent
+           onClicked:{
+              a(nabard , "Nabard","l")
+           }
+       }
      }
       Rectangle{id:d33 ; height:3 ; width:30 ; color:"yellow";anchors{top:d31.top;left:nabard.right}}
       Rectangle
@@ -865,6 +996,12 @@ property bool f: true
           id:nirou
           width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
           anchors{top:nabard.top;left:d33.right}
+          MouseArea{
+              anchors.fill:parent
+              onClicked:{
+                 a(nirou , "Nirou Havaei","l")
+              }
+          }
       }
        Rectangle{id:d35 ; height:3 ; width:70 ; color:"yellow";anchors{top:d33.top;left:nirou.right}}
        Rectangle
@@ -873,6 +1010,12 @@ property bool f: true
            width: 50 ;  height : 50 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
            Text{text:qsTr("<b>Line4</b>") ; color:"yellow";anchors.centerIn:parent}
           anchors{top:nirou.top;left:d35.right;topMargin:-10}
+          MouseArea{
+              anchors.fill:parent
+              onClicked:{
+                 a(k , "Shahid Kolahdouz","l")
+              }
+          }
        }
        Rectangle
        {
@@ -978,6 +1121,12 @@ property bool f: true
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
            Text{text:qsTr("BUS2") ;anchors.centerIn:parent}
             anchors{top:r_javanmard_3.bottom;right:r_javanmard_3.left;rightMargin:-25}
+            MouseArea{
+                anchors.fill:parent
+                onClicked:{
+                   a(javanmard , "Payaneh Javanmard","b")
+                }
+            }
        }
        Rectangle
        {
@@ -1013,6 +1162,12 @@ property bool f: true
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
            Text{text:qsTr("BUS2") ;anchors.centerIn:parent}
            anchors{top:ghaem_ansary_3.bottom ;right:ghaem_ansary_3.left;topMargin:-23;}
+           MouseArea{
+               anchors.fill:parent
+               onClicked:{
+                  a(ansary, "Khajeh Abdollah-e Ansari","b")
+               }
+           }
        }
        Rectangle
        {
@@ -1048,6 +1203,12 @@ property bool f: true
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
            Text{text:qsTr("BUS2") ;anchors.centerIn:parent}
            anchors{top:ebnesina_tehranpars_3.top ;left:ghaem_ansary_3.right;topMargin:-23;leftMargin:-30}
+           MouseArea{
+               anchors.fill:parent
+               onClicked:{
+                  a(tehranpars, "Tehran Par","b")
+               }
+           }
        }
        Rectangle
        {
@@ -1278,6 +1439,12 @@ property bool f: true
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
            Text{text:qsTr("BUS1") ;anchors.centerIn:parent}
            anchors{top:bimeh_azadi_1.top ;right:bimeh_azadi_1.left;topMargin:-22;leftMargin:-40}
+           MouseArea{
+               anchors.fill:parent
+               onClicked:{
+                  a(bimeh, "Bimeh","b")
+               }
+           }
        }
        Rectangle
        {
@@ -1312,6 +1479,12 @@ property bool f: true
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
            Text{text:qsTr("BUS1") ;anchors.centerIn:parent}
            anchors{top:sadr_tajrish_3.bottom ;right:sadr_tajrish_3.left;rightMargin:-27}
+           MouseArea{
+               anchors.fill:parent
+               onClicked:{
+                  a(sadr, "Shahid Sadr","b")
+               }
+           }
        }
        Rectangle
        {
@@ -1464,6 +1637,12 @@ property bool f: true
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
            Text{text:qsTr("BUS1") ;anchors.centerIn:parent}
             anchors{top:rahahan_shahrak_3.bottom ;right:rahahan_shahrak_3.left;rightMargin:-27}
+            MouseArea{
+                anchors.fill:parent
+                onClicked:{
+                   a(shahrak, "Shahrak-e Shari'ati","b")
+                }
+            }
        }
        Text{text:"Kahrizak"; anchors{top:kahrizak.bottom ; left:kahrizak.left ; topMargin:5}}
        Text{text:"Shahrak-e Shari'ati";anchors{top:shahrak.bottom ; left:shahrak.left ; topMargin:5 ; leftMargin:-27}}
@@ -1529,6 +1708,7 @@ property bool f: true
        Text{text:"Shoush";anchors{top:shoush.top ; right:shoush.left ; topMargin:6 ; rightMargin:10}}
        Text{text:"Jonoub Terminal";anchors{top:jonoub.top ; right:jonoub.left ; topMargin:7 ; rightMargin:10}}
        Text{text:"Shahr-e Rey";anchors{top:rey.top ; right:rey.left ; topMargin:7 ; rightMargin:10}}
+
 
 }
 
