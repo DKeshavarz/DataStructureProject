@@ -13,7 +13,7 @@ Window {
     {
 
         anchors.fill:parent
-        color:"pink"
+        color:"#DADBDD"
         MouseArea
         {
             anchors.fill:parent
