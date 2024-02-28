@@ -8,15 +8,15 @@ Samhan::Samhan():myCity{new Tehran ("Tehran")}
     myCity->setUpCity();
 
     
-    string start = "Mirdamad";
-    string end   = "Rahahan";
-    unordered_map <string , NodeInfo > result = myCity->calculateMin(start,end,DISTANCE,Time("01:12 pm"));
+    string start = "Pirouzi";
+    string end   = "Ostad Mo'in";
+    unordered_map <string , NodeInfo > result = myCity->calculateMin(start,end,TIME,Time("01:12 pm"));
 
     string parent = result[end].getParent();
     vector<string> vec = (result[end].getNodeVehicle())->backTrackPath(parent,end);
     
     for(const auto& item : vec)
-        cout << item << " ";
+            cout << item << " ";
 
     cout << '\n';
     

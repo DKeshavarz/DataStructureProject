@@ -6,7 +6,7 @@
 using namespace std;
 
 NodeInfo::NodeInfo()
-:vis(false),distance(INT_MAX),cost(INT_MAX),nodeTime("12:00 am"),parent("nothing"),nodeVehicle(nullptr)
+:vis(false),distance(INT_MAX),cost(INT_MAX),nodeTime(INT_MAX),parent("nothing"),nodeVehicle(nullptr)
 {
    
 }
