@@ -61,7 +61,7 @@ void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const 
     for(const auto& neighbourNode : this->neighbours[srcNode])
     {
         if(!table[neighbourNode.nodeName].getVis() && 
-            table[neighbourNode.nodeName].getDistance() - table[srcNode].getDistance() >  + neighbourNode.distance)//what happend if min = int_max
+            table[neighbourNode.nodeName].getDistance() - table[srcNode].getDistance() >  neighbourNode.distance)//what happend if min = int_max
         {
             table[neighbourNode.nodeName].setDistance(table[srcNode].getDistance() + neighbourNode.distance); //all of this should be function
             table[neighbourNode.nodeName].setParent(srcNode);
@@ -82,15 +82,24 @@ void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table, const std:
     {
         pair<string,int> currentNode = searchQueue.front();
         searchQueue.pop();
-        table[currentNode.first].setDistance(currentNode.second);
 
-        cout << currentNode.first << "->" << table[currentNode.first].getDistance() << '\n';
+
+        cout << currentNode.first << "->" << currentNode.second << '\n';
+        if(!table[currentNode.first].getVis() && 
+            table[currentNode.first].getTimeInt() > table[srcNode].getTimeInt() + calculateTime(currentNode.second,table[srcNode],table[currentNode.first]))
+        {
+            table[currentNode.first].setDistance(table[srcNode].getDistance() + currentNode.second); //all of this should be function
+            table[currentNode.first].setParent(srcNode);
+            table[currentNode.first].setNodeVehicle(this);//father pointer or what????????
+            table[currentNode.first].setCost(table[srcNode].getCost() + calculateCost(currentNode.second));
+            table[currentNode.first].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.second,table[srcNode],table[currentNode.first])));
+        }
 
         for(auto item :  neighbours[currentNode.first])
         {
             if(!visitedNodes.count(item.nodeName))
             {
-                searchQueue.push({item.nodeName,table[currentNode.first].getDistance()+item.distance});
+                searchQueue.push({item.nodeName,currentNode.second+item.distance});
             }
         }
         visitedNodes.insert(currentNode.first);
@@ -142,9 +151,15 @@ vector<string> Vehicle::backTrackPath (string start,string end)const
 
 }
 
-int Vehicle::calculateTime(int distance)
+int Vehicle::calculateTime(int distance,NodeInfo& startNode,NodeInfo& endNode)
 {
-    return this->speedPerKilometre * distance;
+    int lineChangeTime {};
+    if(startNode.getNodeVehicle() != endNode.getNodeVehicle())
+    {
+        lineChangeTime += (startNode.getNodeVehicle() == nullptr) ? 0 : startNode.getNodeVehicle()->getChangeLineTime();
+        lineChangeTime += (  endNode.getNodeVehicle() == nullptr) ? 0 :   endNode.getNodeVehicle()->getChangeLineTime();
+    }
+    return this->speedPerKilometre * distance + lineChangeTime;
 }
 //**************************************************
 //                      private

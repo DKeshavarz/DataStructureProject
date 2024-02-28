@@ -106,7 +106,7 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
     dijkstraTable[start].setDistance(0);
     dijkstraTable[start].setTime(CurrentTime);
 
-    for(size_t i {} ; i < 1 ; ++i)
+    for(size_t i {} ; i < dijkstraTable.size() ; ++i)
     { 
         string strMinNode {findMinNode(dijkstraTable, metric)};
         
@@ -154,7 +154,7 @@ string City::findMinNode(const unordered_map <string,NodeInfo>& table,Measuremen
         case COST:
             function = &NodeInfo::getCost;     break;
         case TIME:
-            function = &NodeInfo::getNodeTimeInt; break;
+            function = &NodeInfo::getTimeInt; break;
 
         default :
             function = nullptr;
