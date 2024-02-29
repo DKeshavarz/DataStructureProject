@@ -130,10 +130,11 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
         dijkstraTable[strMinNode].setVis(true);
     }
     //  "Shahrak-e Shari'ati" ,  "Sohrevardi"  , "Shoush"
+    cerr << "City::calculateMin end is:" << end << '\n';
     for(const auto& i : dijkstraTable)
     {
-        //if(i.first == "Shoush")
-        cout<<  i.first << string(32-(i.first).size(),' ')  << (i.second).print() << '\n';
+        if(i.first == end)
+            cerr <<  i.first << string(32-(i.first).size(),' ')  << (i.second).print() << '\n';
     }
 
     return dijkstraTable;
