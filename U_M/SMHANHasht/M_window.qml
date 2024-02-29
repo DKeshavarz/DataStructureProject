@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
+import QtQml 2.3
 import QtQuick.Controls 2.5
 import QtQuick.VirtualKeyboard 2.4
 
@@ -13,7 +14,7 @@ Window {
     {
 
         anchors.fill:parent   // #C0C0C0  "#DADBDD"  "#EEEEEE"  "#87CEFA"  "#DFD3E3"
-        color:"#DADBDD"
+        color: "#DFD3E3"
     }
 
     property string origin: "null" ;  property string  distination: "null" ; property var current
@@ -103,6 +104,8 @@ Window {
 
         id:a1; height: 40; width: 3 ; color:"red";
         anchors{right:tajrish.left;rightMargin:-25;top:parent.top;topMargin: 62}
+        Component.onCompleted:{back.add_object(a1 , "Tajrish_Gheytariyeh" , "Line1")}
+
 
     }
     Rectangle
@@ -124,6 +127,7 @@ Window {
     {
         id:a3;height: 40; width: 3 ;color:"red";
         anchors{right:gheytariyeh.left; rightMargin:-15;top:parent.top; topMargin: 132}
+        Component.onCompleted:{back.add_object(a3 , "Gheytariyeh_Gholhak" , "Line1")}
     }
     Rectangle
     {
@@ -144,6 +148,7 @@ Window {
     {
         id:a5 ;height: 40;width: 3 ;color:"red";
         anchors{right:gholhak.left;rightMargin:-15; top:gholhak.top; topMargin:30}
+         Component.onCompleted:{back.add_object(a5 , "Gholhak_Mirdamad" , "Line1")}
     }
     Rectangle
     {
@@ -163,6 +168,7 @@ Window {
     {
         id:a7; height: 40; width: 3 ;color:"red";
         anchors{right:mirdamad.left;rightMargin:-15;top:mirdamad.top;  topMargin:30}
+         Component.onCompleted:{back.add_object(a7 , "Mirdamad_Shahid Haghani" , "Line1")}
     }
     Rectangle
     {
@@ -180,6 +186,7 @@ Window {
     {
         id:a9;
         height: 30;  width: 3 ; color:"red";anchors{right:ha.left; rightMargin:-15; top:ha.top;topMargin:30}
+        Component.onCompleted:{back.add_object(a9 , "Shahid Haghani_Shahid Beheshti" , "Line1")}
     }
     Rectangle
     {
@@ -197,6 +204,7 @@ Window {
     {
         id:a11;height: 25;width: 3 ;color:"red";
         anchors{right:beheshti.left; rightMargin:-15; top:beheshti.top;topMargin:30}
+        Component.onCompleted:{back.add_object(a11 , "Shahid Beheshti_Shahid Mofatteh" , "Line1")}
     }
     Rectangle
     {
@@ -214,6 +222,7 @@ Window {
     {
         id:a13; height: 30 ; width: 3 ;  color:"red";
         anchors{right:mofatteh.left; rightMargin:-15;top:mofatteh.top; topMargin:30}
+        Component.onCompleted:{back.add_object(a13 , "Shahid Mofatteh_Haftom-e Tir" , "Line1")}
     }
     Rectangle
     {
@@ -231,6 +240,7 @@ Window {
     {
         id:a15;height:30; width: 3 ; color:"red";
         anchors {right:hafte_tir.left;rightMargin:-15;top:hafte_tir.top;topMargin:30}
+        Component.onCompleted:{back.add_object(a15 , "Haftom-e Tir_Taleghani" , "Line1")}
     }
     Rectangle
     {
@@ -248,6 +258,7 @@ Window {
     {
         id:a17; height: 25 ; width: 3 ;color:"red";
         anchors{right:taleghani.left; rightMargin:-15; top:taleghani.top;topMargin:30}
+        Component.onCompleted:{back.add_object(a17 , "Taleghani_Darvazeh Dowlat" , "Line1")}
     }
     Rectangle
     {
@@ -265,6 +276,7 @@ Window {
     {
         id:a19;height: 50; width: 3 ;color:"red";anchors
         { right:dowlat.left;rightMargin:-15;top:dowlat.top; topMargin:30}
+         Component.onCompleted:{back.add_object(a19 , "Darvazeh Dowlat_Panzdah-e Khordad" , "Line1")}
     }
     Rectangle
     {
@@ -282,6 +294,7 @@ Window {
     {
         id:a21;height: 30;width:3 ; color:"red";
         anchors{right:khordad.left; rightMargin:-15;  top:khordad.top;topMargin:30}
+         Component.onCompleted:{back.add_object(a21 , "Panzdah-e Khordad_Shoush" , "Line1")}
     }
     Rectangle
     {
@@ -299,6 +312,7 @@ Window {
     {
         id:a23; height: 50;  width: 3 ;  color:"red";
         anchors{ right:shoush.left;rightMargin:-15; top:shoush.top; topMargin:30}
+       Component.onCompleted:{back.add_object(a23 , "Shoush_Jonoub Terminal" , "Line1")}
     }
     Rectangle
     {
@@ -315,6 +329,7 @@ Window {
     Rectangle
     {   id:a25; height: 30;width: 3 ; color:"red";
         anchors{ right:jonoub.left;rightMargin:-15;top:jonoub.top; topMargin:30}
+        Component.onCompleted:{back.add_object(a25 , "Jonoub Terminal_Shahr-e Rey" , "Line1")}
     }
     Rectangle
     {
@@ -332,6 +347,7 @@ Window {
     {
         id:a27; height: 48 ;width: 3 ; color:"red";
         anchors{right:rey.left; rightMargin:-15; top:rey.top; topMargin:30}
+        Component.onCompleted:{back.add_object(a27 , "Shahr-e Rey_Kahrizak" , "Line1")}
     }
     Rectangle
     {
@@ -350,6 +366,7 @@ Window {
     {
       id:b; height: 3 ;width: 50; color:"#333CFF"
       anchors{top:beheshti.top;left:beheshti.right;topMargin:14;}
+      Component.onCompleted:{back.add_object(b , "Shahid Beheshti_Sohrevardi" , "Line3")}
     }
     Rectangle
     {
@@ -367,16 +384,19 @@ Window {
     {
       id:b2 ; height: 3 ;width:20 ; color:"#333CFF"
       anchors{top:b.top;left:sohrevardi.right;}
+      Component.onCompleted:{back.add_object(b2 , "Sohrevardi_Shahid Ghodousi" , "Line3")}
     }
     Rectangle
     {
       id:b3; height: 50 ;width:3 ; color:"#333CFF"
       anchors{bottom:b2.top;left:b2.right;bottomMargin:-2;leftMargin:-3}
+      Component.onCompleted:{back.add_object(b3 , "Sohrevardi_Shahid Ghodousi" , "Line3")}
     }
     Rectangle
     {
       id:b4 ; height: 3 ;width:40 ; color:"#333CFF"
       anchors{top:b3.top;left:b3.right;}
+      Component.onCompleted:{back.add_object(b4 , "Sohrevardi_Shahid Ghodousi" , "Line3")}
     }
     Rectangle
     {
@@ -394,6 +414,8 @@ Window {
     {
       id:b6 ; height: 3 ;width:80 ; color:"#333CFF"
       anchors{top:b4.top;left:gh.right;}
+      Component.onCompleted:{back.add_object(b6 , "Shahid Ghodousi_Shahid Zeynoddin" , "Line3")}
+
     }
     Rectangle
     {
@@ -411,6 +433,7 @@ Window {
     {
       id:b8 ; height: 3 ;width:80 ; color:"#333CFF"
       anchors{top:b6.top;left:z.right;}
+      Component.onCompleted:{back.add_object(b8 , "Shahid Zeynoddin_Aghdasiyeh" , "Line3")}
     }
     Rectangle
     {
@@ -428,6 +451,7 @@ Window {
     {
       id:b10 ; height: 3 ;width:170 ; color:"#333CFF"
       anchors{top:b8.top;left:aghdasiyeh.right}
+      Component.onCompleted:{back.add_object(b10 , "Aghdasiyeh_Gha'em" , "Line3")}
     }
     Rectangle
     {
@@ -446,6 +470,7 @@ Window {
     {
       id:b12 ; height: 3 ;width:150 ; color:"#333CFF"
       anchors{top:b.top;right:beheshti.left;}
+       Component.onCompleted:{back.add_object(b12 , "Shahid Beheshti_Merza-ye Shirazi" , "Line3")}
     }
     Rectangle
     {
@@ -463,11 +488,13 @@ Window {
     {
       id:b14 ; height: 3 ;width:30 ; color:"#333CFF"
       anchors{top:b12.top;right:shirazi.left;}
+      Component.onCompleted:{back.add_object(b14 , "Merza-ye Shirazi_Meydan-e Jahad" , "Line3")}
     }
     Rectangle
     {
       id:b15 ; height:30 ;width: 3 ; color:"#3355FF"
       anchors{top:b14.bottom;right:b14.left;topMargin:-2;rightMargin:-3}
+      Component.onCompleted:{back.add_object(b15 , "Merza-ye Shirazi_Meydan-e Jahad" , "Line3")}
     }
     Rectangle
     {
@@ -485,6 +512,7 @@ Window {
     {
       id:b17 ; height:40 ;width:3 ; color:"#333CFF"
       anchors{top:jahad.bottom;right:jahad.left;rightMargin:-16;}
+     Component.onCompleted:{back.add_object(b17 , "Meydan-e Jahad_Meydan-e Hazrat-e ValiAsr" , "Line3")}
     }
     Rectangle
     {
@@ -502,6 +530,7 @@ Window {
     {
       id:b19 ; height:30 ;width: 3  ; color:"#333CFF"
       anchors{top:v.top;right:v.left;rightMargin:-16;topMargin:30}
+      Component.onCompleted:{back.add_object(b19 , "Meydan-e Hazrat-e ValiAsr_Teatr-e Shahr" , "Line3")}
     }
     Rectangle
     {
@@ -519,6 +548,7 @@ Window {
     {
       id:b21 ; height:65 ;width:3 ; color:"#333CFF"
       anchors{top:teatr.bottom;right:teatr.left;rightMargin:-16;}
+       Component.onCompleted:{back.add_object(b21 , "Teatr-e Shahr_Moniriyeh" , "Line3")}
     }
     Rectangle
     {
@@ -536,6 +566,7 @@ Window {
     {
       id:b23 ; height:30 ;width:3 ; color:"#333CFF"
       anchors{top:moniriyeh.bottom;right:moniriyeh.left;rightMargin:-16;}
+      Component.onCompleted:{back.add_object(b23 , "Moniriyeh_Mahdiyeh" , "Line3")}
     }
     Rectangle
     {
@@ -553,6 +584,7 @@ Window {
     {
       id:b25 ; height:30 ;width:3 ; color:"#333CFF"
       anchors{top:mahdiyeh.bottom;right:mahdiyeh.left;rightMargin:-16;}
+      Component.onCompleted:{back.add_object(b25 , "Mahdiyeh_Rahahan" , "Line3")}
     }
     Rectangle
     {
@@ -562,7 +594,7 @@ Window {
       MouseArea{
           anchors.fill:parent
           onClicked:{
-             a( rahahan , "Rahahanh","l")
+             a( rahahan , "Rahahan","l")
           }
       }
     }
@@ -570,6 +602,7 @@ Window {
     {
       id:b27 ; height:30 ;width:3 ; color:"#333CFF"
       anchors{top:rahahan.bottom;right:rahahan.left;rightMargin:-16;}
+      Component.onCompleted:{back.add_object(b27 , "Rahahan_Javadiyeh" , "Line3")}
     }
     Rectangle
     {
@@ -587,6 +620,7 @@ Window {
     {
       id:b29 ; height:35 ;width:3 ; color:"#333CFF"
       anchors{top:javadiyeh.bottom;right:javadiyeh.left;rightMargin:-16;}
+      Component.onCompleted:{back.add_object(b29 , "Javadiyeh_Zamzam" , "Line3")}
     }
     Rectangle
     {
@@ -604,6 +638,7 @@ Window {
     {
       id:b31 ; height:43  ;width: 3  ; color:"#333CFF"
       anchors{top:zamzam.bottom;right:zamzam.left;rightMargin:-16;}
+      Component.onCompleted:{back.add_object(b31 , "Zamzam_Azadegan" , "Line3")}
     }
     Rectangle
     {
@@ -1709,6 +1744,18 @@ Window {
        Text{text:"Jonoub Terminal";anchors{top:jonoub.top ; right:jonoub.left ; topMargin:7 ; rightMargin:10}}
        Text{text:"Shahr-e Rey";anchors{top:rey.top ; right:rey.left ; topMargin:7 ; rightMargin:10}}
 
-
+        Button
+        {
+            id:distance
+            text:"MIN_DISTANCE"
+            anchors.right:parent.right
+            anchors.bottom:parent.bottom
+            anchors.rightMargin:100
+            anchors.bottomMargin:100
+            onClicked:
+            {
+                back.get_nodeName(origin , distination , 0);
+            }
+        }
 }
 

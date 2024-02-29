@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "NodeInfo.h"
+#include "nodeinfo.h"
 
 #ifndef VEHICLE_H
 #define VEHICLE_H
@@ -45,12 +45,12 @@ class Vehicle
         int getCostPerKilometre () {return this->costPerKilometre ;}
         int getSpeedPerKilometre() {return this->speedPerKilometre;}
         int getChangeLineTime   () {return this->changeLineTime;   }
-        
+
         const std::unordered_set< NodeNeighbour,NodeNeighbour::myHash>& getNeighboursSet(std::string input){return neighbours[input];}
 
         virtual void calculateMinDistance(std::unordered_map<std::string,NodeInfo>&,const std::string&);
         virtual void calculateMinCost    (std::unordered_map<std::string,NodeInfo>&,const std::string&) = 0;
-        
+
 
         virtual bool isOnVehchileRoad(const std::string&)const;
         virtual ~Vehicle();
@@ -64,8 +64,8 @@ class Vehicle
         int changeLineTime    ;
 
         std::string fileName ;
-        
-        
+
+
         std::vector<std::string> line;
         std::unordered_map <std::string , std::unordered_set< NodeNeighbour , NodeNeighbour::myHash> > neighbours;
 
