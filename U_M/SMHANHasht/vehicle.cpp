@@ -89,6 +89,7 @@ void Vehicle::distanceFromSrc(unordered_set<NodeNeighbour,NodeNeighbour::myHash>
         distanceSet.insert (currentNode);
     }
 }
+
 void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table, const std::string& srcNode )
 {
     unordered_set<NodeNeighbour,NodeNeighbour::myHash> distanceSet;
@@ -104,6 +105,23 @@ void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table, const std:
             table[currentNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(currentNode.distance));
             table[currentNode.nodeName].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.distance,table[srcNode],table[currentNode.nodeName])));
         }
+}
+
+void Vehicle::calculateMinCost (unordered_map<string,NodeInfo>& table, const std::string& srcNode)
+{
+    unordered_set<NodeNeighbour,NodeNeighbour::myHash> distanceSet;
+    distanceFromSrc(distanceSet,srcNode);
+    
+    for(const auto &currentNode : distanceSet)
+        if(!table[currentNode.nodeName].getVis() &&
+            table[currentNode.nodeName].getCost() > table[srcNode].getCost() + calculateCost(currentNode.distance))
+        {
+            table[currentNode.nodeName].setDistance(table[srcNode].getDistance() + currentNode.distance);
+            table[currentNode.nodeName].setParent(srcNode);
+            table[currentNode.nodeName].setNodeVehicle(this);
+            table[currentNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(currentNode.distance));
+            table[currentNode.nodeName].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.distance,table[srcNode],table[currentNode.nodeName])));
+        }    
 }
 
 bool Vehicle::isOnVehchileRoad(const string& input)const

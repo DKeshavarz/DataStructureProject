@@ -21,9 +21,7 @@ struct NodeNeighbour
     NodeNeighbour(const std::string& name="",const int c=0):nodeName(name),distance(c) {}
 
     bool operator==(const NodeNeighbour& obj)const
-    {
-        return (/*distance == obj.distance && */nodeName == obj.nodeName);
-    }
+    {return (/*distance == obj.distance && */nodeName == obj.nodeName);}
 
     struct myHash
     {
@@ -51,7 +49,7 @@ class Vehicle
         std::string getVehicleName      () {return this->fileName.substr(0 , fileName.size()-4);}//Warning : bad implementation
 
         virtual void calculateMinDistance(std::unordered_map<std::string,NodeInfo>& ,const std::string&);
-        virtual void calculateMinCost    (std::unordered_map<std::string,NodeInfo>& ,const std::string&) = 0;
+        virtual void calculateMinCost    (std::unordered_map<std::string,NodeInfo>& ,const std::string&);
         virtual void calculateMinTime    (std::unordered_map<std::string,NodeInfo>& ,const std::string&);
         
         virtual void distanceFromSrc     (unordered_set<NodeNeighbour,NodeNeighbour::myHash>&,const std::string&);
