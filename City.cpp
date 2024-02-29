@@ -6,12 +6,12 @@
 #include <stdexcept>
 #include <climits>
 
-#include "city.h"
-#include "vehicle.h"
-#include "linearvehicle.h"
-#include "ondemandvehicle.h"
-#include "taxi.h"
-#include "nodeinfo.h"
+#include "City.h"
+#include "Vehicle.h"
+#include "LinearVehicle.h"
+#include "OnDemandVehicle.h"
+#include "Taxi.h"
+#include "NodeInfo.h"
 
 using namespace std;
 
@@ -107,9 +107,9 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
     dijkstraTable[start].setTime(CurrentTime);
 
     for(size_t i {} ; i < dijkstraTable.size() ; ++i)
-    {
+    { 
         string strMinNode {findMinNode(dijkstraTable, metric)};
-
+        
         const auto& vec {nodesMap[strMinNode]};
         for(const auto& i : vec)//implement with map
         {
@@ -137,7 +137,7 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
     }
 
     return dijkstraTable;
-
+        
 }
 
 string City::findMinNode(const unordered_map <string,NodeInfo>& table,MeasurementMetric metric)
@@ -168,7 +168,7 @@ string City::findMinNode(const unordered_map <string,NodeInfo>& table,Measuremen
                 minNodeName = i.first;
                 minNodeCost = ((i.second).*function)();
             }
-
+    
     return minNodeName;
 }
 City::~City()
@@ -177,7 +177,7 @@ City::~City()
     for(auto item:publicTransportation)
         if(item)
             delete item;
-
+    
 }
 
 
@@ -186,7 +186,7 @@ void City::printNodeVehicle()
 {
     for(const auto& item:nodesMap)
     {
-        cout << item.first << string (40-(item.first).size() , ' ');
+        cout << item.first << string (40-(item.first).size() , ' '); 
         for(const auto& i:item.second)
             cout << i->getVehicleName() << ' ';
 

@@ -7,7 +7,7 @@
 #include <queue>
 #include <utility>
 
-#include "vehicle.h"
+#include "Vehicle.h"
 
 using namespace std;
 
@@ -25,13 +25,13 @@ bool Vehicle::readFile(const string& fileName) //add execption
         cerr << "faild to open " << fileName << '\n' ;
         return false ; //faild to open
     }
-
+    
     //************for debug**********
     this->fileName = fileName;
     //*******************************
 
     myFile >> this->changeLineTime >> this->speedPerKilometre >> this->costPerKilometre;
-
+    
     string stationOne{};
     string stationTwo{};
     string distance  {};
@@ -60,7 +60,7 @@ void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const 
 {
     for(const auto& neighbourNode : this->neighbours[srcNode])
     {
-        if(!table[neighbourNode.nodeName].getVis() &&
+        if(!table[neighbourNode.nodeName].getVis() && 
             table[neighbourNode.nodeName].getDistance() - table[srcNode].getDistance() >  neighbourNode.distance)//what happend if min = int_max
         {
             table[neighbourNode.nodeName].setDistance(table[srcNode].getDistance() + neighbourNode.distance); //all of this should be function
@@ -69,7 +69,7 @@ void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const 
             table[neighbourNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(neighbourNode.distance));
         }
     }
-
+        
 }
 
 void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table, const std::string& srcNode )
@@ -85,7 +85,7 @@ void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table, const std:
 
 
         cout << currentNode.first << "->" << currentNode.second << '\n';
-        if(!table[currentNode.first].getVis() &&
+        if(!table[currentNode.first].getVis() && 
             table[currentNode.first].getTimeInt() > table[srcNode].getTimeInt() + calculateTime(currentNode.second,table[srcNode],table[currentNode.first]))
         {
             table[currentNode.first].setDistance(table[srcNode].getDistance() + currentNode.second); //all of this should be function
@@ -119,7 +119,7 @@ Vehicle::~Vehicle()
     for(auto i : line)
         cout << i << ' ';
     cout << '\n';
-
+    
     cout << fileName << string (15-fileName.size(),' ') << "destroid\n" ;
     */
 }

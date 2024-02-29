@@ -657,11 +657,13 @@ Window {
     {
       id:c; height:3  ;width:200 ; color:"#ff1493"
       anchors{top:hafte_tir.bottom;left:hafte_tir.right;topMargin:-17}
+      Component.onCompleted:{back.add_object(c , "Haftom-e Tir_Emam Hossein" , "Line6")}
     }
     Rectangle
     {
       id:c1; height:20 ;width: 3  ; color:"#ff1493"
       anchors{top:c.bottom;left:c.right;topMargin:-2;leftMargin:-3}
+      Component.onCompleted:{back.add_object(c1 , "Haftom-e Tir_Emam Hossein" , "Line6")}
     }
     Rectangle
     {
@@ -679,6 +681,7 @@ Window {
     {
       id:c3; height:100 ;width:3 ; color:"#ff1493"
       anchors{top:e.bottom;right:e.left;rightMargin:-17}
+      Component.onCompleted:{back.add_object(c3 , "Emam Hossein_Meydan-e Shohada" , "Line6")}
     }
     Rectangle
     {
@@ -696,6 +699,7 @@ Window {
     {
       id:c5; height:100 ;width:3 ; color:"#ff1493"
       anchors{top:sh.bottom;right:sh.left;rightMargin:-17}
+       Component.onCompleted:{back.add_object(c5 , "Meydan-e Shohada_Shahid Rezaei" , "Line6")}
     }
     Rectangle
     {
@@ -713,11 +717,13 @@ Window {
     {
       id:c7; height:176 ;width: 3 ; color:"#ff1493"
       anchors{top:r.bottom;right:r.left;rightMargin:-17}
+       Component.onCompleted:{back.add_object(c7 , "Shahid Rezaei_Haram-e Hazrat-e Abdolazim" , "Line6")}
     }
     Rectangle
     {
       id:c8; height: 3  ;width:365 ; color:"#ff1493"
       anchors{top:c7.bottom;left:c7.right;leftMargin:-3}
+       Component.onCompleted:{back.add_object(c8 , "Shahid Rezaei_Haram-e Hazrat-e Abdolazim" , "Line6")}
     }
     Rectangle
     {
@@ -736,11 +742,14 @@ Window {
     {
       id:c10; height:3 ; width:192 ; color:"#ff1493"
       anchors{top:c.top;right:hafte_tir.left;}
+       Component.onCompleted:{back.add_object(c10 , "Haftom-e Tir_Meydan-e Hazrat-e ValiAsr" , "Line6")}
     }
     Rectangle
     {
       id:c11; height: 3 ; width:160 ; color:"#ff1493"
       anchors{top:c10.top;right:v.left;}
+       Component.onCompleted:{back.add_object(c11 , "Meydan-e Hazrat-e ValiAsr_Boostan-e laleh" , "Line6")}
+
     }
     Rectangle
     {
@@ -758,11 +767,15 @@ Window {
     {
       id:c13; height:170 ; width: 3 ; color:"#ff1493"
       anchors{bottom:boostan.top;right:boostan.left;rightMargin:-15}
+      Component.onCompleted:{back.add_object(c13 , "Boostan-e laleh_Yadegar-e Emam" , "Line6")}
+
     }
     Rectangle
     {
       id:c14; height:3 ; width:100 ; color:"#ff1493"
       anchors{top:c13.top;right:boostan.left;rightMargin:-15}
+      Component.onCompleted:{back.add_object(c14 , "Boostan-e laleh_Yadegar-e Emam" , "Line6")}
+
     }
     Rectangle
     {
@@ -780,6 +793,7 @@ Window {
     {
       id:c16; height:3 ; width:100 ; color:"#ff1493"
       anchors{top:yadegar.top;right:yadegar.left;topMargin:15;}
+      Component.onCompleted:{back.add_object(c16 , "Yadegar-e Emam_Kashani" , "Line6")}
     }
     Rectangle
     {
@@ -797,6 +811,7 @@ Window {
     {
       id:c18; height:3 ; width:130 ; color:"#ff1493"
       anchors{top:kashani.top;right:kashani.left;topMargin:15;}
+      Component.onCompleted:{back.add_object(c18 , "Kashani_Kouhsar" , "Line6")}
     }
     Rectangle
     {
@@ -815,6 +830,7 @@ Window {
     {
       id:d ; height:230 ; width:3 ; color:"yellow"
       anchors{bottom:kashani.top;right:c16.left;rightMargin:13}
+       Component.onCompleted:{back.add_object(d , "Chaharbagh_Kashani" , "Line4")}
     }
     Rectangle
     {
@@ -833,6 +849,7 @@ Window {
     {
       id:d2 ; height:50 ; width:3 ; color:"yellow"
       anchors{top:kashani.bottom;right:c16.left;rightMargin:15}
+      Component.onCompleted:{back.add_object(d2 , "Kashani_Allameh Jafari" , "Line4")}
     }
     Rectangle
     {
@@ -850,6 +867,7 @@ Window {
     {
       id:d4 ; height:50 ; width: 3 ; color:"yellow"
       anchors{top:jafari.bottom;right:jafari.left;rightMargin:-15}
+       Component.onCompleted:{back.add_object(d4 , "Allameh Jafari_Eram-e Sabz" , "Line4")}
     }
     Rectangle
     {
@@ -867,6 +885,7 @@ Window {
     {
       id:d6 ; height:55 ; width:3 ; color:"yellow"
       anchors{top:sabz.bottom;right:sabz.left;rightMargin:-15}
+      Component.onCompleted:{back.add_object(d6 , "Eram-e Sabz_Meydan-e Azadi" , "Line4")}
     }
     Rectangle
     {
@@ -884,6 +903,7 @@ Window {
     {
       id:d8 ; height:3 ; width:30 ; color:"yellow"
       anchors{top:azadi.top;left:azadi.right;topMargin: 15;}
+      Component.onCompleted:{back.add_object(d8 , "Meydan-e Azadi_Ostad Mo'in" , "Line4")}
     }
     Rectangle
     {
@@ -901,6 +921,7 @@ Window {
     {
       id:d10 ; height:3 ; width:40 ; color:"yellow"
       anchors{top:d8.top;left:moein.right;}
+       Component.onCompleted:{back.add_object(d10 , "Ostad Mo'in_Shademan" , "Line4")}
     }
     Rectangle
     {
@@ -918,6 +939,7 @@ Window {
     {
       id:d12 ; height:3 ; width:40 ; color:"yellow"
       anchors{top:d10.top;left:shadman.right;}
+       Component.onCompleted:{back.add_object(d12 , "Shademan_Towhid" , "Line4")}
     }
     Rectangle
     {
@@ -935,6 +957,7 @@ Window {
     {
       id:d14 ; height:3 ; width:82 ; color:"yellow"
       anchors{top:d12.top;left:tohid.right;}
+      Component.onCompleted:{back.add_object(d14 , "Towhid_Meydan-e Enghelab-e Eslami" , "Line4")}
     }
     Rectangle
     {
@@ -953,8 +976,11 @@ Window {
     {
       id:d16 ; height:3 ; width:96 ; color:"yellow"
       anchors{top:d14.top;left:meydan.right;}
+        Component.onCompleted:{back.add_object(d16 , "Meydan-e Enghelab-e Eslami_Teatr-e Shahr" , "Line4")}
     }
-    Rectangle{id:d17 ; height:3 ; width:50 ; color:"yellow";anchors{top:d16.top;left:teatr.right;}}
+    Rectangle{id:d17 ; height:3 ; width:50 ; color:"yellow";anchors{top:d16.top;left:teatr.right;}
+        Component.onCompleted:{back.add_object(d17 , "Teatr-e Shahr_Ferdowsi" , "Line4")}
+    }
     Rectangle
     {
         id:ferdowsi;
@@ -967,10 +993,16 @@ Window {
             }
         }
     }
-    Rectangle{id:d19 ; height:3 ; width:30 ; color:"yellow";anchors{top:d16.top;left:ferdowsi.right;}}
-    Rectangle{id:d20 ; height:55 ; width:3 ; color:"yellow";anchors{top:d19.bottom;left:d19.right;topMargin:-3;}}
-    Rectangle{id:d21 ; height:3 ; width:79 ; color:"yellow";anchors{top:d20.bottom;left:d20.right;leftMargin: -3;}}
-    Rectangle{id:d22 ; height:3 ; width:90 ; color:"yellow";anchors{top:d21.top;left:dowlat.right;}}
+    Rectangle{id:d19 ; height:3 ; width:30 ; color:"yellow";anchors{top:d16.top;left:ferdowsi.right;}
+     Component.onCompleted:{back.add_object(d19 , "Ferdowsi_Darvazeh Dowlat" , "Line4")}}
+    Rectangle{id:d20 ; height:55 ; width:3 ; color:"yellow";anchors{top:d19.bottom;left:d19.right;topMargin:-3;}
+     Component.onCompleted:{back.add_object(d20 , "Ferdowsi_Darvazeh Dowlat" , "Line4")}}
+    Rectangle{id:d21 ; height:3 ; width:79 ; color:"yellow";anchors{top:d20.bottom;left:d20.right;leftMargin: -3;}
+     Component.onCompleted:{back.add_object(d21 , "Ferdowsi_Darvazeh Dowlat" , "Line4")}}
+
+
+    Rectangle{id:d22 ; height:3 ; width:90 ; color:"yellow";anchors{top:d21.top;left:dowlat.right;}
+     Component.onCompleted:{back.add_object(d22 , "Darvazeh Dowlat_Darvazeh Shemiran" , "Line4")}}
     Rectangle
     {
         id:shemiran;
@@ -983,10 +1015,15 @@ Window {
            }
        }
     }
-    Rectangle{id:d24 ; height:3 ; width:30 ; color:"yellow";anchors{top:d22.top;left:shemiran.right;}}
-    Rectangle{id:d25 ; height:48 ; width:3 ; color:"yellow";anchors{top:d24.bottom;left:d24.right;leftMargin: -3}}
-    Rectangle{id:d26 ; height:3 ; width:40 ; color:"yellow";anchors{top:d25.bottom;left:d25.right;topMargin:-3;leftMargin: -3}}
-    Rectangle{id:d27 ; height:3 ; width:60 ; color:"yellow";anchors{top:d26.top;left:sh.right;}}
+    Rectangle{id:d24 ; height:3 ; width:30 ; color:"yellow";anchors{top:d22.top;left:shemiran.right;}
+     Component.onCompleted:{back.add_object(d24 , "Darvazeh Shemiran_Meydan-e Shohada" , "Line4")}}
+    Rectangle{id:d25 ; height:48 ; width:3 ; color:"yellow";anchors{top:d24.bottom;left:d24.right;leftMargin: -3}
+     Component.onCompleted:{back.add_object(d25 , "Darvazeh Shemiran_Meydan-e Shohada" , "Line4")}}
+    Rectangle{id:d26 ; height:3 ; width:40 ; color:"yellow";anchors{top:d25.bottom;left:d25.right;topMargin:-3;leftMargin: -3}
+     Component.onCompleted:{back.add_object(d26 , "Darvazeh Shemiran_Meydan-e Shohada" , "Line4")}}
+
+    Rectangle{id:d27 ; height:3 ; width:60 ; color:"yellow";anchors{top:d26.top;left:sh.right;}
+     Component.onCompleted:{back.add_object(d27 , "Meydan-e Shohada_Ebn-e Sina" , "Line4")}}
     Rectangle
     {
         id:eb;
@@ -999,7 +1036,8 @@ Window {
             }
         }
     }
-     Rectangle{id:d29 ; height:3 ; width:30 ; color:"yellow";anchors{top:d27.top;left:eb .right}}
+     Rectangle{id:d29 ; height:3 ; width:30 ; color:"yellow";anchors{top:d27.top;left:eb .right}
+     Component.onCompleted:{back.add_object(d29 , "Ebn-e Sina_Pirouzi" , "Line4")}}
      Rectangle
      {
          id:pirouzi;
@@ -1012,7 +1050,8 @@ Window {
             }
         }
      }
-     Rectangle{id:d31 ; height:3 ; width:30 ; color:"yellow";anchors{top:d29.top;left:pirouzi.right;}}
+     Rectangle{id:d31 ; height:3 ; width:30 ; color:"yellow";anchors{top:d29.top;left:pirouzi.right;}
+     Component.onCompleted:{back.add_object(d31 , "Pirouzi_Nabard" , "Line4")}}
      Rectangle
      {
          id:nabard
@@ -1025,7 +1064,8 @@ Window {
            }
        }
      }
-      Rectangle{id:d33 ; height:3 ; width:30 ; color:"yellow";anchors{top:d31.top;left:nabard.right}}
+      Rectangle{id:d33 ; height:3 ; width:30 ; color:"yellow";anchors{top:d31.top;left:nabard.right}
+          Component.onCompleted:{back.add_object(d33 , "Nabard_Nirou Havaei" , "Line4")}}
       Rectangle
       {
           id:nirou
@@ -1038,7 +1078,8 @@ Window {
               }
           }
       }
-       Rectangle{id:d35 ; height:3 ; width:70 ; color:"yellow";anchors{top:d33.top;left:nirou.right}}
+       Rectangle{id:d35 ; height:3 ; width:70 ; color:"yellow";anchors{top:d33.top;left:nirou.right}
+       Component.onCompleted:{back.add_object(d35 , "Nirou Havaei_Shahid Kolahdouz" , "Line4")}}
        Rectangle
        {
            id:k;
