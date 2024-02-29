@@ -24,10 +24,7 @@ bool Vehicle::readFile(const string& fileName) //add execption
         return false ; //faild to open
     }
 
-    //************for debug**********
     this->fileName = fileName;
-    //*******************************
-
     myFile >> this->changeLineTime >> this->speedPerKilometre >> this->costPerKilometre;
 
     string stationOne{};
@@ -56,18 +53,19 @@ bool Vehicle::readFile(const string& fileName) //add execption
 
 void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const std::string& srcNode )
 {
-    //iterate throw all src neighbours in for
-    for(const auto& neighbourNode : this->neighbours[srcNode])
-    {
-        if(!table[neighbourNode.nodeName].getVis() &&
-            table[neighbourNode.nodeName].getDistance() - table[srcNode].getDistance() >  neighbourNode.distance)//warning: happend if min = int_max
+    unordered_set<NodeNeighbour,NodeNeighbour::myHash> distanceSet;
+    distanceFromSrc(distanceSet,srcNode);
+
+    for(const auto &currentNode : distanceSet)
+        if(!table[currentNode.nodeName].getVis() &&
+            table[currentNode.nodeName].getDistance() > table[srcNode].getDistance() + currentNode.distance)
         {
-            table[neighbourNode.nodeName].setDistance(table[srcNode].getDistance() + neighbourNode.distance); //all of this should be function
-            table[neighbourNode.nodeName].setParent(srcNode);
-            table[neighbourNode.nodeName].setNodeVehicle(this);//father pointer or what????????
-            table[neighbourNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(neighbourNode.distance));
+            table[currentNode.nodeName].setDistance(table[srcNode].getDistance() + currentNode.distance); 
+            table[currentNode.nodeName].setParent(srcNode);
+            table[currentNode.nodeName].setNodeVehicle(this);
+            table[currentNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(currentNode.distance));
+            table[currentNode.nodeName].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.distance,table[srcNode],table[currentNode.nodeName])));
         }
-    }
 }
 void Vehicle::distanceFromSrc(unordered_set<NodeNeighbour,NodeNeighbour::myHash>& distanceSet,const string& srcNode)
 {
@@ -100,9 +98,9 @@ void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table, const std:
         if(!table[currentNode.nodeName].getVis() &&
             table[currentNode.nodeName].getTimeInt() > table[srcNode].getTimeInt() + calculateTime(currentNode.distance,table[srcNode],table[currentNode.nodeName]))
         {
-            table[currentNode.nodeName].setDistance(table[srcNode].getDistance() + currentNode.distance); //all of this should be a function
+            table[currentNode.nodeName].setDistance(table[srcNode].getDistance() + currentNode.distance);
             table[currentNode.nodeName].setParent(srcNode);
-            table[currentNode.nodeName].setNodeVehicle(this);//father pointer or what????????
+            table[currentNode.nodeName].setNodeVehicle(this);
             table[currentNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(currentNode.distance));
             table[currentNode.nodeName].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.distance,table[srcNode],table[currentNode.nodeName])));
         }
