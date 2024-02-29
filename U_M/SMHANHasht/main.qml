@@ -16,7 +16,7 @@ Window {
         color:"#DADBDD"
         MouseArea
         {
-            anchors.fill:parent
+             anchors.fill:parent
             onClicked:
             {
 

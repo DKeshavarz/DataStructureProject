@@ -29,7 +29,7 @@ void Samhanhash::get_nodeName(QString start, QString end, int Metric)
             Calcute_Min_Direction(start.toStdString() , end.toStdString() , COST);
                break;
         case TIME:
-            cout<<"time";
+            Calcute_Min_Direction(start.toStdString() , end.toStdString() , TIME);
              break;
 
         default :
@@ -58,13 +58,20 @@ void Samhanhash::Calcute_Min_Direction(string Start, string End, MeasurementMetr
    reverse(vec.begin(), vec.end());
    reverse(cost_vec.begin(), cost_vec.end());
    set_color(vec , cost_vec);
+  // for(size_t i=1 ; i<vec.size()-1 ; i++)
+ //  {
+ //  get_object[vec[i]][0].obj_name->setProperty("color" , "purple");
+  // cout<<get_object[vec[i]][0].obj_name;
+  // }
 }
 
 void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
 {
     string temp;
+
     for(size_t i=0 ; i<Distance.size()-1 ; i++)
     {
+
        if(get_object.find(Distance[i]+"_"+Distance[i+1])!= get_object.end())
        {
            temp=Distance[i]+"_"+Distance[i+1];
@@ -104,6 +111,7 @@ void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
                }
             }
         }
+
        cerr << "\nsamhan way\n";
        cerr <<Distance[i]+"_"+Distance[i+1]<<"    "<<T[i]<<"   "<<"\n";
 
