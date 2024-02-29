@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<<<<<<< HEAD
-<!-- Written by QtCreator 5.0.2, 2024-02-28T20:11:56. -->
-=======
-<!-- Written by QtCreator 12.0.1, 2024-02-28T11:47:16. -->
->>>>>>> a4c1c11abfe8699bf514b0766812f88e33040cd6
+<!-- Written by QtCreator 12.0.2, 2024-02-29T14:35:43. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -86,9 +82,6 @@
     <valuelist type="QVariantList" key="ClangTools.SelectedFiles"/>
     <valuelist type="QVariantList" key="ClangTools.SuppressedDiagnostics"/>
     <value type="bool" key="ClangTools.UseGlobalSettings">true</value>
-   </valuemap>
-   <valuemap type="QVariantMap" key="CppEditor.QuickFix">
-    <value type="bool" key="UseGlobalSettings">true</value>
    </valuemap>
   </valuemap>
  </data>
