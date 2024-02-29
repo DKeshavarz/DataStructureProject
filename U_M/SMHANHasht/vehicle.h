@@ -50,9 +50,11 @@ class Vehicle
         int         getChangeLineTime   () {return this->changeLineTime;   }
         std::string getVehicleName      () {return this->fileName.substr(0 , fileName.size()-4);}//Warning : bad implementation
 
-        virtual void calculateMinDistance(std::unordered_map<std::string,NodeInfo>&,const std::string&);
-        virtual void calculateMinCost    (std::unordered_map<std::string,NodeInfo>&,const std::string&) = 0;
-        virtual void calculateMinTime    (std::unordered_map<std::string,NodeInfo>&,const std::string&);
+        virtual void calculateMinDistance(std::unordered_map<std::string,NodeInfo>& ,const std::string&);
+        virtual void calculateMinCost    (std::unordered_map<std::string,NodeInfo>& ,const std::string&) = 0;
+        virtual void calculateMinTime    (std::unordered_map<std::string,NodeInfo>& ,const std::string&);
+        
+        virtual void distanceFromSrc     (unordered_set<NodeNeighbour,NodeNeighbour::myHash>&,const std::string&);
 
         // check if a Vehchile can go to station
         virtual bool isOnVehchileRoad(const std::string&)const;
