@@ -8,7 +8,7 @@ Window {
     width: 1980
     height: 1080
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Sahmanhasht")
     Rectangle
     {
 

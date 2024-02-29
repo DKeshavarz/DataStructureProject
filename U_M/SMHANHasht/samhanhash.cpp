@@ -70,12 +70,40 @@ void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
            temp=Distance[i]+"_"+Distance[i+1];
       }
        else{temp=Distance[i+1]+"_"+Distance[i];}
-       for(auto &j : get_object[temp])
+       if(T[i][0]=='T')
        {
+           for(auto &j : get_object[temp])
+           {
 
-           j.obj_name->setProperty("color" , "purple");
+              if(j.type=="Line1" || j.type=="Line3" || j.type=="Line4" || j.type=="Line6")
+              {
+                j.obj_name->setProperty("color" , "lightblue");
+              }
+           }
        }
-       cout<<Distance[i]+"_"+Distance[i+1]<<"    "<<T[i]<<"   ";
+      else if(T[i][0]=='M')
+       {
+           for(auto &j : get_object[temp])
+           {
+
+              if(j.type=="Line1" || j.type=="Line3" || j.type=="Line4" || j.type=="Line6")
+              {
+                j.obj_name->setProperty("color" , "lightblue");
+              }
+           }
+       }
+       else if(T[i][0]=='B')
+        {
+            for(auto &j : get_object[temp])
+            {
+
+               if(j.type=="BUS1" || j.type=="BUS2" || j.type=="BUS3")
+               {
+                 j.obj_name->setProperty("color" , "lightblue");
+               }
+            }
+        }
+       cout<<Distance[i]+"_"+Distance[i+1]<<"    "<<T[i]<<"   "<<"\n";
     }
 }
 

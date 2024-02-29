@@ -9,12 +9,12 @@ Window {
     width: 1980
     height: 1080
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Sahmanhasht")
     Rectangle
     {
 
         anchors.fill:parent   // #C0C0C0  "#DADBDD"  "#EEEEEE"  "#87CEFA"  "#DFD3E3"
-        color: "#DFD3E3"
+        color: "#C0C0C0"
     }
 
     property string origin: "null" ;  property string  distination: "null" ; property var current
@@ -1098,6 +1098,7 @@ Window {
            id:ghaem_pirouzi_1
            width:2 ; height:105; color:"#667C26";
            anchors{top:ghaem.bottom;left:ghaem.left;leftMargin:26}
+          Component.onCompleted:{back.add_object(ghaem_pirouzi_1 , "Gha'em_Pirouzi" , "BUS2")}
 
        }
        Rectangle
@@ -1105,6 +1106,7 @@ Window {
            id:ghaem_pirouzi_2
            width:2 ; height:105; color:"#667C26";
            anchors{top:ghaem.bottom;left:ghaem.left;leftMargin:21}
+            Component.onCompleted:{back.add_object(ghaem_pirouzi_2 , "Gha'em_Pirouzi" , "BUS2")}
 
        }
        Rectangle
@@ -1112,6 +1114,7 @@ Window {
            id:ghaem_pirouzi_3
            width:242 ; height:2 ; color:"#667C26";
            anchors{top:ghaem_pirouzi_1.bottom;right:ghaem_pirouzi_1.left;topMargin:-6}
+            Component.onCompleted:{back.add_object(ghaem_pirouzi_3 , "Gha'em_Pirouzi" , "BUS2")}
 
        }
        Rectangle
@@ -1119,6 +1122,7 @@ Window {
            id:ghaem_pirouzi_4
            width:242 ; height:2 ; color:"#667C26";
            anchors{top:ghaem_pirouzi_1.bottom;right:ghaem_pirouzi_1.left;topMargin:-1}
+            Component.onCompleted:{back.add_object(ghaem_pirouzi_4 , "Gha'em_Pirouzi" , "BUS2")}
 
        }
        Rectangle
@@ -1126,6 +1130,7 @@ Window {
            id:ghaem_pirouzi_5
            width:2 ; height:185 ; color:"#667C26";
            anchors{top:ghaem_pirouzi_3.bottom;right:ghaem_pirouzi_3.left;rightMargin:-7}
+            Component.onCompleted:{back.add_object(ghaem_pirouzi_5 , "Gha'em_Pirouzi" , "BUS2")}
 
        }
        Rectangle
@@ -1133,6 +1138,7 @@ Window {
            id:ghaem_pirouzi_6
            width:2 ; height:185 ; color:"#667C26";
            anchors{top:ghaem_pirouzi_3.bottom;right:ghaem_pirouzi_3.left;rightMargin:-2}
+            Component.onCompleted:{back.add_object(ghaem_pirouzi_6 , "Gha'em_Pirouzi" , "BUS2")}
 
        }
        Rectangle
@@ -1140,13 +1146,14 @@ Window {
            id:pirouzi_R_1
            width:2 ; height:118; color:"#667C26";
            anchors{top:pirouzi.bottom;right:pirouzi.left;rightMargin:-13}
-
+           Component.onCompleted:{back.add_object(pirouzi_R_1 , "Pirouzi_Shahid Rezaei" , "BUS2")}
        }
        Rectangle
        {
            id:pirouzi_R_2
            width:2 ; height:118; color:"#667C26";
            anchors{top:pirouzi.bottom;right:pirouzi.left;rightMargin:-18}
+           Component.onCompleted:{back.add_object(pirouzi_R_2 , "Pirouzi_Shahid Rezaei" , "BUS2")}
 
        }
        Rectangle
@@ -1154,6 +1161,7 @@ Window {
            id:pirouzi_R_3
            width:136 ; height:2 ; color:"#667C26";
            anchors{top:pirouzi_R_2.bottom;right:pirouzi_R_2.left;topMargin:-7}
+           Component.onCompleted:{back.add_object(pirouzi_R_3 , "Pirouzi_Shahid Rezaei" , "BUS2")}
 
        }
        Rectangle
@@ -1161,6 +1169,7 @@ Window {
            id:pirouzi_R_4
            width:136 ; height:2 ; color:"#667C26";
            anchors{top:pirouzi_R_2.bottom;right:pirouzi_R_2.left;topMargin:-2}
+           Component.onCompleted:{back.add_object(pirouzi_R_4 , "Pirouzi_Shahid Rezaei" , "BUS2")}
 
        }
        Rectangle
@@ -1168,6 +1177,7 @@ Window {
            id:r_javanmard_1
            width:100 ; height:2 ; color:"#667C26";
            anchors{top:pirouzi_R_3.top;right:r.left;}
+           Component.onCompleted:{back.add_object(r_javanmard_1 , "Shahid Rezaei_Payaneh Javanmard" , "BUS2")}
 
        }
        Rectangle
@@ -1175,6 +1185,7 @@ Window {
            id:r_javanmard_2
            width:100 ; height:2 ; color:"#667C26";
            anchors{top:pirouzi_R_4.top;right:r.left;}
+           Component.onCompleted:{back.add_object(r_javanmard_2 , "Shahid Rezaei_Payaneh Javanmard" , "BUS2")}
 
        }
        Rectangle
@@ -1182,6 +1193,7 @@ Window {
            id:r_javanmard_3
            width:2 ; height:165 ; color:"#667C26";
            anchors{top:r_javanmard_2.bottom;right:r_javanmard_1.left;topMargin:-5;rightMargin:-7}
+          Component.onCompleted:{back.add_object(r_javanmard_3 , "Shahid Rezaei_Payaneh Javanmard" , "BUS2")}
 
        }
        Rectangle
@@ -1189,6 +1201,7 @@ Window {
            id:r_javanmard_4
            width:2 ; height:165 ; color:"#667C26";
            anchors{top:r_javanmard_2.bottom;right:r_javanmard_1.left;topMargin:-5;rightMargin:-2}
+           Component.onCompleted:{back.add_object(r_javanmard_4 , "Shahid Rezaei_Payaneh Javanmard" , "BUS2")}
 
        }
        Rectangle
@@ -1203,12 +1216,14 @@ Window {
                    a(javanmard , "Payaneh Javanmard","b")
                 }
             }
+        Component.onCompleted:{back.add_object(javanmard , "Payaneh Javanmard" , "BUS")}
        }
        Rectangle
        {
            id:ghaem_ansary_1
            width:2 ; height:30 ; color:"#667C26";
            anchors{bottom:ghaem.top;right:ghaem.left;rightMargin:-22}
+          Component.onCompleted:{back.add_object(ghaem_ansary_1 , "Gha'em_Khajeh Abdollah-e Ansari" , "BUS2")}
 
        }
        Rectangle
@@ -1216,6 +1231,7 @@ Window {
            id:ghaem_ansary_2
            width:2 ; height:30 ; color:"#667C26";
            anchors{bottom:ghaem.top;right:ghaem.left;rightMargin:-27}
+           Component.onCompleted:{back.add_object(ghaem_ansary_2 , "Gha'em_Khajeh Abdollah-e Ansari" , "BUS2")}
 
        }
        Rectangle
@@ -1223,6 +1239,7 @@ Window {
            id:ghaem_ansary_3
            width:380 ; height:2  ; color:"#667C26";
            anchors{top:ghaem_ansary_2.top;right:ghaem_ansary_2.left;}
+          Component.onCompleted:{back.add_object(ghaem_ansary_3 , "Gha'em_Khajeh Abdollah-e Ansari" , "BUS2")}
 
        }
        Rectangle
@@ -1230,6 +1247,7 @@ Window {
            id:ghaem_ansary_4
            width:380 ; height:2 ; color:"#667C26";
            anchors{top:ghaem_ansary_2.top;right:ghaem_ansary_2.left;topMargin:5}
+           Component.onCompleted:{back.add_object(ghaem_ansary_4 , "Gha'em_Khajeh Abdollah-e Ansari" , "BUS2")}
 
        }
        Rectangle
@@ -1244,12 +1262,14 @@ Window {
                   a(ansary, "Khajeh Abdollah-e Ansari","b")
                }
            }
+          Component.onCompleted:{back.add_object(ansary , "Khajeh Abdollah-e Ansari" , "BUS")}
        }
        Rectangle
        {
            id:ebnesina_tehranpars_1
            width:2 ; height:73 ; color:"#1B8A6B";
            anchors{top:d27.bottom;right:eb.left;topMargin:13;rightMargin:-18}
+           Component.onCompleted:{back.add_object(ebnesina_tehranpars_1 , "Tehran Pars_Ebn-e Sina" , "BUS1")}
 
        }
        Rectangle
@@ -1257,6 +1277,7 @@ Window {
            id:ebnesina_tehranpars_2
            width:2 ; height:73  ; color:"#1B8A6B";
           anchors{top:d27.bottom;right:eb.left;topMargin:13;rightMargin:-13}
+           Component.onCompleted:{back.add_object(ebnesina_tehranpars_2 , "Tehran Pars_Ebn-e Sina" , "BUS1")}
 
        }
        Rectangle
@@ -1264,6 +1285,7 @@ Window {
            id:ebnesina_tehranpars_3
            width:300 ; height:2  ; color:"#1B8A6B";
            anchors{top:ebnesina_tehranpars_2.bottom;left:ebnesina_tehranpars_2.right;topMargin:-7}
+           Component.onCompleted:{back.add_object(ebnesina_tehranpars_3 , "Tehran Pars_Ebn-e Sina" , "BUS1")}
 
        }
        Rectangle
@@ -1271,6 +1293,7 @@ Window {
            id:ebnesina_tehranpars_4
            width:300 ; height:2 ; color:"#1B8A6B";
            anchors{top:ebnesina_tehranpars_2.bottom;left:ebnesina_tehranpars_2.right;topMargin:-2}
+           Component.onCompleted:{back.add_object(ebnesina_tehranpars_4 , "Tehran Pars_Ebn-e Sina" , "BUS1")}
 
        }
        Rectangle
@@ -1282,15 +1305,17 @@ Window {
            MouseArea{
                anchors.fill:parent
                onClicked:{
-                  a(tehranpars, "Tehran Par","b")
+                  a(tehranpars, "Tehran Pars","b")
                }
            }
+         Component.onCompleted:{back.add_object(tehranpars , "Tehran Pars" , "BUS")}
        }
        Rectangle
        {
            id:emam_ebnesina_1
            width:2 ; height:118  ; color:"#1B8A6B";
           anchors{bottom:eb.bottom;right:eb.left;rightMargin:-13;bottomMargin:30}
+          Component.onCompleted:{back.add_object(emam_ebnesina_1 , "Emam Hossein_Ebn-e Sina" , "BUS1")}
 
        }
        Rectangle
@@ -1298,6 +1323,7 @@ Window {
            id:emam_ebnesina_2
            width:2 ; height:118  ; color:"#1B8A6B";
            anchors{bottom:eb.bottom;right:eb.left;rightMargin:-18;bottomMargin:30}
+           Component.onCompleted:{back.add_object(emam_ebnesina_2 , "Emam Hossein_Ebn-e Sina" , "BUS1")}
 
        }
        Rectangle
@@ -1305,6 +1331,7 @@ Window {
            id:emam_ebnesina_3
            width:77 ; height:2  ; color:"#1B8A6B";
            anchors{top:emam_ebnesina_2.top;right:emam_ebnesina_2.left;}
+           Component.onCompleted:{back.add_object(emam_ebnesina_3 , "Emam Hossein_Ebn-e Sina" , "BUS1")}
 
        }
        Rectangle
@@ -1312,6 +1339,7 @@ Window {
            id:emam_ebnesina_4
            width:77 ; height:2 ; color:"#1B8A6B";
            anchors{top:emam_ebnesina_2.top;right:emam_ebnesina_2.left;topMargin: 5}
+           Component.onCompleted:{back.add_object(emam_ebnesina_4 , "Emam Hossein_Ebn-e Sina" , "BUS1")}
 
        }
        Rectangle
@@ -1319,6 +1347,7 @@ Window {
            id:dowlat_emam_1
            width:145 ; height:2  ; color:"#1B8A6B";
            anchors{top:emam_ebnesina_3.top;right:e.left;}
+          Component.onCompleted:{back.add_object(dowlat_emam_1 , "Darvazeh Dowlat_Emam Hossein" , "BUS1")}
 
        }
        Rectangle
@@ -1326,6 +1355,7 @@ Window {
            id:dowlat_emam_2
            width:145 ; height:2 ; color:"#1B8A6B";
            anchors{top:emam_ebnesina_4.top;right:e.left;}
+           Component.onCompleted:{back.add_object(dowlat_emam_2 , "Darvazeh Dowlat_Emam Hossein" , "BUS1")}
 
        }
        Rectangle
@@ -1333,6 +1363,7 @@ Window {
            id:dowlat_emam_3
            width:2 ; height:85  ; color:"#1B8A6B";
            anchors{top:dowlat_emam_1.top;right:dowlat_emam_2.left;}
+           Component.onCompleted:{back.add_object(dowlat_emam_3 , "Darvazeh Dowlat_Emam Hossein" , "BUS1")}
 
        }
        Rectangle
@@ -1340,6 +1371,7 @@ Window {
            id:dowlat_emam_4
            width:2 ; height:85 ; color:"#1B8A6B";
            anchors{top:dowlat_emam_1.top;right:dowlat_emam_2.left;rightMargin:-5}
+           Component.onCompleted:{back.add_object(dowlat_emam_4 , "Darvazeh Dowlat_Emam Hossein" , "BUS1")}
 
        }
        Rectangle
@@ -1347,6 +1379,7 @@ Window {
            id:dowlat_emam_5
            width:47 ; height:2  ; color:"#1B8A6B";
            anchors{top:dowlat_emam_3.bottom;right:dowlat_emam_3.left;rightMargin:-7}
+          Component.onCompleted:{back.add_object(dowlat_emam_5 , "Darvazeh Dowlat_Emam Hossein" , "BUS1")}
 
        }
        Rectangle
@@ -1354,6 +1387,7 @@ Window {
            id:dowlat_emam_6
            width:47 ; height:2 ; color:"#1B8A6B";
            anchors{top:dowlat_emam_3.bottom;right:dowlat_emam_3.left;topMargin:-5;rightMargin:-7}
+          Component.onCompleted:{back.add_object(dowlat_emam_6 , "Darvazeh Dowlat_Emam Hossein" , "BUS1")}
 
        }
        Rectangle
@@ -1361,6 +1395,7 @@ Window {
            id:ferdowsi_dowlat_1
            width:2 ; height:25  ; color:"#1B8A6B";
            anchors{top:dowlat.bottom;right:dowlat.left;rightMargin:-13}
+          Component.onCompleted:{back.add_object(ferdowsi_dowlat_1 , "Ferdowsi_Darvazeh Dowlat" , "BUS1")}
 
        }
        Rectangle
@@ -1368,6 +1403,7 @@ Window {
            id:ferdowsi_dowlat_2
            width:2 ; height:25 ; color:"#1B8A6B";
            anchors{top:dowlat.bottom;right:dowlat.left;rightMargin:-18}
+           Component.onCompleted:{back.add_object(ferdowsi_dowlat_2 , "Ferdowsi_Darvazeh Dowlat" , "BUS1")}
 
        }
        Rectangle
@@ -1375,6 +1411,7 @@ Window {
            id:ferdowsi_dowlat_3
            width:144 ; height:2  ; color:"#1B8A6B";
            anchors{top:ferdowsi_dowlat_2.bottom;right:ferdowsi_dowlat_2.left;topMargin:-2}
+          Component.onCompleted:{back.add_object(ferdowsi_dowlat_3 , "Ferdowsi_Darvazeh Dowlat" , "BUS1")}
 
        }
        Rectangle
@@ -1382,6 +1419,7 @@ Window {
            id:ferdowsi_dowlat_4
            width:144 ; height:2 ; color:"#1B8A6B";
            anchors{top:ferdowsi_dowlat_2.bottom;right:ferdowsi_dowlat_2.left;topMargin:-7;}
+          Component.onCompleted:{back.add_object(ferdowsi_dowlat_4 , "Ferdowsi_Darvazeh Dowlat" , "BUS1")}
 
        }
        Rectangle
@@ -1389,6 +1427,7 @@ Window {
            id:ferdowsi_dowlat_5
            width:2 ; height:65  ; color:"#1B8A6B";
            anchors{bottom:ferdowsi_dowlat_3.top;right:ferdowsi_dowlat_3.left;rightMargin:-2}
+          Component.onCompleted:{back.add_object(ferdowsi_dowlat_5 , "Ferdowsi_Darvazeh Dowlat" , "BUS1")}
 
        }
        Rectangle
@@ -1396,6 +1435,7 @@ Window {
            id:ferdowsi_dowlat_6
            width:2 ; height:65 ; color:"#1B8A6B";
            anchors{bottom:ferdowsi_dowlat_3.top;right:ferdowsi_dowlat_3.left;rightMargin:-7}
+          Component.onCompleted:{back.add_object(ferdowsi_dowlat_6 , "Ferdowsi_Darvazeh Dowlat" , "BUS1")}
 
        }
        Rectangle
@@ -1403,6 +1443,7 @@ Window {
            id:enghelab_ferdowsi_1
            width:210 ; height:2  ; color:"#1B8A6B";
            anchors{top:ferdowsi_dowlat_5.top;right:ferdowsi_dowlat_5.left;rightMargin:-5}
+          Component.onCompleted:{back.add_object(enghelab_ferdowsi_1, "Ferdowsi_Meydan-e Enghelab-e Eslami" , "BUS1")}
 
        }
        Rectangle
@@ -1410,6 +1451,7 @@ Window {
            id:enghelab_ferdowsi_2
            width:210 ; height:2 ; color:"#1B8A6B";
            anchors{top:ferdowsi_dowlat_5.top;right:ferdowsi_dowlat_5.left;topMargin:5;rightMargin:-5}
+          Component.onCompleted:{back.add_object(enghelab_ferdowsi_2 , "Ferdowsi_Meydan-e Enghelab-e Eslami" , "BUS1")}
 
        }
        Rectangle
@@ -1417,6 +1459,11 @@ Window {
            id:lines_1
            width:2 ; height:18  ; color:"#1B8A6B";
            anchors{top:ferdowsi.bottom;right:ferdowsi.left;rightMargin:-13}
+           Component.onCompleted:{
+               back.add_object(lines_1, "Ferdowsi_Darvazeh Dowlat" , "BUS1")
+               back.add_object(lines_1 , "Ferdowsi_Meydan-e Enghelab-e Eslami" , "BUS1")
+           }
+
 
        }
        Rectangle
@@ -1424,6 +1471,10 @@ Window {
            id:lines_2
            width:2 ; height:18 ; color:"#1B8A6B";
            anchors{top:ferdowsi.bottom;right:ferdowsi.left;rightMargin:-18}
+          Component.onCompleted:{
+              back.add_object(lines_2 , "Ferdowsi_Darvazeh Dowlat" , "BUS1")
+              back.add_object(lines_2 , "Ferdowsi_Meydan-e Enghelab-e Eslami" , "BUS1")
+          }
 
        }
        Rectangle
@@ -1431,6 +1482,10 @@ Window {
            id:lines_3
            width:2 ; height:18  ; color:"#1B8A6B";
            anchors{top:meydan.bottom;right:meydan.left;rightMargin:-13}
+           Component.onCompleted:{
+               back.add_object(lines_3 , "Meydan-e Enghelab-e Eslami_Ostad Mo'in" , "BUS1")
+               back.add_object(lines_3 , "Ferdowsi_Meydan-e Enghelab-e Eslami" , "BUS1")
+           }
 
        }
        Rectangle
@@ -1438,6 +1493,10 @@ Window {
            id:lines_4
            width:2 ; height:18 ; color:"#1B8A6B";
            anchors{top:meydan.bottom;right:meydan.left;rightMargin:-18}
+           Component.onCompleted:{
+               back.add_object(lines_4 , "Meydan-e Enghelab-e Eslami_Ostad Mo'in" , "BUS1")
+               back.add_object(lines_4 , "Ferdowsi_Meydan-e Enghelab-e Eslami" , "BUS1")
+           }
 
        }
        Rectangle
@@ -1445,6 +1504,11 @@ Window {
            id:lines_5
            width:2 ; height:18  ; color:"#1B8A6B";
            anchors{top:moein.bottom;right:moein.left;rightMargin:-13}
+           Component.onCompleted:
+           {
+               back.add_object(lines_5 , "Meydan-e Enghelab-e Eslami_Ostad Mo'in" , "BUS1")
+              back.add_object(lines_5 , "Meydan-e Azadi_Ostad Mo'in" , "BUS1")
+           }
 
        }
        Rectangle
@@ -1452,6 +1516,11 @@ Window {
            id:lines_6
            width:2; height:18 ; color:"#1B8A6B";
            anchors{top:moein.bottom;right:moein.left;rightMargin:-18}
+           Component.onCompleted:
+           {
+               back.add_object(lines_6 , "Meydan-e Enghelab-e Eslami_Ostad Mo'in" , "BUS1")
+               back.add_object(lines_6 , "Meydan-e Azadi_Ostad Mo'in" , "BUS1")
+           }
 
        }
        Rectangle
@@ -1459,6 +1528,7 @@ Window {
            id:lines_7
            width:2 ; height:18  ; color:"#1B8A6B";
            anchors{top:azadi.bottom;right:azadi.left;rightMargin:-13}
+           Component.onCompleted:{back.add_object(lines_7 , "Meydan-e Azadi_Ostad Mo'in" , "BUS1")}
 
        }
        Rectangle
@@ -1466,6 +1536,7 @@ Window {
            id:lines_8
            width:2 ; height:18 ; color:"#1B8A6B";
            anchors{top:azadi.bottom;right:azadi.left;rightMargin:-18}
+           Component.onCompleted:{back.add_object(lines_8 , "Meydan-e Azadi_Ostad Mo'in" , "BUS1")}
 
        }
        Rectangle
@@ -1473,6 +1544,7 @@ Window {
            id:moein_enghelab_1
            width:257 ; height:2  ; color:"#1B8A6B";
            anchors{top:enghelab_ferdowsi_1.top;right:enghelab_ferdowsi_1.left;rightMargin:-5}
+           Component.onCompleted:{back.add_object(moein_enghelab_1 , "Meydan-e Enghelab-e Eslami_Ostad Mo'in" , "BUS1")}
 
        }
        Rectangle
@@ -1480,6 +1552,8 @@ Window {
            id:moein_enghelab_2
            width:257 ; height:2 ; color:"#1B8A6B";
            anchors{top:enghelab_ferdowsi_2.top;right:enghelab_ferdowsi_2.left;rightMargin:-5}
+           Component.onCompleted:{back.add_object(moein_enghelab_2 , "Meydan-e Enghelab-e Eslami_Ostad Mo'in" , "BUS1")}
+
 
        }
        Rectangle
@@ -1487,6 +1561,7 @@ Window {
            id:azadi_moein_1
            width:65 ; height:2  ; color:"#1B8A6B";
            anchors{top:moein_enghelab_1.top;right:moein_enghelab_1.left;rightMargin:-5}
+           Component.onCompleted:{back.add_object(azadi_moein_1 , "Meydan-e Azadi_Ostad Mo'in" , "BUS1")}
 
        }
        Rectangle
@@ -1494,6 +1569,7 @@ Window {
            id:azadi_moein_2
            width:65 ; height:2 ; color:"#1B8A6B";
            anchors{top:moein_enghelab_2.top;right:moein_enghelab_2.left;rightMargin:-5}
+           Component.onCompleted:{back.add_object(azadi_moein_2 , "Meydan-e Azadi_Ostad Mo'in" , "BUS1")}
 
        }
        Rectangle
@@ -1501,6 +1577,7 @@ Window {
            id:bimeh_azadi_1
            width:127 ; height:2  ; color:"#1B8A6B";
            anchors{top:azadi.top;right:azadi.left;topMargin:11}
+           Component.onCompleted:{back.add_object(bimeh_azadi_1 , "Bimeh_Meydan-e Azadi" , "BUS1")}
 
        }
        Rectangle
@@ -1508,6 +1585,7 @@ Window {
            id:bimeh_azadi_2
            width:127 ; height:2 ; color:"#1B8A6B";
            anchors{top:azadi.top;right:azadi.left;topMargin:16}
+          Component.onCompleted:{back.add_object(bimeh_azadi_2 , "Bimeh_Meydan-e Azadi" , "BUS1")}
        }
        Rectangle
        {
@@ -1521,12 +1599,14 @@ Window {
                   a(bimeh, "Bimeh","b")
                }
            }
+         Component.onCompleted:{back.add_object(bimeh , "Bimeh" , "BUS")}
        }
        Rectangle
        {
            id:sadr_tajrish_1
            width:140 ; height:2  ; color:"#2C3539";
            anchors{top:tajrish.top;right:tajrish.left;topMargin:22}
+          Component.onCompleted:{back.add_object(sadr_tajrish_1 , "Shahid Sadr_Tajrish" , "BUS3")}
 
        }
        Rectangle
@@ -1534,12 +1614,14 @@ Window {
            id:sadr_tajrish_2
            width:140 ; height:2 ; color:"#2C3539";
            anchors{top:tajrish.top;right:tajrish.left;topMargin:27}
+           Component.onCompleted:{back.add_object(sadr_tajrish_2 , "Shahid Sadr_Tajrish" , "BUS3")}
        }
        Rectangle
        {
            id:sadr_tajrish_3
            width:2 ; height:80  ; color:"#2C3539";
            anchors{top:sadr_tajrish_1.bottom;right:sadr_tajrish_1.left;rightMargin:-2}
+           Component.onCompleted:{back.add_object(sadr_tajrish_3 , "Shahid Sadr_Tajrish" , "BUS3")}
 
        }
        Rectangle
@@ -1547,6 +1629,7 @@ Window {
            id:sadr_tajrish_4
            width:2 ; height:80 ; color:"#2C3539";
            anchors{top:sadr_tajrish_1.bottom;right:sadr_tajrish_1.left;rightMargin:-7}
+           Component.onCompleted:{back.add_object(sadr_tajrish_4 , "Shahid Sadr_Tajrish" , "BUS3")}
 
        }
        Rectangle
@@ -1561,12 +1644,14 @@ Window {
                   a(sadr, "Shahid Sadr","b")
                }
            }
+           Component.onCompleted:{back.add_object(sadr , "Shahid Sadr" , "BUS")}
        }
        Rectangle
        {
            id:tajrish_mirdamad_1
            width:30 ; height:2  ; color:"#2C3539";
            anchors{top:sadr_tajrish_1.top;left:sadr_tajrish_1.right;leftMargin:50}
+           Component.onCompleted:{back.add_object(tajrish_mirdamad_1 , "Tajrish_Mirdamad" , "BUS3")}
 
        }
        Rectangle
@@ -1574,6 +1659,7 @@ Window {
            id:tajrish_mirdamad_2
            width:30 ; height:2 ; color:"#2C3539";
             anchors{top:sadr_tajrish_2.top;left:sadr_tajrish_2.right;leftMargin:50}
+            Component.onCompleted:{back.add_object(tajrish_mirdamad_2 , "Tajrish_Mirdamad" , "BUS3")}
 
        }
        Rectangle
@@ -1581,6 +1667,7 @@ Window {
            id:tajrish_mirdamad_3
            width:2 ; height:222  ; color:"#2C3539";
            anchors{top:tajrish_mirdamad_1.bottom;right:tajrish_mirdamad_1.left;rightMargin:-25}
+          Component.onCompleted:{back.add_object(tajrish_mirdamad_3 , "Tajrish_Mirdamad" , "BUS3")}
 
        }
        Rectangle
@@ -1588,6 +1675,7 @@ Window {
            id:tajrish_mirdamad_4
            width:2 ; height:222 ; color:"#2C3539";
            anchors{top:tajrish_mirdamad_1.bottom;right:tajrish_mirdamad_1.left;rightMargin:-30}
+           Component.onCompleted:{back.add_object(tajrish_mirdamad_4 , "Tajrish_Mirdamad" , "BUS3")}
 
        }
        Rectangle
@@ -1595,6 +1683,7 @@ Window {
            id:tajrish_mirdamad_5
            width:41 ; height:2  ; color:"#2C3539";
            anchors{top:tajrish_mirdamad_3.bottom;right:tajrish_mirdamad_3.left;topMargin:-2;rightMargin:-5}
+           Component.onCompleted:{back.add_object(tajrish_mirdamad_5 , "Tajrish_Mirdamad" , "BUS3")}
 
        }
        Rectangle
@@ -1602,12 +1691,14 @@ Window {
            id:tajrish_mirdamad_6
            width:41 ; height:2 ; color:"#2C3539";
            anchors{top:tajrish_mirdamad_3.bottom;right:tajrish_mirdamad_3.left;topMargin:-7;rightMargin:-5}
+           Component.onCompleted:{back.add_object(tajrish_mirdamad_6 , "Tajrish_Mirdamad" , "BUS3")}
        }
        Rectangle
        {
            id:mirdamad_v_1
            width:325 ; height:2 ; color:"#2C3539";
            anchors{top:tajrish_mirdamad_5.top;right:tajrish_mirdamad_5.left;rightMargin:30}
+           Component.onCompleted:{back.add_object(mirdamad_v_1 , "Mirdamad_Meydan-e Hazrat-e ValiAsr" , "BUS3")}
 
        }
        Rectangle
@@ -1615,12 +1706,14 @@ Window {
            id:mirdamad_v_2
            width:325 ; height:2 ; color:"#2C3539";
            anchors{top:tajrish_mirdamad_6.top;right:tajrish_mirdamad_6.left;rightMargin:30}
+           Component.onCompleted:{back.add_object(mirdamad_v_2 , "Mirdamad_Meydan-e Hazrat-e ValiAsr" , "BUS3")}
        }
        Rectangle
        {
            id:mirdamad_v_3
            width:2 ; height:251  ; color:"#2C3539";
            anchors{top:mirdamad_v_1.bottom;right:mirdamad_v_1.left;topMargin:-5;rightMargin:-2}
+           Component.onCompleted:{back.add_object(mirdamad_v_3 , "Mirdamad_Meydan-e Hazrat-e ValiAsr" , "BUS3")}
 
        }
        Rectangle
@@ -1628,12 +1721,14 @@ Window {
            id:mirdamad_v_4
           width:2 ; height:251  ; color:"#2C3539";
            anchors{top:mirdamad_v_1.bottom;right:mirdamad_v_1.left;topMargin:-5;rightMargin:-7}
+           Component.onCompleted:{back.add_object(mirdamad_v_4 , "Mirdamad_Meydan-e Hazrat-e ValiAsr" , "BUS3")}
        }
        Rectangle
        {
            id:mirdamad_v_5
            width:98 ; height:2  ; color:"#2C3539";
            anchors{top:mirdamad_v_3.bottom;left:mirdamad_v_3.right;topMargin:-2}
+           Component.onCompleted:{back.add_object(mirdamad_v_5 , "Mirdamad_Meydan-e Hazrat-e ValiAsr" , "BUS3")}
 
        }
        Rectangle
@@ -1641,12 +1736,14 @@ Window {
            id:mirdamad_v_6
            width:98 ; height:2 ; color:"#2C3539";
            anchors{top:mirdamad_v_3.bottom;left:mirdamad_v_3.right;topMargin:-7}
+           Component.onCompleted:{back.add_object(mirdamad_v_6 , "Mirdamad_Meydan-e Hazrat-e ValiAsr" , "BUS3")}
        }
        Rectangle
        {
            id:v_rahahan_1
            width:30 ; height:2  ; color:"#2C3539";
            anchors{top:mirdamad_v_5.top;left:v.right}
+          Component.onCompleted:{back.add_object(v_rahahan_1 , "Meydan-e Hazrat-e ValiAsr_Rahahan" , "BUS3")}
 
        }
        Rectangle
@@ -1654,12 +1751,14 @@ Window {
            id:v_rahahan_2
            width:30 ; height:2 ; color:"#2C3539";
            anchors{top:mirdamad_v_6.top;left:v.right}
+           Component.onCompleted:{back.add_object(v_rahahan_2 , "Meydan-e Hazrat-e ValiAsr_Rahahan" , "BUS3")}
        }
        Rectangle
        {
            id:v_rahahan_3
            width:2 ; height:281  ; color:"#2C3539";
            anchors{top:v_rahahan_1.bottom;left:v_rahahan_1.right;topMargin:-5;leftMargin:-7}
+           Component.onCompleted:{back.add_object(v_rahahan_3 , "Meydan-e Hazrat-e ValiAsr_Rahahan" , "BUS3")}
 
        }
        Rectangle
@@ -1667,12 +1766,14 @@ Window {
            id:v_rahahan_4
           width:2 ; height:281  ; color:"#2C3539";
            anchors{top:v_rahahan_1.bottom;left:v_rahahan_1.right;topMargin:-5;leftMargin:-2}
+           Component.onCompleted:{back.add_object(v_rahahan_4 , "Meydan-e Hazrat-e ValiAsr_Rahahan" , "BUS3")}
        }
        Rectangle
        {
            id:v_rahahan_5
            width:28 ; height:2  ; color:"#2C3539";
            anchors{top:v_rahahan_3.bottom;right:v_rahahan_3.left;topMargin:-2;rightMargin:-5}
+           Component.onCompleted:{back.add_object(v_rahahan_5 , "Meydan-e Hazrat-e ValiAsr_Rahahan" , "BUS3")}
 
        }
        Rectangle
@@ -1680,12 +1781,14 @@ Window {
            id:v_rahahan_6
            width:28 ; height:2 ; color:"#2C3539";
            anchors{top:v_rahahan_3.bottom;right:v_rahahan_3.left;topMargin:-7;rightMargin:-5}
+           Component.onCompleted:{back.add_object(v_rahahan_6 , "Meydan-e Hazrat-e ValiAsr_Rahahan" , "BUS3")}
        }
        Rectangle
        {
            id:rahahan_shahrak_1
            width:130 ; height:2  ; color:"#2C3539";
            anchors{top:v_rahahan_5.top;right:rahahan.left;}
+           Component.onCompleted:{back.add_object(rahahan_shahrak_1 , "Rahahan_Shahrak-e Shari'ati" , "BUS3")}
 
        }
        Rectangle
@@ -1693,12 +1796,14 @@ Window {
            id:rahahan_shahrak_2
            width:130 ; height:2 ; color:"#2C3539";
            anchors{top:v_rahahan_6.top;right:rahahan.left;}
+           Component.onCompleted:{back.add_object(rahahan_shahrak_2 , "Rahahan_Shahrak-e Shari'ati" , "BUS3")}
        }
        Rectangle
        {
            id:rahahan_shahrak_3
            width:2 ; height:182  ; color:"#2C3539";
            anchors{top:rahahan_shahrak_1.bottom;right:rahahan_shahrak_2.left;topMargin:-5;rightMargin:-2}
+           Component.onCompleted:{back.add_object(rahahan_shahrak_3 , "Rahahan_Shahrak-e Shari'ati" , "BUS3")}
 
        }
        Rectangle
@@ -1706,6 +1811,7 @@ Window {
            id:rahahan_shahrak_4
           width:2; height:182  ; color:"#2C3539";
            anchors{top:rahahan_shahrak_1.bottom;right:rahahan_shahrak_2.left;topMargin:-5;rightMargin:-7}
+           Component.onCompleted:{back.add_object(rahahan_shahrak_4 , "Rahahan_Shahrak-e Shari'ati" , "BUS3")}
        }
        Rectangle
        {
@@ -1719,6 +1825,7 @@ Window {
                    a(shahrak, "Shahrak-e Shari'ati","b")
                 }
             }
+           Component.onCompleted:{back.add_object(shahrak , "Shahrak-e Shari'ati" , "BUS")}
        }
        Text{text:"Kahrizak"; anchors{top:kahrizak.bottom ; left:kahrizak.left ; topMargin:5}}
        Text{text:"Shahrak-e Shari'ati";anchors{top:shahrak.bottom ; left:shahrak.left ; topMargin:5 ; leftMargin:-27}}
@@ -1796,6 +1903,20 @@ Window {
             onClicked:
             {
                 back.get_nodeName(origin , distination , 0);
+            }
+        }
+
+        Button
+        {
+            id:cost
+            text:"MIN_COST"
+            anchors.right:parent.right
+            anchors.bottom:parent.bottom
+            anchors.rightMargin:100
+            anchors.bottomMargin:150
+            onClicked:
+            {
+                back.get_nodeName(origin , distination , 1);
             }
         }
 }
