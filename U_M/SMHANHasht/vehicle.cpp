@@ -11,10 +11,8 @@
 
 using namespace std;
 
-Vehicle::Vehicle()
-{
-   fileName="nothing";
-}
+Vehicle::Vehicle() :fileName {"nothing"}
+{}
 
 bool Vehicle::readFile(const string& fileName) //add execption
 {
@@ -39,29 +37,30 @@ bool Vehicle::readFile(const string& fileName) //add execption
     getline(myFile,distance);
     //this getline will not store any thing: just mean cin.ignore
 
+    //read two stations and distance between them
     while(getline(myFile,stationOne))
     {
         getline(myFile,stationTwo);
         getline(myFile,distance);
 
         this->line.push_back(stationOne);
-
         addNewVertex(stationOne,stationTwo,stoi(distance));
     }
+    //last station miss while reading so we need to check it
     this->line.push_back(stationTwo);
     addNewVertex(stationOne,stationTwo,stoi(distance));
 
     myFile.close();
-
     return true; //reading file was successfull
 }
 
 void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const std::string& srcNode )
 {
+    //iterate throw all src neighbours in for
     for(const auto& neighbourNode : this->neighbours[srcNode])
     {
         if(!table[neighbourNode.nodeName].getVis() &&
-            table[neighbourNode.nodeName].getDistance() - table[srcNode].getDistance() >  neighbourNode.distance)//what happend if min = int_max
+            table[neighbourNode.nodeName].getDistance() - table[srcNode].getDistance() >  neighbourNode.distance)//warning: happend if min = int_max
         {
             table[neighbourNode.nodeName].setDistance(table[srcNode].getDistance() + neighbourNode.distance); //all of this should be function
             table[neighbourNode.nodeName].setParent(srcNode);
@@ -69,7 +68,6 @@ void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const 
             table[neighbourNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(neighbourNode.distance));
         }
     }
-
 }
 
 void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table, const std::string& srcNode )
@@ -109,18 +107,9 @@ bool Vehicle::isOnVehchileRoad(const string& input)const
 {
     return neighbours.count(input);
 }
+
 Vehicle::~Vehicle()
-{
-    /*
-    cout << "change line" << changeLineTime << " speed " << speedPerKilometre << " cost " << costPerKilometre  << '\n';
-
-    for(auto i : line)
-        cout << i << ' ';
-    cout << '\n';
-
-    cout << fileName << string (15-fileName.size(),' ') << "destroid\n" ;
-    */
-}
+{}
 
 vector<string> Vehicle::backTrackPath (string start,string end)const
 {
@@ -137,7 +126,7 @@ vector<string> Vehicle::backTrackPath (string start,string end)const
             reverse(vec.begin(), vec.end());
             break;
         }
-        else if(line.at(i) == end  )
+        else if(line.at(i) == end)
         {
             for(size_t j {i} ; j < line.size() && line.at(j) != start ; ++j)
                 vec.push_back(line.at(j));
@@ -159,10 +148,15 @@ int Vehicle::calculateTime(int distance,NodeInfo& startNode,NodeInfo& endNode)
     }
     return this->speedPerKilometre * distance + lineChangeTime;
 }
-//**************************************************
-//                      private
-//**************************************************
 
+
+
+//***************************************************************************************************
+//                                       private function
+//***************************************************************************************************
+
+
+//warning : what about undirected graph
 void Vehicle::addNewVertex(const string& firstVertex ,const string& secondVertex ,const int& distance)
 {
     neighbours[firstVertex]. insert(NodeNeighbour(secondVertex,distance));
