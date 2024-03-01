@@ -1,3 +1,3 @@
-# branch minDistance
+# branch minCost
 
-decrease time complixity of finding **minimum distance** between two nodes
+decrease time complixity of finding **minimum Cost** between two nodes
