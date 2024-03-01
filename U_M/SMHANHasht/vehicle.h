@@ -87,6 +87,9 @@ class Vehicle
         //calculate based on specific vehicle parameters
         virtual int calculateCost(int) = 0;
         virtual int calculateTime(int); // const ???????
+
+        //This function modifies the information associated with a node in the graph.
+        void modifyDijkstraTable(unordered_map<std::string,NodeInfo>&,const std::string,const std::string,int);
 };
 
 #endif
