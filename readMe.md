@@ -1,3 +1,4 @@
-# branch minCost
+# branch main
 
-decrease time complixity of finding **minimum Cost** between two nodes
+data structure project
+
