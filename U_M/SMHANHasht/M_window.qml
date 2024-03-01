@@ -1988,7 +1988,7 @@ Window {
             {
                 if(c_flag && t_flag && d_flag)
                 {
-                    back.get_nodeName(origin , distination , 0);
+                    back.get_nodeName(origin , distination , 1);
                     c_flag=false;
                 }
             }
@@ -2006,7 +2006,7 @@ Window {
             {
                 if(c_flag && t_flag && d_flag)
                 {
-                    back.get_nodeName(origin , distination , 0);
+                    back.get_nodeName(origin , distination , 2);
                     t_flag=false;
                 }
             }

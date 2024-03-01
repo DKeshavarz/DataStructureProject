@@ -61,7 +61,7 @@ void Samhanhash::Calcute_Min_Direction(string Start, string End, MeasurementMetr
    for(size_t i=1 ; i<vec.size()-1 ; i++)
    {
    get_object[vec[i]][0].obj_name->setProperty("color" , "#03A9F4");
-   // cout<<get_object[vec[i]][0].obj_name;
+    cout<<get_object[vec[i]][0].obj_name;
    }
 }
 
