@@ -75,7 +75,7 @@ void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
            for(auto &j : get_object[temp])
            {
 
-              if(j.type=="Line1" || j.type=="Line3" || j.type=="Line4" || j.type=="Line6")
+              if(j.type[0]=='L')
               {
                 j.obj_name->setProperty("color" , "lightblue");
               }
@@ -87,7 +87,7 @@ void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
            for(auto &j : get_object[temp])
            {
 
-              if(j.type=="Line1" || j.type=="Line3" || j.type=="Line4" || j.type=="Line6")
+              if(j.type[0]=='L')
               {
                 j.obj_name->setProperty("color" , "lightblue");
               }
@@ -98,16 +98,14 @@ void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
             for(auto &j : get_object[temp])
             {
 
-               if(j.type=="BUS1" || j.type=="BUS2" || j.type=="BUS3")
+               if(j.type[0]=='B')
                {
                  j.obj_name->setProperty("color" , "lightblue");
                }
             }
         }
-       cout<<Distance[i]+"_"+Distance[i+1]<<"    "<<T[i]<<"   "<<"\n";
-
        cerr << "\nsamhan way\n";
-       cerr <<Distance[i]+"_"+Distance[i+1]<<"    "<<T[i]<<"   ";
+       cerr <<Distance[i]+"_"+Distance[i+1]<<"    "<<T[i]<<"   "<<"\n";
 
     }
 }
