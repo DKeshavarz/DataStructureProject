@@ -58,20 +58,15 @@ void Samhanhash::Calcute_Min_Direction(string Start, string End, MeasurementMetr
    reverse(vec.begin(), vec.end());
    reverse(cost_vec.begin(), cost_vec.end());
    set_color(vec , cost_vec);
-   for(size_t i=1 ; i<vec.size()-1 ; i++)
-   {
-   get_object[vec[i]][0].obj_name->setProperty("color" , "#03A9F4");
-    cout<<get_object[vec[i]][0].obj_name;
-   }
+   set_Node_color(vec);
 }
 
 void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
 {
     string temp;
-     objects.push_back(get_object[Distance[0]][0]);
     for(size_t i=0 ; i<Distance.size()-1 ; i++)
     {
-       objects.push_back(get_object[Distance[i+1]][0]);
+
        if(get_object.find(Distance[i]+"_"+Distance[i+1])!= get_object.end())
        {
            temp=Distance[i]+"_"+Distance[i+1];
@@ -118,6 +113,18 @@ void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
        cerr << "\nsamhan way\n";
        cerr <<Distance[i]+"_"+Distance[i+1]<<"    "<<T[i]<<"   "<<"\n";
 
+    }
+}
+
+void Samhanhash::set_Node_color(std::vector<string> Distance)
+{
+    for(size_t i=0 ; i<Distance.size() ; i++)
+    {
+         for(auto &j : get_object[Distance[i]])
+         {
+             j.obj_name->setProperty("color" , "blue");
+              objects.push_back(j);
+         }
     }
 }
 

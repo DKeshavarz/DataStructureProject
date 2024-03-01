@@ -103,6 +103,16 @@ Window {
         width: 50 ;  height : 50 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         Text{id:x;text:qsTr("<b>Line1</b>") ;color:"red" ;anchors.centerIn:parent}
         anchors{horizontalCenter: parent.horizontalCenter;top:parent.top;topMargin: 13}
+        PropertyAnimation {
+            id:l
+            target:tajrish ;
+            property: "color"
+            from:"lightblue"
+            to:"white"
+            duration:500
+            loops:Animation.Infinite
+            running: false;
+        }
         MouseArea{
             anchors.fill:parent
             onClicked:{
@@ -1967,7 +1977,7 @@ Window {
             anchors.bottomMargin:100
             onClicked:
             {
-                if(c_flag && t_flag && d_flag)
+                if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
                 {
                     back.get_nodeName(origin , distination , 0);
                     d_flag=false;
@@ -1986,7 +1996,7 @@ Window {
             anchors.bottomMargin:150
             onClicked:
             {
-                if(c_flag && t_flag && d_flag)
+                if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
                 {
                     back.get_nodeName(origin , distination , 1);
                     c_flag=false;
@@ -2004,7 +2014,7 @@ Window {
             anchors.bottomMargin:200
             onClicked:
             {
-                if(c_flag && t_flag && d_flag)
+                if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
                 {
                     back.get_nodeName(origin , distination , 2);
                     t_flag=false;
