@@ -18,43 +18,46 @@ Window {
     }
 
     property string origin: "null" ;  property string  distination: "null" ; property var current
-    property string  c_type;
+    property string  c_type; property bool flag:true
     Text{id:n_origin ;}
     Text{id:n_distination ; x:100}
     function a(s , name , type)
     {
-        if(origin==="null" && distination!==name)
-        {
-            origin=name ; n_origin.text=name ; s.color="pink" ;
+      if(flag)
+       {
+           if(origin==="null" && distination!==name)
+           {
+               origin=name ; n_origin.text=name ; s.color="pink" ;
 
-        }
-        else if(distination==="null" &&  origin!==name)
-        {
-            distination=name ; n_distination.text=name ;  s.color="pink" ; current=s
-            c_type=type
-        }
-        else
-        {
-            if(origin===name)
-            {
-               origin="null"  ;  n_origin.text="" ;
-               if(type==="l"){s.color="#dcdcdc";  s.border.color="#a9a9a9"}
-               else{s.color="#00ff55"}
-            }
-            else if(distination===name)
-            {
-                distination="null"  ; n_distination.text="" ;
-                if(type==="l"){s.color="#dcdcdc";  s.border.color="#a9a9a9"}
-                else{s.color="#00ff55"}
-            }
-            else
-            {
-                distination=name ; n_distination.text=name ;  s.color="pink" ;
-                if(c_type==="l"){current.color="#dcdcdc";  current.border.color="#a9a9a9"}
-                else{current.color="#00ff55"}
-                current=s;c_type=type;
-            }
-        }
+           }
+           else if(distination==="null" &&  origin!==name)
+           {
+               distination=name ; n_distination.text=name ;  s.color="pink" ; current=s
+               c_type=type
+           }
+           else
+           {
+               if(origin===name)
+               {
+                  origin="null"  ;  n_origin.text="" ;
+                  if(type==="l"){s.color="#dcdcdc";  s.border.color="#a9a9a9"}
+                  else{s.color="#00ff55"}
+               }
+               else if(distination===name)
+               {
+                   distination="null"  ; n_distination.text="" ;
+                   if(type==="l"){s.color="#dcdcdc";  s.border.color="#a9a9a9"}
+                   else{s.color="#00ff55"}
+               }
+               else
+               {
+                   distination=name ; n_distination.text=name ;  s.color="pink" ;
+                   if(c_type==="l"){current.color="#dcdcdc";  current.border.color="#a9a9a9"}
+                   else{current.color="#00ff55"}
+                   current=s;c_type=type;
+               }
+           }
+       }
     }
 
     InputPanel {
@@ -98,6 +101,7 @@ Window {
                a(tajrish , "Tajrish" ,"l")
             }
         }
+     Component.onCompleted:{back.add_object(tajrish , "Tajrish" , "Node")}
     }
     Rectangle
     {
@@ -121,7 +125,7 @@ Window {
                a(gheytariyeh , "Gheytariyeh","l")
             }
         }
-
+    Component.onCompleted:{back.add_object(gheytariyeh , "Gheytariyeh" , "Node")}
     }
     Rectangle
     {
@@ -142,6 +146,7 @@ Window {
                a(gholhak , "Gholhak","l")
             }
         }
+      Component.onCompleted:{back.add_object(gholhak , "Gholhak" , "Node")}
 
     }
     Rectangle
@@ -163,6 +168,7 @@ Window {
                a(mirdamad , "Mirdamad","l")
             }
         }
+    Component.onCompleted:{back.add_object(mirdamad , "Mirdamad" , "Node")}
     }
     Rectangle
     {
@@ -181,6 +187,7 @@ Window {
               a(ha , "Shahid Haghani","l")
            }
        }
+    Component.onCompleted:{back.add_object(ha , "Shahid Haghani" , "Node")}
     }
     Rectangle
     {
@@ -199,6 +206,7 @@ Window {
                a(beheshti , "Shahid Beheshti","l")
             }
         }
+      Component.onCompleted:{back.add_object(beheshti , "Shahid Beheshti" , "Node")}
     }
     Rectangle
     {
@@ -217,6 +225,7 @@ Window {
               a(mofatteh , "Shahid Mofatteh","l")
            }
        }
+    Component.onCompleted:{back.add_object(mofatteh , "Shahid Mofatteh" , "Node")}
     }
     Rectangle
     {
@@ -235,6 +244,7 @@ Window {
               a(hafte_tir , "Haftom-e Tir","l")
            }
        }
+     Component.onCompleted:{back.add_object(hafte_tir , "Haftom-e Tir" , "Node")}
     }
     Rectangle
     {
@@ -253,6 +263,7 @@ Window {
               a(taleghani , "Taleghani","l")
            }
        }
+    Component.onCompleted:{back.add_object(taleghani , "Taleghani" , "Node")}
     }
     Rectangle
     {
@@ -271,6 +282,7 @@ Window {
               a(dowlat , "Darvazeh Dowlat","l")
            }
        }
+     Component.onCompleted:{back.add_object(dowlat , "Darvazeh Dowlat" , "Node")}
     }
     Rectangle
     {
@@ -289,6 +301,7 @@ Window {
               a(khordad , "Panzdah-e Khordad","l")
            }
        }
+    Component.onCompleted:{back.add_object(khordad , "Panzdah-e Khordad" , "Node")}
     }
     Rectangle
     {
@@ -307,6 +320,7 @@ Window {
                a(shoush , "Shoush","l")
             }
         }
+    Component.onCompleted:{back.add_object(shoush , "Shoush" , "Node")}
     }
     Rectangle
     {
@@ -325,6 +339,7 @@ Window {
                a(jonoub, "Jonoub Terminal","l")
             }
         }
+     Component.onCompleted:{back.add_object(jonoub, "Jonoub Terminal" , "Node")}
     }
     Rectangle
     {   id:a25; height: 30;width: 3 ; color:"red";
@@ -342,6 +357,7 @@ Window {
                a(rey, "Shahr-e Rey","l")
             }
         }
+    Component.onCompleted:{back.add_object(rey, "Shahr-e Rey" , "Node")}
     }
     Rectangle
     {
@@ -361,6 +377,7 @@ Window {
                a(kahrizak, "Kahrizak","l")
             }
         }
+    Component.onCompleted:{back.add_object(kahrizak, "Kahrizak", "Node")}
     }
     Rectangle
     {
@@ -379,6 +396,8 @@ Window {
                a(sohrevardi, "Sohrevardi","l")
             }
         }
+
+        Component.onCompleted:{back.add_object(sohrevardi, "Sohrevardi", "Node")}
     }
     Rectangle
     {
@@ -409,6 +428,7 @@ Window {
               a(gh, "Shahid Ghodousi","l")
            }
        }
+     Component.onCompleted:{back.add_object(gh, "Shahid Ghodousi", "Node")}
     }
     Rectangle
     {
@@ -428,6 +448,7 @@ Window {
                a( z  , "Shahid Zeynoddin","l")
             }
         }
+    Component.onCompleted:{back.add_object(z  , "Shahid Zeynoddin", "Node")}
     }
     Rectangle
     {
@@ -446,6 +467,7 @@ Window {
                a( aghdasiyeh , "Aghdasiyeh","l")
             }
         }
+    Component.onCompleted:{back.add_object(aghdasiyeh , "Aghdasiyeh", "Node")}
     }
     Rectangle
     {
@@ -465,6 +487,7 @@ Window {
                a( ghaem, "Gha'em","l")
             }
         }
+     Component.onCompleted:{back.add_object(ghaem, "Gha'em", "Node")}
     }
     Rectangle
     {
@@ -483,6 +506,7 @@ Window {
                 a( shirazi, "Merza-ye Shirazi","l")
              }
          }
+     Component.onCompleted:{back.add_object(shirazi, "Merza-ye Shirazi", "Node")}
     }
     Rectangle
     {
@@ -507,6 +531,7 @@ Window {
                a( jahad , "Meydan-e Jahad","l")
             }
         }
+     Component.onCompleted:{back.add_object(jahad , "Meydan-e Jahad", "Node")}
     }
     Rectangle
     {
@@ -525,6 +550,7 @@ Window {
                a( v , "Meydan-e Hazrat-e ValiAsr","l")
             }
         }
+     Component.onCompleted:{back.add_object(v , "Meydan-e Hazrat-e ValiAsr", "Node")}
     }
     Rectangle
     {
@@ -543,6 +569,7 @@ Window {
              a( teatr , "Teatr-e Shahr","l")
           }
       }
+    Component.onCompleted:{back.add_object(teatr , "Teatr-e Shahr", "Node")}
     }
     Rectangle
     {
@@ -561,6 +588,8 @@ Window {
              a( moniriyeh , "Moniriyeh","l")
           }
       }
+      Component.onCompleted:{back.add_object(moniriyeh , "Moniriyeh", "Node")}
+
     }
     Rectangle
     {
@@ -579,6 +608,7 @@ Window {
              a( mahdiyeh , "Mahdiyeh","l")
           }
       }
+     Component.onCompleted:{back.add_object(mahdiyeh , "Mahdiyeh", "Node")}
     }
     Rectangle
     {
@@ -597,6 +627,7 @@ Window {
              a( rahahan , "Rahahan","l")
           }
       }
+    Component.onCompleted:{back.add_object(rahahan , "Rahahan", "Node")}
     }
     Rectangle
     {
@@ -615,6 +646,7 @@ Window {
              a( javadiyeh , "Javadiyeh","l")
           }
       }
+    Component.onCompleted:{back.add_object(javadiyeh , "Javadiyeh", "Node")}
     }
     Rectangle
     {
@@ -633,6 +665,7 @@ Window {
                a( zamzam , "Zamzam","l")
             }
         }
+     Component.onCompleted:{back.add_object(zamzam , "Zamzam", "Node")}
     }
     Rectangle
     {
@@ -652,6 +685,7 @@ Window {
                  a( azadegan , "Azadegan","l")
               }
           }
+     Component.onCompleted:{back.add_object( azadegan , "Azadegan", "Node")}
     }
     Rectangle
     {
@@ -676,6 +710,7 @@ Window {
                a(e, "Emam Hossein","l")
             }
         }
+      Component.onCompleted:{back.add_object( e, "Emam Hossein", "Node")}
     }
     Rectangle
     {
@@ -694,6 +729,7 @@ Window {
                a(sh , "Meydan-e Shohada","l")
             }
         }
+     Component.onCompleted:{back.add_object(sh , "Meydan-e Shohada", "Node")}
     }
     Rectangle
     {
@@ -712,6 +748,7 @@ Window {
                a(r , "Shahid Rezaei","l")
             }
         }
+    Component.onCompleted:{back.add_object(r , "Shahid Rezaei", "Node")}
     }
     Rectangle
     {
@@ -737,6 +774,7 @@ Window {
                a(h , "Haram-e Hazrat-e Abdolazim","l")
             }
         }
+    Component.onCompleted:{back.add_object(h , "Haram-e Hazrat-e Abdolazim", "Node")}
     }
     Rectangle
     {
@@ -762,6 +800,7 @@ Window {
                a(boostan , "Boostan-e laleh","l")
             }
         }
+    Component.onCompleted:{back.add_object(boostan , "Boostan-e laleh", "Node")}
     }
     Rectangle
     {
@@ -788,6 +827,7 @@ Window {
                 a(yadegar , "Yadegar-e Emam","l")
              }
          }
+    Component.onCompleted:{back.add_object(yadegar , "Yadegar-e Emam", "Node")}
     }
     Rectangle
     {
@@ -806,6 +846,7 @@ Window {
               a(kashani , "Kashani","l")
            }
        }
+    Component.onCompleted:{back.add_object(kashani , "Kashani", "Node")}
     }
     Rectangle
     {
@@ -825,6 +866,7 @@ Window {
                a(kouhsar , "Kouhsar","l")
             }
         }
+    Component.onCompleted:{back.add_object(kouhsar , "Kouhsar", "Node")}
     }
     Rectangle
     {
@@ -844,6 +886,7 @@ Window {
                a(chaharbagh , "Chaharbagh","l")
             }
         }
+      Component.onCompleted:{back.add_object(chaharbagh , "Chaharbagh", "Node")}
     }
     Rectangle
     {
@@ -862,6 +905,7 @@ Window {
                 a(jafari , "Allameh Jafari","l")
              }
          }
+    Component.onCompleted:{back.add_object(jafari , "Allameh Jafari", "Node")}
     }
     Rectangle
     {
@@ -880,6 +924,7 @@ Window {
                a(sabz , "Eram-e Sabz","l")
             }
         }
+    Component.onCompleted:{back.add_object(sabz , "Eram-e Sabz", "Node")}
     }
     Rectangle
     {
@@ -898,6 +943,7 @@ Window {
                a(azadi , "Meydan-e Azadi","l")
             }
         }
+    Component.onCompleted:{back.add_object(azadi , "Meydan-e Azadi", "Node")}
     }
     Rectangle
     {
@@ -916,6 +962,7 @@ Window {
                a(moein , "Ostad Mo'in","l")
             }
         }
+    Component.onCompleted:{back.add_object(moein , "Ostad Mo'in", "Node")}
     }
     Rectangle
     {
@@ -934,6 +981,7 @@ Window {
                a(shadman , "Shademan","l")
             }
         }
+     Component.onCompleted:{back.add_object(shadman , "Shademan", "Node")}
     }
     Rectangle
     {
@@ -952,6 +1000,7 @@ Window {
               a(tohid , "Towhid","l")
            }
        }
+     Component.onCompleted:{back.add_object(tohid , "Towhid", "Node")}
     }
     Rectangle
     {
@@ -971,6 +1020,7 @@ Window {
                a(meydan , "Meydan-e Enghelab-e Eslami","l")
             }
         }
+    Component.onCompleted:{back.add_object(meydan , "Meydan-e Enghelab-e Eslami", "Node")}
     }
     Rectangle
     {
@@ -992,6 +1042,7 @@ Window {
                a(ferdowsi , "Ferdowsi","l")
             }
         }
+     Component.onCompleted:{back.add_object(ferdowsi , "Ferdowsi", "Node")}
     }
     Rectangle{id:d19 ; height:3 ; width:30 ; color:"yellow";anchors{top:d16.top;left:ferdowsi.right;}
      Component.onCompleted:{back.add_object(d19 , "Ferdowsi_Darvazeh Dowlat" , "Line4")}}
@@ -1014,6 +1065,7 @@ Window {
               a(shemiran , "Darvazeh Shemiran","l")
            }
        }
+     Component.onCompleted:{back.add_object(shemiran , "Darvazeh Shemiran", "Node")}
     }
     Rectangle{id:d24 ; height:3 ; width:30 ; color:"yellow";anchors{top:d22.top;left:shemiran.right;}
      Component.onCompleted:{back.add_object(d24 , "Darvazeh Shemiran_Meydan-e Shohada" , "Line4")}}
@@ -1035,6 +1087,7 @@ Window {
                a(eb , "Ebn-e Sina","l")
             }
         }
+     Component.onCompleted:{back.add_object(eb , "Ebn-e Sina", "Node")}
     }
      Rectangle{id:d29 ; height:3 ; width:30 ; color:"yellow";anchors{top:d27.top;left:eb .right}
      Component.onCompleted:{back.add_object(d29 , "Ebn-e Sina_Pirouzi" , "Line4")}}
@@ -1049,6 +1102,7 @@ Window {
                a(pirouzi , "Pirouzi","l")
             }
         }
+     Component.onCompleted:{back.add_object(pirouzi , "Pirouzi", "Node")}
      }
      Rectangle{id:d31 ; height:3 ; width:30 ; color:"yellow";anchors{top:d29.top;left:pirouzi.right;}
      Component.onCompleted:{back.add_object(d31 , "Pirouzi_Nabard" , "Line4")}}
@@ -1063,6 +1117,7 @@ Window {
               a(nabard , "Nabard","l")
            }
        }
+     Component.onCompleted:{back.add_object(nabard , "Nabard", "Node")}
      }
       Rectangle{id:d33 ; height:3 ; width:30 ; color:"yellow";anchors{top:d31.top;left:nabard.right}
           Component.onCompleted:{back.add_object(d33 , "Nabard_Nirou Havaei" , "Line4")}}
@@ -1077,6 +1132,7 @@ Window {
                  a(nirou , "Nirou Havaei","l")
               }
           }
+       Component.onCompleted:{back.add_object(nirou , "Nirou Havaei", "Node")}
       }
        Rectangle{id:d35 ; height:3 ; width:70 ; color:"yellow";anchors{top:d33.top;left:nirou.right}
        Component.onCompleted:{back.add_object(d35 , "Nirou Havaei_Shahid Kolahdouz" , "Line4")}}
@@ -1092,6 +1148,7 @@ Window {
                  a(k , "Shahid Kolahdouz","l")
               }
           }
+         Component.onCompleted:{back.add_object(k , "Shahid Kolahdouz", "Node")}
        }
        Rectangle
        {
@@ -1903,13 +1960,14 @@ Window {
             onClicked:
             {
                 back.get_nodeName(origin , distination , 0);
+                flag=false;
             }
         }
 
         Button
         {
             id:cost
-            text:"MIN_COST"
+            text:"LOW_COST"
             anchors.right:parent.right
             anchors.bottom:parent.bottom
             anchors.rightMargin:100
@@ -1917,6 +1975,22 @@ Window {
             onClicked:
             {
                 back.get_nodeName(origin , distination , 1);
+                 flag=false;
+            }
+        }
+
+        Button
+        {
+            id:time
+            text:"BEST_TIME"
+            anchors.right:parent.right
+            anchors.bottom:parent.bottom
+            anchors.rightMargin:100
+            anchors.bottomMargin:200
+            onClicked:
+            {
+                back.get_nodeName(origin , distination , 2);
+                 flag=false;
             }
         }
 }
