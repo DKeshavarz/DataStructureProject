@@ -11,10 +11,8 @@
 
 using namespace std;
 
-Vehicle::Vehicle()
-{
-   fileName="nothing";
-}
+Vehicle::Vehicle() :fileName {"nothing"}
+{}
 
 bool Vehicle::readFile(const string& fileName) //add execption
 {
@@ -26,101 +24,95 @@ bool Vehicle::readFile(const string& fileName) //add execption
         return false ; //faild to open
     }
 
-    //************for debug**********
     this->fileName = fileName;
-    //*******************************
-
     myFile >> this->changeLineTime >> this->speedPerKilometre >> this->costPerKilometre;
 
     string stationOne{};
     string stationTwo{};
     string distance  {};
 
-    getline(myFile,distance);
     //this getline will not store any thing: just mean cin.ignore
+    getline(myFile,distance);
 
+    //read two stations and distance between them
     while(getline(myFile,stationOne))
     {
         getline(myFile,stationTwo);
         getline(myFile,distance);
 
         this->line.push_back(stationOne);
-
         addNewVertex(stationOne,stationTwo,stoi(distance));
     }
+    //last station miss while reading so we need to check it
     this->line.push_back(stationTwo);
     addNewVertex(stationOne,stationTwo,stoi(distance));
 
     myFile.close();
-
     return true; //reading file was successfull
 }
 
 void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const std::string& srcNode )
 {
-    for(const auto& neighbourNode : this->neighbours[srcNode])
-    {
-        if(!table[neighbourNode.nodeName].getVis() &&
-            table[neighbourNode.nodeName].getDistance() - table[srcNode].getDistance() >  neighbourNode.distance)//what happend if min = int_max
+    unordered_set<NodeNeighbour,NodeNeighbour::myHash> distanceSet;
+    distanceFromSrc(distanceSet,srcNode);
+
+    for(const auto &currentNode : distanceSet)
+        if(!table[currentNode.nodeName].getVis() &&
+            table[currentNode.nodeName].getDistance() > table[srcNode].getDistance() + currentNode.distance)
         {
-            table[neighbourNode.nodeName].setDistance(table[srcNode].getDistance() + neighbourNode.distance); //all of this should be function
-            table[neighbourNode.nodeName].setParent(srcNode);
-            table[neighbourNode.nodeName].setNodeVehicle(this);//father pointer or what????????
-            table[neighbourNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(neighbourNode.distance));
+            table[currentNode.nodeName].setDistance(table[srcNode].getDistance() + currentNode.distance); 
+            table[currentNode.nodeName].setParent(srcNode);
+            table[currentNode.nodeName].setNodeVehicle(this);
+            table[currentNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(currentNode.distance));
+            table[currentNode.nodeName].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.distance,table[srcNode],table[currentNode.nodeName])));
         }
-    }
-
 }
-
-void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table, const std::string& srcNode )
+void Vehicle::distanceFromSrc(unordered_set<NodeNeighbour,NodeNeighbour::myHash>& distanceSet,const string& srcNode)
 {
-    unordered_set   <string> visitedNodes;
-    queue <pair<string,int>> searchQueue ;
+    unordered_set<string> visitedNodes;
+    queue <NodeNeighbour> searchQueue ;
     searchQueue.push({srcNode,0});
 
     while(!searchQueue.empty())
     {
-        pair<string,int> currentNode = searchQueue.front();
+        NodeNeighbour currentNode = searchQueue.front();
         searchQueue.pop();
 
-        if(!table[currentNode.first].getVis() &&
-            table[currentNode.first].getTimeInt() > table[srcNode].getTimeInt() + calculateTime(currentNode.second,table[srcNode],table[currentNode.first]))
-        {
-            table[currentNode.first].setDistance(table[srcNode].getDistance() + currentNode.second); //all of this should be function
-            table[currentNode.first].setParent(srcNode);
-            table[currentNode.first].setNodeVehicle(this);//father pointer or what????????
-            table[currentNode.first].setCost(table[srcNode].getCost() + calculateCost(currentNode.second));
-            table[currentNode.first].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.second,table[srcNode],table[currentNode.first])));
-        }
-
-        for(auto item :  neighbours[currentNode.first])
+        for(const auto& item :  neighbours[currentNode.nodeName])
         {
             if(!visitedNodes.count(item.nodeName))
             {
-                searchQueue.push({item.nodeName,currentNode.second+item.distance});
+                searchQueue.push({item.nodeName,currentNode.distance+item.distance});
             }
         }
-        visitedNodes.insert(currentNode.first);
+        visitedNodes.insert(currentNode.nodeName);
+        distanceSet.insert (currentNode);
     }
-
+}
+void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table, const std::string& srcNode )
+{
+    unordered_set<NodeNeighbour,NodeNeighbour::myHash> distanceSet;
+    distanceFromSrc(distanceSet,srcNode);
+    
+    for(const auto &currentNode : distanceSet)
+        if(!table[currentNode.nodeName].getVis() &&
+            table[currentNode.nodeName].getTimeInt() > table[srcNode].getTimeInt() + calculateTime(currentNode.distance,table[srcNode],table[currentNode.nodeName]))
+        {
+            table[currentNode.nodeName].setDistance(table[srcNode].getDistance() + currentNode.distance);
+            table[currentNode.nodeName].setParent(srcNode);
+            table[currentNode.nodeName].setNodeVehicle(this);
+            table[currentNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(currentNode.distance));
+            table[currentNode.nodeName].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.distance,table[srcNode],table[currentNode.nodeName])));
+        }
 }
 
 bool Vehicle::isOnVehchileRoad(const string& input)const
 {
     return neighbours.count(input);
 }
+
 Vehicle::~Vehicle()
-{
-    /*
-    cout << "change line" << changeLineTime << " speed " << speedPerKilometre << " cost " << costPerKilometre  << '\n';
-
-    for(auto i : line)
-        cout << i << ' ';
-    cout << '\n';
-
-    cout << fileName << string (15-fileName.size(),' ') << "destroid\n" ;
-    */
-}
+{}
 
 vector<string> Vehicle::backTrackPath (string start,string end)const
 {
@@ -137,7 +129,7 @@ vector<string> Vehicle::backTrackPath (string start,string end)const
             reverse(vec.begin(), vec.end());
             break;
         }
-        else if(line.at(i) == end  )
+        else if(line.at(i) == end)
         {
             for(size_t j {i} ; j < line.size() && line.at(j) != start ; ++j)
                 vec.push_back(line.at(j));
@@ -159,10 +151,15 @@ int Vehicle::calculateTime(int distance,NodeInfo& startNode,NodeInfo& endNode)
     }
     return this->speedPerKilometre * distance + lineChangeTime;
 }
-//**************************************************
-//                      private
-//**************************************************
 
+
+
+//***************************************************************************************************
+//                                       private function
+//***************************************************************************************************
+
+
+//warning : what about undirected graph
 void Vehicle::addNewVertex(const string& firstVertex ,const string& secondVertex ,const int& distance)
 {
     neighbours[firstVertex]. insert(NodeNeighbour(secondVertex,distance));
