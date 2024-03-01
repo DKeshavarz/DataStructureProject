@@ -83,7 +83,7 @@ class Vehicle
 
         //calculate based on specific vehicle parameters
         virtual int calculateCost(int) = 0;
-        virtual int calculateTime(int,NodeInfo&,NodeInfo&); // const ???????
+        virtual int calculateTime(int); // const ???????
 };
 
 #endif

@@ -64,7 +64,7 @@ void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table, const 
             table[currentNode.nodeName].setParent(srcNode);
             table[currentNode.nodeName].setNodeVehicle(this);
             table[currentNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(currentNode.distance));
-            table[currentNode.nodeName].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.distance,table[srcNode],table[currentNode.nodeName])));
+            table[currentNode.nodeName].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.distance)));
         }
 }
 void Vehicle::distanceFromSrc(unordered_set<NodeNeighbour,NodeNeighbour::myHash>& distanceSet,const string& srcNode)
@@ -94,17 +94,24 @@ void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table, const std:
 {
     unordered_set<NodeNeighbour,NodeNeighbour::myHash> distanceSet;
     distanceFromSrc(distanceSet,srcNode);
-    
+
+
+    cout << this->fileName << "*******************************\n";
     for(const auto &currentNode : distanceSet)
+    {
+        cout << "end is:" << currentNode.nodeName <<" ->current" << table[currentNode.nodeName].getTime() << "  altrernative : " <<
+                table[srcNode].getTime() << " + " <<  calculateTime(currentNode.distance) << "distance" <<currentNode.distance <<'\n';
         if(!table[currentNode.nodeName].getVis() &&
-            table[currentNode.nodeName].getTimeInt() > table[srcNode].getTimeInt() + calculateTime(currentNode.distance,table[srcNode],table[currentNode.nodeName]))
+            table[currentNode.nodeName].getTimeInt() > table[srcNode].getTimeInt() + calculateTime(currentNode.distance))
         {
+            cout << "change\n";
             table[currentNode.nodeName].setDistance(table[srcNode].getDistance() + currentNode.distance);
             table[currentNode.nodeName].setParent(srcNode);
             table[currentNode.nodeName].setNodeVehicle(this);
             table[currentNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(currentNode.distance));
-            table[currentNode.nodeName].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.distance,table[srcNode],table[currentNode.nodeName])));
+            table[currentNode.nodeName].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.distance)));
         }
+    }
 }
 
 void Vehicle::calculateMinCost (unordered_map<string,NodeInfo>& table, const std::string& srcNode)
@@ -120,7 +127,7 @@ void Vehicle::calculateMinCost (unordered_map<string,NodeInfo>& table, const std
             table[currentNode.nodeName].setParent(srcNode);
             table[currentNode.nodeName].setNodeVehicle(this);
             table[currentNode.nodeName].setCost(table[srcNode].getCost() + calculateCost(currentNode.distance));
-            table[currentNode.nodeName].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.distance,table[srcNode],table[currentNode.nodeName])));
+            table[currentNode.nodeName].setTime(Time(table[srcNode].getTimeInt() + calculateTime(currentNode.distance)));
         }    
 }
 
@@ -159,15 +166,9 @@ vector<string> Vehicle::backTrackPath (string start,string end)const
 
 }
 
-int Vehicle::calculateTime(int distance,NodeInfo& startNode,NodeInfo& endNode)
+int Vehicle::calculateTime(int distance)
 {
-    int lineChangeTime {};
-    if(startNode.getNodeVehicle() != endNode.getNodeVehicle())
-    {
-        lineChangeTime += (startNode.getNodeVehicle() == nullptr) ? 0 : startNode.getNodeVehicle()->getChangeLineTime();
-        lineChangeTime += (  endNode.getNodeVehicle() == nullptr) ? 0 :   endNode.getNodeVehicle()->getChangeLineTime();
-    }
-    return this->speedPerKilometre * distance + lineChangeTime;
+    return this->speedPerKilometre * distance + this->changeLineTime * 2;
 }
 
 
