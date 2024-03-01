@@ -58,20 +58,20 @@ void Samhanhash::Calcute_Min_Direction(string Start, string End, MeasurementMetr
    reverse(vec.begin(), vec.end());
    reverse(cost_vec.begin(), cost_vec.end());
    set_color(vec , cost_vec);
-  // for(size_t i=1 ; i<vec.size()-1 ; i++)
- //  {
- //  get_object[vec[i]][0].obj_name->setProperty("color" , "purple");
-  // cout<<get_object[vec[i]][0].obj_name;
-  // }
+   for(size_t i=1 ; i<vec.size()-1 ; i++)
+   {
+   get_object[vec[i]][0].obj_name->setProperty("color" , "#03A9F4");
+   // cout<<get_object[vec[i]][0].obj_name;
+   }
 }
 
 void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
 {
     string temp;
-
+     objects.push_back(get_object[Distance[0]][0]);
     for(size_t i=0 ; i<Distance.size()-1 ; i++)
     {
-
+       objects.push_back(get_object[Distance[i+1]][0]);
        if(get_object.find(Distance[i]+"_"+Distance[i+1])!= get_object.end())
        {
            temp=Distance[i]+"_"+Distance[i+1];
@@ -85,6 +85,7 @@ void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
               if(j.type[0]=='L')
               {
                 j.obj_name->setProperty("color" , "lightblue");
+                objects.push_back(j);
               }
            }
        }
@@ -97,6 +98,7 @@ void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
               if(j.type[0]=='L')
               {
                 j.obj_name->setProperty("color" , "lightblue");
+                 objects.push_back(j);
               }
            }
        }
@@ -108,6 +110,7 @@ void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
                if(j.type[0]=='B')
                {
                  j.obj_name->setProperty("color" , "lightblue");
+                  objects.push_back(j);
                }
             }
         }
@@ -123,6 +126,25 @@ void Samhanhash::add_object(QObject *main_obj, QString name, QString Type)
     Node temp(main_obj , Type.toStdString());
     get_object[name.toStdString()].push_back(temp);
 
+}
+
+void Samhanhash::reset()
+{
+  for(auto &i : objects)
+  {
+      if(i.type=="Line1") {i.obj_name->setProperty("color" , "red");}
+      else if(i.type=="Line3") {i.obj_name->setProperty("color" , "#333CFF");}
+      else if(i.type=="Line6") {i.obj_name->setProperty("color" , "#ff1493");}
+      else if(i.type=="Line4") {i.obj_name->setProperty("color" , "yellow");}
+      else if(i.type=="BUS2") {i.obj_name->setProperty("color" , "#667C26");}
+      else if(i.type=="BUS1") {i.obj_name->setProperty("color" , "#1B8A6B");}
+      else if(i.type=="BUS3") {i.obj_name->setProperty("color" , "#2C3539");}
+      else if(i.type=="Node") {i.obj_name->setProperty("color" , "#dcdcdc");}
+      else if(i.type=="BUS") {i.obj_name->setProperty("color" , "#00ff55");}
+
+  }
+
+  objects.clear();
 }
 void Samhanhash::clearCity()
 {

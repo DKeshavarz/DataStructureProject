@@ -6,8 +6,16 @@ import QtQuick.VirtualKeyboard 2.4
 
 Window {
     id: window
-    width: 1980
-    height: 1080
+   // width: 1980
+    //height: 1080
+    flags: Screen.width > Screen.height ?   Qt.NoItemFlags :Qt.FramelessWindowHint
+    width: Screen.width > Screen.height ? 1980:Screen.width
+    height:  Screen.width > Screen.height ? 1080 :Screen.height
+    Shortcut {
+        sequence: "Ctrl+Q"
+        onActivated: Qt.quit()
+    }
+
     visible: true
     title: qsTr("Sahmanhasht")
     Rectangle
@@ -18,12 +26,12 @@ Window {
     }
 
     property string origin: "null" ;  property string  distination: "null" ; property var current
-    property string  c_type; property bool flag:true
+    property string  c_type; property bool d_flag:true ; property bool c_flag:true ; property bool t_flag:true
     Text{id:n_origin ;}
     Text{id:n_distination ; x:100}
     function a(s , name , type)
     {
-      if(flag)
+      if(d_flag && c_flag && t_flag)
        {
            if(origin==="null" && distination!==name)
            {
@@ -1959,8 +1967,12 @@ Window {
             anchors.bottomMargin:100
             onClicked:
             {
-                back.get_nodeName(origin , distination , 0);
-                flag=false;
+                if(c_flag && t_flag && d_flag)
+                {
+                    back.get_nodeName(origin , distination , 0);
+                    d_flag=false;
+                }
+
             }
         }
 
@@ -1974,8 +1986,11 @@ Window {
             anchors.bottomMargin:150
             onClicked:
             {
-                back.get_nodeName(origin , distination , 1);
-                 flag=false;
+                if(c_flag && t_flag && d_flag)
+                {
+                    back.get_nodeName(origin , distination , 0);
+                    c_flag=false;
+                }
             }
         }
 
@@ -1989,8 +2004,45 @@ Window {
             anchors.bottomMargin:200
             onClicked:
             {
-                back.get_nodeName(origin , distination , 2);
-                 flag=false;
+                if(c_flag && t_flag && d_flag)
+                {
+                    back.get_nodeName(origin , distination , 0);
+                    t_flag=false;
+                }
+            }
+        }
+
+        Button
+        {
+            id:reset
+            text:"RESET"
+            anchors.right:parent.right
+            anchors.bottom:parent.bottom
+            anchors.rightMargin:100
+            anchors.bottomMargin:250
+            onClicked:
+            {
+                if(!c_flag || !t_flag || !d_flag)
+                {
+
+                    back.reset();
+                    c_flag=true;d_flag=true;t_flag=true;
+                    origin="null" ;   distination="null"
+                    n_origin.text=""   ;   n_distination.text=""
+                }
+            }
+        }
+        Button
+        {
+            id:exit
+            text:"EXIT"
+            anchors.right:parent.right
+            anchors.bottom:parent.bottom
+            anchors.rightMargin:100
+            anchors.bottomMargin:300
+            onClicked:
+            {
+               Qt.quit()
             }
         }
 }

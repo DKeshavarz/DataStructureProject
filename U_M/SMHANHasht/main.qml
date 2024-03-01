@@ -5,8 +5,16 @@ import QtQuick.VirtualKeyboard 2.4
 
 Window {
     id: root
-    width: 1980
-    height: 1080
+   // width: 1980
+   // height: 1080
+    flags: Screen.width > Screen.height ?   Qt.NoItemFlags :Qt.FramelessWindowHint
+    width: Screen.width > Screen.height ? 1980:Screen.width
+    height:  Screen.width > Screen.height ? 1080 :Screen.height
+    Shortcut {
+        sequence: "Ctrl+Q"
+        onActivated: Qt.quit()
+    }
+
     visible: true
     title: qsTr("Sahmanhasht")
     Rectangle
