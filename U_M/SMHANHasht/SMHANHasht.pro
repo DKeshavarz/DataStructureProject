@@ -15,7 +15,7 @@ SOURCES += \
         samhanhash.cpp \
         taxi.cpp \
         tehran.cpp \
-        time.cpp \
+        timee.cpp \
         vehicle.cpp
 
 RESOURCES += qml.qrc
@@ -39,5 +39,5 @@ HEADERS += \
     samhanhash.h \
     taxi.h \
     tehran.h \
-    time.h \
+    timee.h \
     vehicle.h

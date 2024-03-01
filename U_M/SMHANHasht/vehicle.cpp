@@ -76,15 +76,13 @@ void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table, const std:
 {
     unordered_set   <string> visitedNodes;
     queue <pair<string,int>> searchQueue ;
-    searchQueue.push({srcNode,table[srcNode].getDistance()});
+    searchQueue.push({srcNode,0});
 
     while(!searchQueue.empty())
     {
         pair<string,int> currentNode = searchQueue.front();
         searchQueue.pop();
 
-
-        cout << currentNode.first << "->" << currentNode.second << '\n';
         if(!table[currentNode.first].getVis() &&
             table[currentNode.first].getTimeInt() > table[srcNode].getTimeInt() + calculateTime(currentNode.second,table[srcNode],table[currentNode.first]))
         {
