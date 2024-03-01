@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <stdexcept>
 #include <climits>
+#include <queue>
 
 #include "city.h"
 #include "vehicle.h"
@@ -98,6 +99,7 @@ void City::readFile()
 unordered_map <string , NodeInfo > City::calculateMin(const string& start,const string& end,MeasurementMetric metric,Time CurrentTime)
 {
     unordered_map <string , NodeInfo >dijkstraTable ;
+    priority_queue<NodeNeighbour,vector<NodeNeighbour>,greater<NodeNeighbour>> minHeap;
 
     for(const auto& i : this->nodesMap)
         dijkstraTable[i.first].setTime(INT_MAX);
@@ -105,22 +107,25 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
     dijkstraTable[start].setCost(0);
     dijkstraTable[start].setDistance(0);
     dijkstraTable[start].setTime(CurrentTime);
+    minHeap.push({start,0});
 
-    for(size_t i {} ; i < dijkstraTable.size() ; ++i)
+    while(!minHeap.empty())
     {
-        string strMinNode {findMinNode(dijkstraTable, metric)};
+        string strMinNode = minHeap.top().nodeName;
+        minHeap.pop();
 
-        const auto& vec {nodesMap[strMinNode]};
-        for(const auto& i : vec)//implement with map
+        const auto& vihecleVec {nodesMap[strMinNode]};
+        
+        for(const auto& currentVihecle : vihecleVec )
         {
             switch(metric)
             {
                 case DISTANCE:
-                    i->calculateMinDistance(dijkstraTable,strMinNode); break;
+                    currentVihecle->calculateMinDistance(dijkstraTable,minHeap,strMinNode); break;
                 case COST:
-                    i->calculateMinCost    (dijkstraTable,strMinNode); break;
+                    currentVihecle->calculateMinCost    (dijkstraTable,minHeap,strMinNode); break;
                 case TIME:
-                    i->calculateMinTime    (dijkstraTable,strMinNode); break;
+                    currentVihecle->calculateMinTime    (dijkstraTable,minHeap,strMinNode); break;
 
                 default :
                     cerr << "City::calculateMin eroro\n\n";
@@ -141,46 +146,12 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
 
 }
 
-string City::findMinNode(const unordered_map <string,NodeInfo>& table,MeasurementMetric metric)
-{
-    int    minNodeCost = INT_MAX;
-    string minNodeName {};
-
-    int (NodeInfo::*function)()const = nullptr;
-
-    switch(metric)
-    {
-        case DISTANCE:
-            function = &NodeInfo::getDistance; break;
-        case COST:
-            function = &NodeInfo::getCost;     break;
-        case TIME:
-            function = &NodeInfo::getTimeInt; break;
-
-        default :
-            function = nullptr;
-            cerr << "error in City::findMinNode";
-    }
-
-
-    for(const auto& i : table)
-        if(!(i.second).getVis() && ((i.second).*function)() <= minNodeCost)
-            {
-                minNodeName = i.first;
-                minNodeCost = ((i.second).*function)();
-            }
-
-    return minNodeName;
-}
 City::~City()
 {
-    //printNodeVehicle();
     for(auto item:publicTransportation)
         if(item)
             delete item;
-
 }
-
 
 //****************** DEBUG *********************
 void City::printNodeVehicle()
