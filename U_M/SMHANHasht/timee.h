@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 
 
 using namespace std;
@@ -18,7 +19,7 @@ class Time
     public:
         friend std::ostream& operator<<(std::ostream& out,const Time& obj)
         {
-            return out << ((obj.hour == 0 || obj.hour == 12) ? 12 : obj.hour % 12) << ":" <<// setfill('0')<< setw(2)<<
+            return out << ((obj.hour == 0 || obj.hour == 12) ? 12 : obj.hour % 12) << ":" << setfill('0')<< setw(2)<<
              obj.minute << " " <<(obj.hour < 12 ? " AM" : " PM") << " day "  << obj.day;
         }
 
@@ -44,7 +45,9 @@ class Time
         bool operator> (const Time &) const;
         bool operator< (const Time &) const;
 
-        std::string toString() const;
+      //  std::string toString() const;  ???
+
+      string get_time_tostring();
 
 };
 

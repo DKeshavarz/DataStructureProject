@@ -93,3 +93,11 @@ bool Time::operator< (const Time &first) const
 {
     return (static_cast<int>(*this) < static_cast<int>(first));;
 }
+
+string Time::get_time_tostring()
+{
+    stringstream s;
+    s << setfill('0')<< setw(2)<<((this->hour  == 0 || this->hour == 12) ? 12 : this->hour  % 12)<<":"<<setfill('0')<< setw(2)<<
+    this->minute << " " << (this->hour < 12 ? " AM" : " PM");
+    return s.str();
+}

@@ -50,7 +50,7 @@ void Samhanhash::Calcute_Min_Direction(string Start, string End, string s_time ,
    unordered_map <string , NodeInfo > result = myCity->calculateMin(Start,End,METRIC,Time(s_time));
    M_dis->setProperty("text" , result[End].getDistance());
    M_cost->setProperty("text" , result[End].getCost());
-  // M_time->setProperty("text" , result[End].getTime());  how?
+   M_time->setProperty("text" , QString::fromStdString(result[End].getTime().get_time_tostring()));
    vector <string> cost_vec  ;  vector <string> vec;
    string Parent = result[End].getParent();
    vec.push_back(End);
