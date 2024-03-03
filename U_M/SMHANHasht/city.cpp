@@ -102,7 +102,7 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
     priority_queue<NodeNeighbour,vector<NodeNeighbour>,greater<NodeNeighbour>> minHeap;
 
     for(const auto& i : this->nodesMap)
-        dijkstraTable[i.first].setTime(INT_MAX);
+        dijkstraTable[i.first].setIntersection((i.second).size()>2);
 
     dijkstraTable[start].setCost(0);
     dijkstraTable[start].setDistance(0);
@@ -138,8 +138,7 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
     cerr << "City::calculateMin end is:" << end << '\n';
     for(const auto& i : dijkstraTable)
     {
-        if(i.first == end)
-            cerr <<  i.first << string(32-(i.first).size(),' ')  << (i.second).print() << '\n';
+        cerr <<  i.first << string(32-(i.first).size(),' ')  << (i.second).print() << '\n';
     }
 
     return dijkstraTable;
