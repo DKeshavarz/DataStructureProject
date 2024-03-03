@@ -30,7 +30,7 @@ Window {
 
                 var component=Qt.createComponent("M_window.qml");
                 var window = component.createObject(root);
-                window.show()
+                 window.show()
 
             }
         }
