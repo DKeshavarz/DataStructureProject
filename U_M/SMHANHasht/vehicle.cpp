@@ -84,7 +84,8 @@ void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table,priority_qu
             table[currentNode.nodeName].getTimeInt() > table[srcNode].getTimeInt() + calculateTime(currentNode.distance))
         {
             modifyDijkstraTable(table,srcNode,currentNode.nodeName,currentNode.distance);
-            minHeap.push({currentNode.nodeName,table[srcNode].getTimeInt() + calculateTime(currentNode.distance)});
+            if(table[currentNode.nodeName].getIntersection())
+                minHeap.push({currentNode.nodeName,table[srcNode].getTimeInt() + calculateTime(currentNode.distance)});
         }
     }
 }
@@ -98,8 +99,9 @@ void Vehicle::calculateMinCost (unordered_map<string,NodeInfo>& table,priority_q
         if(!table[currentNode.nodeName].getVis() &&
             table[currentNode.nodeName].getCost() > table[srcNode].getCost() + calculateCost(currentNode.distance))
         {
-            modifyDijkstraTable(table,srcNode,currentNode.nodeName,currentNode.distance);   
-            minHeap.push({currentNode.nodeName,table[srcNode].getCost() + calculateCost(currentNode.distance)});
+            modifyDijkstraTable(table,srcNode,currentNode.nodeName,currentNode.distance);
+            if(table[currentNode.nodeName].getIntersection())
+                minHeap.push({currentNode.nodeName,table[srcNode].getCost() + calculateCost(currentNode.distance)});
         }    
 }
 
@@ -113,7 +115,8 @@ void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table,priorit
             table[currentNode.nodeName].getDistance() > table[srcNode].getDistance() + currentNode.distance)
         {
             modifyDijkstraTable(table,srcNode,currentNode.nodeName,currentNode.distance);
-            minHeap.push({currentNode.nodeName,table[srcNode].getDistance() + currentNode.distance});
+            if(table[currentNode.nodeName].getIntersection())
+                minHeap.push({currentNode.nodeName,table[srcNode].getDistance() + currentNode.distance});
         }
 }
 bool Vehicle::isOnVehchileRoad(const string& input)const
