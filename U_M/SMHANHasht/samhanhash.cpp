@@ -18,18 +18,21 @@ Samhanhash::~Samhanhash()
     clearCity();
 }
 
-void Samhanhash::get_nodeName(QString start, QString end, int Metric)
+void Samhanhash::get_nodeName(QString start, QString end,QString time ,int Metric)
 {
     switch(Metric)
     {
         case DISTANCE:
-            Calcute_Min_Direction(start.toStdString() , end.toStdString() , DISTANCE);
+            Calcute_Min_Direction(start.toStdString() , end.toStdString(),time.toStdString() , DISTANCE);
+            cout<<time.toStdString()<<"\n";
             break;
         case COST:
-            Calcute_Min_Direction(start.toStdString() , end.toStdString() , COST);
+            Calcute_Min_Direction(start.toStdString() , end.toStdString() ,time.toStdString() , COST);
+            cout<<time.toStdString()<<"\n";
                break;
         case TIME:
-            Calcute_Min_Direction(start.toStdString() , end.toStdString() , TIME);
+            Calcute_Min_Direction(start.toStdString() , end.toStdString() ,time.toStdString() , TIME);
+            cout<<time.toStdString()<<"\n";
              break;
 
         default :
@@ -38,9 +41,9 @@ void Samhanhash::get_nodeName(QString start, QString end, int Metric)
 
 }
 
-void Samhanhash::Calcute_Min_Direction(string Start, string End, MeasurementMetric METRIC)
+void Samhanhash::Calcute_Min_Direction(string Start, string End, string s_time , MeasurementMetric METRIC)
 {
-   unordered_map <string , NodeInfo > result = myCity->calculateMin(Start,End,METRIC,Time("01:12 pm"));
+   unordered_map <string , NodeInfo > result = myCity->calculateMin(Start,End,METRIC,Time(s_time));
    vector <string> cost_vec  ;  vector <string> vec;
    string Parent = result[End].getParent();
    vec.push_back(End);

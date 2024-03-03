@@ -2,7 +2,12 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQml 2.3
 import QtQuick.Controls 2.5
+import QtQuick.Dialogs 1.2
 import QtQuick.VirtualKeyboard 2.4
+import QtGraphicalEffects 1.0
+import QtQuick.Controls.Styles 1.4
+import QtQuick.Controls.Material 2.3
+import QtQuick.Layouts 1.3
 
 Window {
     id: window
@@ -23,12 +28,20 @@ Window {
 
         anchors.fill:parent   // #C0C0C0  "#DADBDD"  "#EEEEEE"  "#87CEFA"  "#DFD3E3"
         color: "#C0C0C0"
+       // gradient: Gradient {GradientStop {position: 0.0 ; color: "#DADBDD"  }
+                          // GradientStop {position: 1.0 ; color: "#C0C0C0"  }}
     }
+
+
 
     property string origin: "null" ;  property string  distination: "null" ; property var current
     property string  c_type; property bool d_flag:true ; property bool c_flag:true ; property bool t_flag:true
+    property string  s_time
     Text{id:n_origin ;}
     Text{id:n_distination ; x:100}
+    Text{id:minimum_dis ; text:"minimum_dis" ; anchors{bottom:parent.bottom ; left:parent.left ; bottomMargin:30 ; leftMargin:50}}
+    Text{id:minimum_cost ; text:"minimum_cost";anchors{bottom:parent.bottom ; left:parent.left ; bottomMargin:50 ; leftMargin:50}}
+    Text{id:minimum_time ; text:"minimum_time";anchors{bottom:parent.bottom ; left:parent.left ; bottomMargin:70 ; leftMargin:50}}
     function a(s , name , type)
     {
       if(d_flag && c_flag && t_flag)
@@ -1375,7 +1388,7 @@ Window {
        {
            id:tehranpars;
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
-           Text{text:qsTr("BUS2") ;anchors.centerIn:parent}
+           Text{text:qsTr("BUS1") ;anchors.centerIn:parent}
            anchors{top:ebnesina_tehranpars_3.top ;left:ghaem_ansary_3.right;topMargin:-23;leftMargin:-30}
            MouseArea{
                anchors.fill:parent
@@ -1711,7 +1724,7 @@ Window {
        {
            id:sadr;
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
-           Text{text:qsTr("BUS1") ;anchors.centerIn:parent}
+           Text{text:qsTr("BUS3") ;anchors.centerIn:parent}
            anchors{top:sadr_tajrish_3.bottom ;right:sadr_tajrish_3.left;rightMargin:-27}
            MouseArea{
                anchors.fill:parent
@@ -1892,7 +1905,7 @@ Window {
        {
            id:shahrak;
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
-           Text{text:qsTr("BUS1") ;anchors.centerIn:parent}
+           Text{text:qsTr("BUS3") ;anchors.centerIn:parent}
             anchors{top:rahahan_shahrak_3.bottom ;right:rahahan_shahrak_3.left;rightMargin:-27}
             MouseArea{
                 anchors.fill:parent
@@ -1946,7 +1959,7 @@ Window {
        Text{text:"Aghdasiyeh";anchors{top:aghdasiyeh.bottom ; left:aghdasiyeh.right ;topMargin:10 ; leftMargin:-45}}
        Text{text:"Merza-ye Shirazi";anchors{top:shirazi.top ; left:shirazi.right ; topMargin:-25 ; leftMargin:-70}}
        Text{text:"Meydan-e Jahad";anchors{top:jahad.top ; left:jahad.right ; topMargin:-10 ; leftMargin:-120}}
-       Text{text:"Meydan-e Hazrat-e ValiAsr";anchors{top:v.top ; left:v.right ; topMargin:-10 ; leftMargin:30 }}
+       Text{text:"Meydan-e Hazrat-e ValiAsr";anchors{top:v.top ; left:v.right ; topMargin:-10  }}
        Text{text:"Moniriyeh";anchors{top:moniriyeh.top ; right:moniriyeh.left ; topMargin:5 ; rightMargin:10}}
        Text{text:"Mahdiyeh";anchors{top:mahdiyeh.top ; right:mahdiyeh.left ; topMargin:5 ; rightMargin:10}}
        Text{text:"Rahahan";anchors{top:rahahan.top ; right:rahahan.left ; topMargin:-10 ; rightMargin:10}}
@@ -1959,7 +1972,7 @@ Window {
        Text{text:"Shahid Haghani";anchors{top:ha.top ; right:ha.left ; topMargin:4 ; rightMargin:10}}
        Text{text:"Shahid Beheshti";anchors{top:beheshti.top ; right:beheshti.left ; topMargin:-7 ; rightMargin:3}}
        Text{text:"Shahid Mofatteh";anchors{top:mofatteh.top ; right:mofatteh.left ; topMargin:4 ; rightMargin:10}}
-       Text{text:"Haftom-e Tir";anchors{top:hafte_tir.top ; left:hafte_tir.right ; topMargin:-10 ; leftMargin:30}}
+       Text{text:"Haftom-e Tir";anchors{top:hafte_tir.top ; left:hafte_tir.right ; topMargin:-10 ; leftMargin:10}}
        Text{text:"Taleghani";anchors{top:taleghani.top ; right:taleghani.left ; topMargin:-10}}
        Text{text:"Darvazeh Dowlat";anchors{top:dowlat.top ; left:dowlat.right ; topMargin:30 }}
        Text{text:"Panzdah-e Khordad";anchors{top:khordad.top ; right:khordad.left ; topMargin:7 ; rightMargin:10}}
@@ -1967,82 +1980,174 @@ Window {
        Text{text:"Jonoub Terminal";anchors{top:jonoub.top ; right:jonoub.left ; topMargin:7 ; rightMargin:10}}
        Text{text:"Shahr-e Rey";anchors{top:rey.top ; right:rey.left ; topMargin:7 ; rightMargin:10}}
 
+       Rectangle {
+          id:get_time
+           width: frame.implicitWidth -10
+          height: frame.implicitHeight -10
+          border.width: 5 ; border.color: "purple"
+          anchors{right:parent.right ; rightMargin:50; top:parent.top ; topMargin:440}
+          color: "pink"
+          radius: 20
+          function formatText(count, modelData) {
+              var data = count === 12 ? modelData + 1 : modelData;
+              return data.toString().length < 2 ? "0" + data : data;
+          }
+
+
+          Component {
+              id: d_Component
+
+              Text {
+                  text: get_time.formatText(Tumbler.tumbler.count, modelData)
+                  opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                  horizontalAlignment: Text.AlignHCenter
+                  verticalAlignment: Text.AlignVCenter
+              }
+
+          }
+
+          Frame {
+              id: frame
+              padding: 0
+              anchors.centerIn: parent
+             width: 170 ;height:190
+
+              Row {
+
+                  Tumbler {
+                      id: hours
+                      model: 12
+                      delegate: d_Component
+                      visibleItemCount: 5
+                  }
+
+                  Tumbler {
+                      id: minutes
+                      model: 60
+                      delegate: d_Component
+                      visibleItemCount: 5
+                  }
+
+                  Tumbler {
+                      id: pm_am
+                      model: ["AM", "PM"]
+                      delegate: d_Component
+                  }
+              }
+          }
+      }
+
         Button
         {
             id:distance
-            text:"MIN_DISTANCE"
-            anchors.right:parent.right
-            anchors.bottom:parent.bottom
-            anchors.rightMargin:100
-            anchors.bottomMargin:100
-            onClicked:
-            {
-                if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
-                {
-                    back.get_nodeName(origin , distination , 0);
-                    d_flag=false;
-                }
-
+            anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:130 ; anchors.bottomMargin:30
+            background: Rectangle {
+                width:170 ;height:50
+                implicitWidth: 100
+                implicitHeight: 40
+                border.color: "#d147a3"
+                gradient: Gradient {GradientStop {position: 0.0 ; color:distance.pressed? "#ff80d5" :  "#ff3399"  }
+                                   GradientStop {position: 1.0 ; color:distance.pressed? "#ff80d5" : "#ff00ff"  }}
+                border.width: distance.pressed ? 8 : 6
+                radius: 50
+                Text {text:"<b>MIN_DISTANCE</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
             }
-        }
+          onClicked:
+          {
+              if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
+              {
+                  s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
+                  back.get_nodeName(origin , distination , s_time ,0);
+                  d_flag=false;
+              }
+              else{message.visible=true}
+          }
+       }
 
         Button
         {
             id:cost
-            text:"LOW_COST"
-            anchors.right:parent.right
-            anchors.bottom:parent.bottom
-            anchors.rightMargin:100
-            anchors.bottomMargin:150
-            onClicked:
-            {
-                if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
-                {
-                    back.get_nodeName(origin , distination , 1);
-                    c_flag=false;
-                }
+            anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:130 ; anchors.bottomMargin:100
+            background: Rectangle {
+                width:170 ;height:50
+                implicitWidth: 100
+                implicitHeight: 40
+                border.color: "#d147a3"
+                gradient: Gradient {GradientStop {position: 0.0 ; color:cost.pressed? "#ff80d5" :  "#ff3399"  }
+                                   GradientStop {position: 1.0 ; color:cost.pressed? "#ff80d5" : "#ff00ff"  }}
+                border.width: cost.pressed ? 8 : 6
+                radius: 50
+                Text {text:"<b>LOW_COST</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
             }
-        }
+          onClicked:
+          {
+              if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
+              {
+                  s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
+                  back.get_nodeName(origin , distination , s_time , 1);
+                  c_flag=false;
+              }
+              else{message.visible=true}
+          }
+       }
 
         Button
         {
             id:time
-            text:"BEST_TIME"
-            anchors.right:parent.right
-            anchors.bottom:parent.bottom
-            anchors.rightMargin:100
-            anchors.bottomMargin:200
-            onClicked:
-            {
-                if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
-                {
-                    back.get_nodeName(origin , distination , 2);
-                    t_flag=false;
-                }
+            anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:130 ; anchors.bottomMargin:170
+            background: Rectangle {
+                width:170 ;height:50
+                implicitWidth: 100
+                implicitHeight: 40
+                border.color: "#d147a3"
+                gradient: Gradient {GradientStop {position: 0.0 ; color:time.pressed? "#ff80d5" :  "#ff3399"  }
+                                   GradientStop {position: 1.0 ; color:time.pressed? "#ff80d5" : "#ff00ff"  }}
+                border.width: time.pressed ? 8 : 6
+                radius: 50
+                Text {text:"<b>BEST_TIME</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
             }
-        }
+          onClicked:
+          {
+              if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
+              {
 
+                  s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
+                  back.get_nodeName(origin , distination , s_time , 2);
+                  t_flag=false;
+              }
+              else{message.visible=true}
+          }
+       }
         Button
         {
             id:reset
-            text:"RESET"
-            anchors.right:parent.right
-            anchors.bottom:parent.bottom
-            anchors.rightMargin:100
-            anchors.bottomMargin:250
-            onClicked:
-            {
-                if(!c_flag || !t_flag || !d_flag)
-                {
-
-                    back.reset();
-                    c_flag=true;d_flag=true;t_flag=true;
-                    origin="null" ;   distination="null"
-                    n_origin.text=""   ;   n_distination.text=""
-                }
+            anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:130 ; anchors.bottomMargin:240
+            background: Rectangle {
+                width:170 ;height:50
+                implicitWidth: 100
+                implicitHeight: 40
+                border.color: "#d147a3"
+                gradient: Gradient {GradientStop {position: 0.0 ; color:reset.pressed ? "#ff80d5" :  "#ff3399"  }
+                                   GradientStop {position: 1.0 ; color:reset.pressed ? "#ff80d5" : "#ff00ff"  }}
+                border.width: reset.pressed  ? 8 : 6
+                radius: 50
+                Text {text:"<b>RESET</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
             }
-        }
-        Button
+          onClicked:
+          {
+              if(!c_flag || !t_flag || !d_flag)
+              {
+
+                  back.reset();
+                  c_flag=true;d_flag=true;t_flag=true;
+                  origin="null" ;   distination="null"
+                  n_origin.text=""   ;   n_distination.text=""
+              }
+          }
+       }
+
+
+      /*  Button
         {
             id:exit
             text:"EXIT"
@@ -2054,6 +2159,18 @@ Window {
             {
                Qt.quit()
             }
-        }
+        }*/
+
+
+    MessageDialog
+    {
+       id:message
+       title:"warning"
+       icon:StandardIcon.Warning
+       text:"Incorrect input"
+     //  standardButtons: standardButtons.OK
+       visible:false
+    }
+
 }
 
