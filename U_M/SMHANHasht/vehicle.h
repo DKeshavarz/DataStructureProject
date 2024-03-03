@@ -2,6 +2,7 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
+#include <queue>
 
 #include "nodeinfo.h"
 
@@ -22,6 +23,8 @@ struct NodeNeighbour
 
     bool operator==(const NodeNeighbour& obj)const
     {return (/*distance == obj.distance && */nodeName == obj.nodeName);}
+    bool operator>(const NodeNeighbour& obj)const
+    {return (distance > obj.distance);}
 
     struct myHash
     {
@@ -48,9 +51,9 @@ class Vehicle
         int         getChangeLineTime   () {return this->changeLineTime;   }
         std::string getVehicleName      () {return this->fileName.substr(0 , fileName.size()-4);}//Warning : bad implementation
 
-        virtual void calculateMinDistance(std::unordered_map<std::string,NodeInfo>& ,const std::string&);
-        virtual void calculateMinCost    (std::unordered_map<std::string,NodeInfo>& ,const std::string&);
-        virtual void calculateMinTime    (std::unordered_map<std::string,NodeInfo>& ,const std::string&);
+        virtual void calculateMinDistance(std::unordered_map<std::string,NodeInfo>& ,std::priority_queue<NodeNeighbour,vector<NodeNeighbour>,greater<NodeNeighbour>>&,const std::string&);
+        virtual void calculateMinCost    (std::unordered_map<std::string,NodeInfo>& ,std::priority_queue<NodeNeighbour,vector<NodeNeighbour>,greater<NodeNeighbour>>&,const std::string&);
+        virtual void calculateMinTime    (std::unordered_map<std::string,NodeInfo>& ,std::priority_queue<NodeNeighbour,vector<NodeNeighbour>,greater<NodeNeighbour>>&,const std::string&);
         
         virtual void distanceFromSrc     (unordered_set<NodeNeighbour,NodeNeighbour::myHash>&,const std::string&);
 
@@ -84,6 +87,9 @@ class Vehicle
         //calculate based on specific vehicle parameters
         virtual int calculateCost(int) = 0;
         virtual int calculateTime(int); // const ???????
+
+        //This function modifies the information associated with a node in the graph.
+        void modifyDijkstraTable(unordered_map<std::string,NodeInfo>&,const std::string,const std::string,int);
 };
 
 #endif
