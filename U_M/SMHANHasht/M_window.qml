@@ -1,3 +1,4 @@
+
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQml 2.3
@@ -34,48 +35,49 @@ Window {
 
 
 
-    property string origin: "null" ;  property string  distination: "null" ; property var current
+    property string origin: "null" ;  property string  distination: "null" ; property var current ; property var curr_anim
     property string  c_type; property bool d_flag:true ; property bool c_flag:true ; property bool t_flag:true
+    property var anim_1 ; property var anim_2
     property string  s_time
     Text{id:n_origin ;}
     Text{id:n_distination ; x:100}
     Text{id:minimum_dis ; text:"minimum_dis" ; anchors{bottom:parent.bottom ; left:parent.left ; bottomMargin:30 ; leftMargin:50}}
     Text{id:minimum_cost ; text:"minimum_cost";anchors{bottom:parent.bottom ; left:parent.left ; bottomMargin:50 ; leftMargin:50}}
     Text{id:minimum_time ; text:"minimum_time";anchors{bottom:parent.bottom ; left:parent.left ; bottomMargin:70 ; leftMargin:50}}
-    function a(s , name , type)
+    function a(s ,  anim , name , type)
     {
-      if(d_flag && c_flag && t_flag)
+      if(d_flag && c_flag && t_flag )
        {
            if(origin==="null" && distination!==name)
            {
-               origin=name ; n_origin.text=name ; s.color="pink" ;
+               origin=name ; n_origin.text=name ; anim.running=true ; anim_1=anim
 
            }
            else if(distination==="null" &&  origin!==name)
            {
-               distination=name ; n_distination.text=name ;  s.color="pink" ; current=s
-               c_type=type
+               distination=name ; n_distination.text=name ;  anim.running=true   ; current=s ; curr_anim=anim
+               c_type=type ; anim_2=anim
            }
            else
            {
                if(origin===name)
                {
-                  origin="null"  ;  n_origin.text="" ;
-                  if(type==="l"){s.color="#dcdcdc";  s.border.color="#a9a9a9"}
+                  origin="null"  ;  n_origin.text="" ; anim.running=false;
+                  if(type==="l"){s.color="#dcdcdc";  s.border.color="#a9a9a9" }
                   else{s.color="#00ff55"}
                }
                else if(distination===name)
                {
-                   distination="null"  ; n_distination.text="" ;
+                   distination="null"  ; n_distination.text="" ; anim.running=false;
                    if(type==="l"){s.color="#dcdcdc";  s.border.color="#a9a9a9"}
                    else{s.color="#00ff55"}
                }
                else
                {
-                   distination=name ; n_distination.text=name ;  s.color="pink" ;
-                   if(c_type==="l"){current.color="#dcdcdc";  current.border.color="#a9a9a9"}
+                   distination=name ; n_distination.text=name ;  anim.running=true ; curr_anim.running=false;
+                   if(c_type==="l"){current.color="#dcdcdc";  current.border.color="#a9a9a9" ; }
                    else{current.color="#00ff55"}
-                   current=s;c_type=type;
+                   current=s;c_type=type;curr_anim=anim;anim_2=anim
                }
            }
        }
@@ -116,20 +118,12 @@ Window {
         width: 50 ;  height : 50 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         Text{id:x;text:qsTr("<b>Line1</b>") ;color:"red" ;anchors.centerIn:parent}
         anchors{horizontalCenter: parent.horizontalCenter;top:parent.top;topMargin: 13}
-        PropertyAnimation {
-            id:l
-            target:tajrish ;
-            property: "color"
-            from:"lightblue"
-            to:"white"
-            duration:500
-            loops:Animation.Infinite
-            running: false;
-        }
+        PropertyAnimation {id:l ;target:tajrish ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(tajrish , "Tajrish" ,"l")
+               a(tajrish ,l ,"Tajrish" ,"l")
             }
         }
      Component.onCompleted:{back.add_object(tajrish , "Tajrish" , "Node")}
@@ -148,12 +142,14 @@ Window {
         id:gheytariyeh;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:a1.bottom; right:a1.left; rightMargin:-17}
+        PropertyAnimation {id:l1 ;target:gheytariyeh ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500;loops:Animation.Infinite
+            running: false;}
         MouseArea
         {
             anchors.fill:parent
             onClicked:
             {
-               a(gheytariyeh , "Gheytariyeh","l")
+               a(gheytariyeh ,l1 ,"Gheytariyeh","l")
             }
         }
     Component.onCompleted:{back.add_object(gheytariyeh , "Gheytariyeh" , "Node")}
@@ -169,12 +165,14 @@ Window {
         id:gholhak;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{ top:a3.bottom;right:a3.left;rightMargin:-17}
+        PropertyAnimation {id:l2 ;target:gholhak ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea
         {
             anchors.fill:parent
             onClicked:
             {
-               a(gholhak , "Gholhak","l")
+               a(gholhak ,l2 , "Gholhak","l")
             }
         }
       Component.onCompleted:{back.add_object(gholhak , "Gholhak" , "Node")}
@@ -191,12 +189,14 @@ Window {
         id:mirdamad;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:a5.bottom; right:a5.left; rightMargin:-17}
+        PropertyAnimation {id:l3 ;target:mirdamad ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea
         {
             anchors.fill:parent
             onClicked:
             {
-               a(mirdamad , "Mirdamad","l")
+               a(mirdamad,l3 , "Mirdamad","l")
             }
         }
     Component.onCompleted:{back.add_object(mirdamad , "Mirdamad" , "Node")}
@@ -212,10 +212,12 @@ Window {
         id:ha;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{ top:a7.bottom;right:a7.left; rightMargin:-17}
+       PropertyAnimation {id:l4 ;target:ha; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+           running: false;}
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(ha , "Shahid Haghani","l")
+              a(ha , l4 ,"Shahid Haghani","l")
            }
        }
     Component.onCompleted:{back.add_object(ha , "Shahid Haghani" , "Node")}
@@ -231,10 +233,12 @@ Window {
         id:beheshti;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{ top:a9.bottom; right:a9.left;  rightMargin:-17}
+        PropertyAnimation {id:l5 ;target:beheshti; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(beheshti , "Shahid Beheshti","l")
+               a(beheshti , l5, "Shahid Beheshti","l")
             }
         }
       Component.onCompleted:{back.add_object(beheshti , "Shahid Beheshti" , "Node")}
@@ -250,10 +254,12 @@ Window {
         id:mofatteh;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{ top:a11.bottom; right:a11.left; rightMargin:-17}
+       PropertyAnimation {id:l6 ;target:mofatteh; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+           running: false;}
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(mofatteh , "Shahid Mofatteh","l")
+              a(mofatteh ,l6, "Shahid Mofatteh","l")
            }
        }
     Component.onCompleted:{back.add_object(mofatteh , "Shahid Mofatteh" , "Node")}
@@ -269,10 +275,12 @@ Window {
         id:hafte_tir;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{ top:a13.bottom; right:a13.left; rightMargin:-17}
+       PropertyAnimation {id:l7 ;target:hafte_tir; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+           running: false;}
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(hafte_tir , "Haftom-e Tir","l")
+              a(hafte_tir,l7 , "Haftom-e Tir","l")
            }
        }
      Component.onCompleted:{back.add_object(hafte_tir , "Haftom-e Tir" , "Node")}
@@ -288,10 +296,12 @@ Window {
         id:taleghani;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{ top:a15.bottom; right:a15.left; rightMargin:-17}
+       PropertyAnimation {id:l8 ;target:taleghani; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+           running: false;}
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(taleghani , "Taleghani","l")
+              a(taleghani,l8 , "Taleghani","l")
            }
        }
     Component.onCompleted:{back.add_object(taleghani , "Taleghani" , "Node")}
@@ -307,10 +317,12 @@ Window {
         id:dowlat ;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{top:a17.bottom;right:a17.left; rightMargin:-17}
+       PropertyAnimation {id:l9 ;target:dowlat; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+           running: false;}
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(dowlat , "Darvazeh Dowlat","l")
+              a(dowlat ,l9, "Darvazeh Dowlat","l")
            }
        }
      Component.onCompleted:{back.add_object(dowlat , "Darvazeh Dowlat" , "Node")}
@@ -326,10 +338,12 @@ Window {
         id:khordad;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{ top:a19.bottom;right:a19.left; rightMargin:-17}
+       PropertyAnimation {id:l10 ;target:khordad; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+           running: false;}
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(khordad , "Panzdah-e Khordad","l")
+              a(khordad , l10 ,"Panzdah-e Khordad","l")
            }
        }
     Component.onCompleted:{back.add_object(khordad , "Panzdah-e Khordad" , "Node")}
@@ -345,10 +359,12 @@ Window {
         id:shoush;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{ top:a21.bottom;  right:a21.left; rightMargin:-17}
+        PropertyAnimation {id:l11 ;target:shoush; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(shoush , "Shoush","l")
+               a(shoush , l11 , "Shoush","l")
             }
         }
     Component.onCompleted:{back.add_object(shoush , "Shoush" , "Node")}
@@ -364,10 +380,12 @@ Window {
         id:jonoub;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{  top:a23.bottom;  right:a23.left; rightMargin:-17}
+        PropertyAnimation {id:l12 ;target:jonoub; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(jonoub, "Jonoub Terminal","l")
+               a(jonoub, l12 ,"Jonoub Terminal","l")
             }
         }
      Component.onCompleted:{back.add_object(jonoub, "Jonoub Terminal" , "Node")}
@@ -382,10 +400,12 @@ Window {
         id:rey;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{ top:a25.bottom; right:a25.left;rightMargin:-17}
+        PropertyAnimation {id:l13 ;target:rey; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(rey, "Shahr-e Rey","l")
+               a(rey, l13 , "Shahr-e Rey","l")
             }
         }
     Component.onCompleted:{back.add_object(rey, "Shahr-e Rey" , "Node")}
@@ -402,10 +422,12 @@ Window {
         width: 50 ;  height : 50 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         Text{text:qsTr("<b>Line1</b>") ; color:"red";anchors.centerIn:parent}
         anchors{ top:a27.bottom;right:a27.left; rightMargin:-27}
+        PropertyAnimation {id:l14 ;target:kahrizak; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(kahrizak, "Kahrizak","l")
+               a(kahrizak,l14, "Kahrizak","l")
             }
         }
     Component.onCompleted:{back.add_object(kahrizak, "Kahrizak", "Node")}
@@ -421,10 +443,12 @@ Window {
         id:sohrevardi;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:beheshti.top;left:b.right}
+        PropertyAnimation {id:l15 ;target:sohrevardi; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(sohrevardi, "Sohrevardi","l")
+               a(sohrevardi,l15, "Sohrevardi","l")
             }
         }
 
@@ -453,10 +477,12 @@ Window {
         id:gh;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{top:b4.top;left:b4.right;topMargin:-13}
+       PropertyAnimation {id:l16 ;target:gh; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+           running: false;}
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(gh, "Shahid Ghodousi","l")
+              a(gh,l16, "Shahid Ghodousi","l")
            }
        }
      Component.onCompleted:{back.add_object(gh, "Shahid Ghodousi", "Node")}
@@ -473,10 +499,12 @@ Window {
         id:z;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:gh.top;left:b6.right;}
+        PropertyAnimation {id:l17 ;target:z ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a( z  , "Shahid Zeynoddin","l")
+               a( z  , l17   ,"Shahid Zeynoddin","l")
             }
         }
     Component.onCompleted:{back.add_object(z  , "Shahid Zeynoddin", "Node")}
@@ -492,10 +520,12 @@ Window {
         id:aghdasiyeh;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:z.top;left:b8.right;}
+        PropertyAnimation {id:l18 ;target:aghdasiyeh ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a( aghdasiyeh , "Aghdasiyeh","l")
+               a( aghdasiyeh , l18 , "Aghdasiyeh","l")
             }
         }
     Component.onCompleted:{back.add_object(aghdasiyeh , "Aghdasiyeh", "Node")}
@@ -511,11 +541,13 @@ Window {
         id:ghaem;
         width: 50 ;  height : 50 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         Text{text:qsTr("<b>Line3</b>") ; color:"blue";anchors.centerIn:parent}
+        PropertyAnimation {id:l19 ;target:ghaem ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         anchors{top:aghdasiyeh.top;left:b10.right;topMargin:-10}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a( ghaem, "Gha'em","l")
+               a( ghaem,l19, "Gha'em","l")
             }
         }
      Component.onCompleted:{back.add_object(ghaem, "Gha'em", "Node")}
@@ -531,10 +563,12 @@ Window {
         id:shirazi;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
          anchors{top:beheshti.top;right:b12.left}
+         PropertyAnimation {id:l20 ;target:shirazi ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+             running: false;}
          MouseArea{
              anchors.fill:parent
              onClicked:{
-                a( shirazi, "Merza-ye Shirazi","l")
+                a( shirazi,l20, "Merza-ye Shirazi","l")
              }
          }
      Component.onCompleted:{back.add_object(shirazi, "Merza-ye Shirazi", "Node")}
@@ -556,10 +590,12 @@ Window {
         id:jahad;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:b15.bottom;right:b15.left;rightMargin:-17}
+        PropertyAnimation {id:l21 ;target:jahad ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a( jahad , "Meydan-e Jahad","l")
+               a( jahad , l21, "Meydan-e Jahad","l")
             }
         }
      Component.onCompleted:{back.add_object(jahad , "Meydan-e Jahad", "Node")}
@@ -575,10 +611,12 @@ Window {
         id:v;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:b17.bottom;right:b17.left;rightMargin:-17}
+        PropertyAnimation {id:l22 ;target:v ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a( v , "Meydan-e Hazrat-e ValiAsr","l")
+               a( v , l22, "Meydan-e Hazrat-e ValiAsr","l")
             }
         }
      Component.onCompleted:{back.add_object(v , "Meydan-e Hazrat-e ValiAsr", "Node")}
@@ -594,10 +632,12 @@ Window {
         id:teatr;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
       anchors{top:b19.bottom;right:b19.left;rightMargin:-17}
+      PropertyAnimation {id:l23 ;target:teatr ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+          running: false;}
       MouseArea{
           anchors.fill:parent
           onClicked:{
-             a( teatr , "Teatr-e Shahr","l")
+             a( teatr ,l23, "Teatr-e Shahr","l")
           }
       }
     Component.onCompleted:{back.add_object(teatr , "Teatr-e Shahr", "Node")}
@@ -613,10 +653,12 @@ Window {
         id:moniriyeh;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
       anchors{top:b21.bottom;right:b21.left;rightMargin:-17}
+      PropertyAnimation {id:l24 ;target:moniriyeh ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+          running: false;}
       MouseArea{
           anchors.fill:parent
           onClicked:{
-             a( moniriyeh , "Moniriyeh","l")
+             a( moniriyeh , l24 , "Moniriyeh","l")
           }
       }
       Component.onCompleted:{back.add_object(moniriyeh , "Moniriyeh", "Node")}
@@ -633,10 +675,12 @@ Window {
         id:mahdiyeh;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
       anchors{top:b23.bottom;right:b23.left;rightMargin:-17}
+      PropertyAnimation {id:l25 ;target:mahdiyeh ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+          running: false;}
       MouseArea{
           anchors.fill:parent
           onClicked:{
-             a( mahdiyeh , "Mahdiyeh","l")
+             a( mahdiyeh , l25 , "Mahdiyeh","l")
           }
       }
      Component.onCompleted:{back.add_object(mahdiyeh , "Mahdiyeh", "Node")}
@@ -652,10 +696,12 @@ Window {
         id:rahahan;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
       anchors{top:b25.bottom;right:b25.left;rightMargin:-17}
+      PropertyAnimation {id:l26 ;target:rahahan ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+          running: false;}
       MouseArea{
           anchors.fill:parent
           onClicked:{
-             a( rahahan , "Rahahan","l")
+             a( rahahan ,l26, "Rahahan","l")
           }
       }
     Component.onCompleted:{back.add_object(rahahan , "Rahahan", "Node")}
@@ -671,10 +717,12 @@ Window {
         id:javadiyeh;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
       anchors{top:b27.bottom;right:b27.left;rightMargin:-17}
+      PropertyAnimation {id:l27 ;target:javadiyeh ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+          running: false;}
       MouseArea{
           anchors.fill:parent
           onClicked:{
-             a( javadiyeh , "Javadiyeh","l")
+             a( javadiyeh,l27 , "Javadiyeh","l")
           }
       }
     Component.onCompleted:{back.add_object(javadiyeh , "Javadiyeh", "Node")}
@@ -690,10 +738,12 @@ Window {
         id:zamzam;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:b29.bottom;right:b29.left;rightMargin:-17}
+        PropertyAnimation {id:l28 ;target:zamzam ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a( zamzam , "Zamzam","l")
+               a( zamzam,l28 , "Zamzam","l")
             }
         }
      Component.onCompleted:{back.add_object(zamzam , "Zamzam", "Node")}
@@ -710,10 +760,12 @@ Window {
         width: 50 ;  height : 50 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         Text{text:qsTr("<b>Line3</b>") ; color:"blue";anchors.centerIn:parent}
           anchors{top:b31.bottom;right:b31.left;rightMargin:-27}
+          PropertyAnimation {id:l29 ;target:azadegan; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+              running: false;}
           MouseArea{
               anchors.fill:parent
               onClicked:{
-                 a( azadegan , "Azadegan","l")
+                 a( azadegan , l29 , "Azadegan","l")
               }
           }
      Component.onCompleted:{back.add_object( azadegan , "Azadegan", "Node")}
@@ -735,10 +787,12 @@ Window {
         id:e;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:c1.bottom;right:c1.left;rightMargin:-17}
+        PropertyAnimation {id:l30 ;target:e ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(e, "Emam Hossein","l")
+               a(e, l30 ,"Emam Hossein","l")
             }
         }
       Component.onCompleted:{back.add_object( e, "Emam Hossein", "Node")}
@@ -754,10 +808,12 @@ Window {
         id:sh;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:c3.bottom;right:c3.left;rightMargin:-17}
+        PropertyAnimation {id:l31 ;target:sh ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(sh , "Meydan-e Shohada","l")
+               a(sh , l31, "Meydan-e Shohada","l")
             }
         }
      Component.onCompleted:{back.add_object(sh , "Meydan-e Shohada", "Node")}
@@ -773,10 +829,12 @@ Window {
         id:r;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:c5.bottom;right:c5.left;rightMargin:-17}
+        PropertyAnimation {id:l32 ;target:r ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(r , "Shahid Rezaei","l")
+               a(r ,l32, "Shahid Rezaei","l")
             }
         }
     Component.onCompleted:{back.add_object(r , "Shahid Rezaei", "Node")}
@@ -799,10 +857,12 @@ Window {
         width: 50 ;  height : 50 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         Text{text:qsTr("<b>Line6</b>") ; color:"#ff1493";anchors.centerIn:parent}
         anchors{top:c8.top;left:c8.right;topMargin:-25}
+        PropertyAnimation {id:l33 ;target:h ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(h , "Haram-e Hazrat-e Abdolazim","l")
+               a(h ,l33, "Haram-e Hazrat-e Abdolazim","l")
             }
         }
     Component.onCompleted:{back.add_object(h , "Haram-e Hazrat-e Abdolazim", "Node")}
@@ -825,10 +885,12 @@ Window {
         id:boostan;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:v.top;right:c11.left;}
+        PropertyAnimation {id:l34 ;target:boostan ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(boostan , "Boostan-e laleh","l")
+               a(boostan , l34 ,"Boostan-e laleh","l")
             }
         }
     Component.onCompleted:{back.add_object(boostan , "Boostan-e laleh", "Node")}
@@ -852,10 +914,12 @@ Window {
         id:yadegar;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
          anchors{top:c14.top;right:c14.left;topMargin:-15;}
+         PropertyAnimation {id:l35 ;target:yadegar ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+             running: false;}
          MouseArea{
              anchors.fill:parent
              onClicked:{
-                a(yadegar , "Yadegar-e Emam","l")
+                a(yadegar ,l35 , "Yadegar-e Emam","l")
              }
          }
     Component.onCompleted:{back.add_object(yadegar , "Yadegar-e Emam", "Node")}
@@ -871,10 +935,12 @@ Window {
         id:kashani;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{top:yadegar.top;right:c16.left;}
+       PropertyAnimation {id:l36 ;target:kashani ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+           running: false;}
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(kashani , "Kashani","l")
+              a(kashani ,l36, "Kashani","l")
            }
        }
     Component.onCompleted:{back.add_object(kashani , "Kashani", "Node")}
@@ -891,10 +957,12 @@ Window {
         width: 50 ;  height : 50 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         Text{text:qsTr("<b>Line6</b>") ; color: "#ff1493";anchors.centerIn:parent}
         anchors{top:kashani.top;right:c18.left;topMargin:-10}
+        PropertyAnimation {id:l37 ;target:kouhsar ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(kouhsar , "Kouhsar","l")
+               a(kouhsar , l37 , "Kouhsar","l")
             }
         }
     Component.onCompleted:{back.add_object(kouhsar , "Kouhsar", "Node")}
@@ -911,10 +979,12 @@ Window {
         width: 50 ;  height : 50 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         Text{text:qsTr("<b>Line4</b>") ; color: "yellow" ;anchors.centerIn:parent}
         anchors{bottom:d.top;right:d.left;rightMargin:-27}
+        PropertyAnimation {id:l38 ;target:chaharbagh ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(chaharbagh , "Chaharbagh","l")
+               a(chaharbagh ,l38 , "Chaharbagh","l")
             }
         }
       Component.onCompleted:{back.add_object(chaharbagh , "Chaharbagh", "Node")}
@@ -930,10 +1000,12 @@ Window {
         id:jafari;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
          anchors{top:d2.bottom;right:d2.left;rightMargin:-17}
+         PropertyAnimation {id:l39 ;target:jafari ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+             running: false;}
          MouseArea{
              anchors.fill:parent
              onClicked:{
-                a(jafari , "Allameh Jafari","l")
+                a(jafari ,l39, "Allameh Jafari","l")
              }
          }
     Component.onCompleted:{back.add_object(jafari , "Allameh Jafari", "Node")}
@@ -949,10 +1021,12 @@ Window {
         id:sabz;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:d4.bottom;right:d4.left;rightMargin:-17}
+        PropertyAnimation {id:l40 ;target:sabz ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(sabz , "Eram-e Sabz","l")
+               a(sabz ,l40 , "Eram-e Sabz","l")
             }
         }
     Component.onCompleted:{back.add_object(sabz , "Eram-e Sabz", "Node")}
@@ -968,10 +1042,12 @@ Window {
         id:azadi;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:d6.bottom;right:d6.left;rightMargin:-17}
+        PropertyAnimation {id:l41 ;target:azadi ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(azadi , "Meydan-e Azadi","l")
+               a(azadi , l41 , "Meydan-e Azadi","l")
             }
         }
     Component.onCompleted:{back.add_object(azadi , "Meydan-e Azadi", "Node")}
@@ -987,10 +1063,12 @@ Window {
         id:moein;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:azadi.top;left:d8.right}
+        PropertyAnimation {id:l42 ;target:moein ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(moein , "Ostad Mo'in","l")
+               a(moein ,l42, "Ostad Mo'in","l")
             }
         }
     Component.onCompleted:{back.add_object(moein , "Ostad Mo'in", "Node")}
@@ -1006,10 +1084,12 @@ Window {
         id:shadman;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:moein.top;left:d10.right}
+        PropertyAnimation {id:l43 ;target:shadman ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(shadman , "Shademan","l")
+               a(shadman , l43 , "Shademan","l")
             }
         }
      Component.onCompleted:{back.add_object(shadman , "Shademan", "Node")}
@@ -1025,10 +1105,12 @@ Window {
         id:tohid;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{top:shadman.top;left:d12.right}
+       PropertyAnimation {id:l44 ;target:tohid; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+           running: false;}
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(tohid , "Towhid","l")
+              a(tohid, l44 , "Towhid","l")
            }
        }
      Component.onCompleted:{back.add_object(tohid , "Towhid", "Node")}
@@ -1045,10 +1127,12 @@ Window {
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:tohid.top;left:d14.right}
         anchors{top:shadman.top;left:d12.right}
+        PropertyAnimation {id:l46 ;target:meydan ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(meydan , "Meydan-e Enghelab-e Eslami","l")
+               a(meydan , l46 ,"Meydan-e Enghelab-e Eslami","l")
             }
         }
     Component.onCompleted:{back.add_object(meydan , "Meydan-e Enghelab-e Eslami", "Node")}
@@ -1067,10 +1151,12 @@ Window {
         id:ferdowsi;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:teatr.top;left:d17.right}
+        PropertyAnimation {id:l47 ;target:ferdowsi ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(ferdowsi , "Ferdowsi","l")
+               a(ferdowsi , l47 , "Ferdowsi","l")
             }
         }
      Component.onCompleted:{back.add_object(ferdowsi , "Ferdowsi", "Node")}
@@ -1090,10 +1176,12 @@ Window {
         id:shemiran;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{top:dowlat.top;left:d22.right}
+       PropertyAnimation {id:l48 ;target:shemiran ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+           running: false;}
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(shemiran , "Darvazeh Shemiran","l")
+              a(shemiran ,l48, "Darvazeh Shemiran","l")
            }
        }
      Component.onCompleted:{back.add_object(shemiran , "Darvazeh Shemiran", "Node")}
@@ -1112,10 +1200,12 @@ Window {
         id:eb;
         width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:sh.top;left:d27.right}
+        PropertyAnimation {id:l49 ;target:eb ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(eb , "Ebn-e Sina","l")
+               a(eb ,l49, "Ebn-e Sina","l")
             }
         }
      Component.onCompleted:{back.add_object(eb , "Ebn-e Sina", "Node")}
@@ -1127,10 +1217,12 @@ Window {
          id:pirouzi;
          width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
         anchors{top:eb .top;left:d29.right}
+        PropertyAnimation {id:l50 ;target:pirouzi ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+            running: false;}
         MouseArea{
             anchors.fill:parent
             onClicked:{
-               a(pirouzi , "Pirouzi","l")
+               a(pirouzi, l50 , "Pirouzi","l")
             }
         }
      Component.onCompleted:{back.add_object(pirouzi , "Pirouzi", "Node")}
@@ -1142,10 +1234,12 @@ Window {
          id:nabard
          width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
        anchors{top:pirouzi.top;left:d31.right}
+       PropertyAnimation {id:l51 ;target:nabard ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+           running: false;}
        MouseArea{
            anchors.fill:parent
            onClicked:{
-              a(nabard , "Nabard","l")
+              a(nabard , l51 ,"Nabard","l")
            }
        }
      Component.onCompleted:{back.add_object(nabard , "Nabard", "Node")}
@@ -1157,10 +1251,12 @@ Window {
           id:nirou
           width: 30 ;  height : 30 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
           anchors{top:nabard.top;left:d33.right}
+          PropertyAnimation {id:l52 ;target:nirou ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+              running: false;}
           MouseArea{
               anchors.fill:parent
               onClicked:{
-                 a(nirou , "Nirou Havaei","l")
+                 a(nirou ,l52, "Nirou Havaei","l")
               }
           }
        Component.onCompleted:{back.add_object(nirou , "Nirou Havaei", "Node")}
@@ -1173,10 +1269,12 @@ Window {
            width: 50 ;  height : 50 ; radius:180 ; color:"#dcdcdc" ; border.width:3 ; border.color:"#a9a9a9"
            Text{text:qsTr("<b>Line4</b>") ; color:"yellow";anchors.centerIn:parent}
           anchors{top:nirou.top;left:d35.right;topMargin:-10}
+          PropertyAnimation {id:l53 ;target:k ; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+              running: false;}
           MouseArea{
               anchors.fill:parent
               onClicked:{
-                 a(k , "Shahid Kolahdouz","l")
+                 a(k ,l53 , "Shahid Kolahdouz","l")
               }
           }
          Component.onCompleted:{back.add_object(k , "Shahid Kolahdouz", "Node")}
@@ -1298,10 +1396,12 @@ Window {
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
            Text{text:qsTr("BUS2") ;anchors.centerIn:parent}
             anchors{top:r_javanmard_3.bottom;right:r_javanmard_3.left;rightMargin:-25}
+            PropertyAnimation {id:r0 ;target:javanmard; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+                running: false;}
             MouseArea{
                 anchors.fill:parent
                 onClicked:{
-                   a(javanmard , "Payaneh Javanmard","b")
+                   a(javanmard , r0 , "Payaneh Javanmard","b")
                 }
             }
         Component.onCompleted:{back.add_object(javanmard , "Payaneh Javanmard" , "BUS")}
@@ -1344,10 +1444,12 @@ Window {
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
            Text{text:qsTr("BUS2") ;anchors.centerIn:parent}
            anchors{top:ghaem_ansary_3.bottom ;right:ghaem_ansary_3.left;topMargin:-23;}
+           PropertyAnimation {id:r1 ;target:ansary; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+               running: false;}
            MouseArea{
                anchors.fill:parent
                onClicked:{
-                  a(ansary, "Khajeh Abdollah-e Ansari","b")
+                  a(ansary,r1, "Khajeh Abdollah-e Ansari","b")
                }
            }
           Component.onCompleted:{back.add_object(ansary , "Khajeh Abdollah-e Ansari" , "BUS")}
@@ -1390,10 +1492,12 @@ Window {
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
            Text{text:qsTr("BUS1") ;anchors.centerIn:parent}
            anchors{top:ebnesina_tehranpars_3.top ;left:ghaem_ansary_3.right;topMargin:-23;leftMargin:-30}
+           PropertyAnimation {id:r2 ;target:tehranpars; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+               running: false;}
            MouseArea{
                anchors.fill:parent
                onClicked:{
-                  a(tehranpars, "Tehran Pars","b")
+                  a(tehranpars,r2 , "Tehran Pars","b")
                }
            }
          Component.onCompleted:{back.add_object(tehranpars , "Tehran Pars" , "BUS")}
@@ -1681,10 +1785,12 @@ Window {
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
            Text{text:qsTr("BUS1") ;anchors.centerIn:parent}
            anchors{top:bimeh_azadi_1.top ;right:bimeh_azadi_1.left;topMargin:-22;leftMargin:-40}
+           PropertyAnimation {id:r3 ;target:bimeh; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+               running: false;}
            MouseArea{
                anchors.fill:parent
                onClicked:{
-                  a(bimeh, "Bimeh","b")
+                  a(bimeh,r3, "Bimeh","b")
                }
            }
          Component.onCompleted:{back.add_object(bimeh , "Bimeh" , "BUS")}
@@ -1726,10 +1832,12 @@ Window {
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
            Text{text:qsTr("BUS3") ;anchors.centerIn:parent}
            anchors{top:sadr_tajrish_3.bottom ;right:sadr_tajrish_3.left;rightMargin:-27}
+           PropertyAnimation {id:r4 ;target:sadr; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+               running: false;}
            MouseArea{
                anchors.fill:parent
                onClicked:{
-                  a(sadr, "Shahid Sadr","b")
+                  a(sadr,r4, "Shahid Sadr","b")
                }
            }
            Component.onCompleted:{back.add_object(sadr , "Shahid Sadr" , "BUS")}
@@ -1907,10 +2015,12 @@ Window {
            width: 50 ;  height : 50 ; radius:180 ; color:"#00ff55"
            Text{text:qsTr("BUS3") ;anchors.centerIn:parent}
             anchors{top:rahahan_shahrak_3.bottom ;right:rahahan_shahrak_3.left;rightMargin:-27}
+            PropertyAnimation {id:r5 ;target:shahrak; property: "color";from:"#039BE5";to:"#dcdcdc";duration:500 ;loops:Animation.Infinite
+                running: false;}
             MouseArea{
                 anchors.fill:parent
                 onClicked:{
-                   a(shahrak, "Shahrak-e Shari'ati","b")
+                   a(shahrak, r5 ,"Shahrak-e Shari'ati","b")
                 }
             }
            Component.onCompleted:{back.add_object(shahrak , "Shahrak-e Shari'ati" , "BUS")}
@@ -2009,7 +2119,7 @@ Window {
           Frame {
               id: frame
               padding: 0
-              anchors.centerIn: parent
+             // anchors.centerIn: parent
              width: 170 ;height:190
 
               Row {
@@ -2057,8 +2167,8 @@ Window {
               if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
               {
                   s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
-                  back.get_nodeName(origin , distination , s_time ,0);
-                  d_flag=false;
+                  back.get_nodeName(origin , distination , s_time ,0 , minimum_dis , minimum_cost , minimum_time);
+                  d_flag=false; anim_1.running=false ; anim_2.running=false
               }
               else{message.visible=true}
           }
@@ -2084,8 +2194,8 @@ Window {
               if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
               {
                   s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
-                  back.get_nodeName(origin , distination , s_time , 1);
-                  c_flag=false;
+                  back.get_nodeName(origin , distination , s_time , 1 , minimum_dis , minimum_cost , minimum_time);
+                  c_flag=false; anim_1.running=false ; anim_2.running=false
               }
               else{message.visible=true}
           }
@@ -2112,8 +2222,8 @@ Window {
               {
 
                   s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
-                  back.get_nodeName(origin , distination , s_time , 2);
-                  t_flag=false;
+                  back.get_nodeName(origin , distination , s_time , 2 , minimum_dis , minimum_cost , minimum_time);
+                  t_flag=false; anim_1.running=false ; anim_2.running=false
               }
               else{message.visible=true}
           }

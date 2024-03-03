@@ -22,8 +22,8 @@ public:
     ~Samhanhash();
 
 public slots:
-void get_nodeName(QString start, QString end,QString time ,int Metric);
-void Calcute_Min_Direction(string Start, string End, string s_time , MeasurementMetric METRIC);
+void get_nodeName(QString start, QString end,QString time ,int Metric , QObject *m_dis , QObject *m_cost , QObject *m_time);
+void Calcute_Min_Direction(string Start, string End, string s_time ,MeasurementMetric METRIC , QObject *M_dis , QObject *M_cost , QObject *M_time);
 void set_color(std::vector<string> Distance, std::vector<string> Cost);
 void set_Node_color(std::vector<string> Distance);
 void add_object(QObject *main_obj, QString name, QString Type);

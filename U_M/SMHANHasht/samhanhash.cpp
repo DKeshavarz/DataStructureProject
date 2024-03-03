@@ -18,20 +18,23 @@ Samhanhash::~Samhanhash()
     clearCity();
 }
 
-void Samhanhash::get_nodeName(QString start, QString end,QString time ,int Metric)
+void Samhanhash::get_nodeName(QString start, QString end,QString time ,int Metric , QObject *m_dis , QObject *m_cost , QObject *m_time)
 {
     switch(Metric)
     {
         case DISTANCE:
-            Calcute_Min_Direction(start.toStdString() , end.toStdString(),time.toStdString() , DISTANCE);
+            Calcute_Min_Direction(start.toStdString() , end.toStdString(),time.toStdString() , DISTANCE ,
+                                  m_dis , m_cost , m_time);
             cout<<time.toStdString()<<"\n";
             break;
         case COST:
-            Calcute_Min_Direction(start.toStdString() , end.toStdString() ,time.toStdString() , COST);
+            Calcute_Min_Direction(start.toStdString() , end.toStdString() ,time.toStdString() , COST,
+                                   m_dis , m_cost , m_time);
             cout<<time.toStdString()<<"\n";
                break;
         case TIME:
-            Calcute_Min_Direction(start.toStdString() , end.toStdString() ,time.toStdString() , TIME);
+            Calcute_Min_Direction(start.toStdString() , end.toStdString() ,time.toStdString() , TIME,
+                                   m_dis , m_cost , m_time);
             cout<<time.toStdString()<<"\n";
              break;
 
@@ -41,9 +44,13 @@ void Samhanhash::get_nodeName(QString start, QString end,QString time ,int Metri
 
 }
 
-void Samhanhash::Calcute_Min_Direction(string Start, string End, string s_time , MeasurementMetric METRIC)
+void Samhanhash::Calcute_Min_Direction(string Start, string End, string s_time ,MeasurementMetric METRIC , QObject *M_dis ,
+                                       QObject *M_cost , QObject *M_time)
 {
    unordered_map <string , NodeInfo > result = myCity->calculateMin(Start,End,METRIC,Time(s_time));
+   M_dis->setProperty("text" , result[End].getDistance());
+   M_cost->setProperty("text" , result[End].getCost());
+  // M_time->setProperty("text" , result[End].getTime());  how?
    vector <string> cost_vec  ;  vector <string> vec;
    string Parent = result[End].getParent();
    vec.push_back(End);
