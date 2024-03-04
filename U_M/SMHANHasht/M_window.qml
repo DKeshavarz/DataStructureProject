@@ -1,4 +1,3 @@
-
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQml 2.3
@@ -29,8 +28,8 @@ Window {
 
         anchors.fill:parent   // #C0C0C0  "#DADBDD"  "#EEEEEE"  "#87CEFA"  "#DFD3E3"
         color: "#C0C0C0"
-       // gradient: Gradient {GradientStop {position: 0.0 ; color: "#DADBDD"  }
-                          // GradientStop {position: 1.0 ; color: "#C0C0C0"  }}
+       // gradient: Gradient {GradientStop {position: 0.0 ; color: "#E0E5E5"  }
+                   //        GradientStop {position: 0.5 ; color: "#C0C0C0"  }}
     }
 
 
@@ -46,8 +45,14 @@ Window {
     Text{id:minimum_time ; text:"minimum_time";anchors{bottom:parent.bottom ; left:parent.left ; bottomMargin:70 ; leftMargin:50}}
     function a(s ,  anim , name , type)
     {
-      if(d_flag && c_flag && t_flag )
-       {
+        if(!c_flag || !t_flag || !d_flag)
+        {
+
+            back.reset();
+            c_flag=true;d_flag=true;t_flag=true;
+            origin="null" ;   distination="null"
+            n_origin.text=""   ;   n_distination.text=""
+        }
            if(origin==="null" && distination!==name)
            {
                origin=name ; n_origin.text=name ; anim.running=true ; anim_1=anim
@@ -63,24 +68,22 @@ Window {
                if(origin===name)
                {
                   origin="null"  ;  n_origin.text="" ; anim.running=false;
-                  if(type==="l"){s.color="#dcdcdc";  s.border.color="#a9a9a9" }
-                  else{s.color="#00ff55"}
+                  s.color=type==="l"? "#dcdcdc" : "#00ff55"
+
                }
                else if(distination===name)
                {
                    distination="null"  ; n_distination.text="" ; anim.running=false;
-                   if(type==="l"){s.color="#dcdcdc";  s.border.color="#a9a9a9"}
-                   else{s.color="#00ff55"}
+                   s.color=type==="l"? "#dcdcdc" : "#00ff55"
                }
                else
                {
                    distination=name ; n_distination.text=name ;  anim.running=true ; curr_anim.running=false;
-                   if(c_type==="l"){current.color="#dcdcdc";  current.border.color="#a9a9a9" ; }
-                   else{current.color="#00ff55"}
+                    current.color=c_type==="l"? "#dcdcdc" : "#00ff55"
                    current=s;c_type=type;curr_anim=anim;anim_2=anim
                }
            }
-       }
+
     }
 
     InputPanel {
@@ -2095,9 +2098,9 @@ Window {
            width: frame.implicitWidth -10
           height: frame.implicitHeight -10
           border.width: 5 ; border.color: "purple"
-          anchors{right:parent.right ; rightMargin:50; top:parent.top ; topMargin:440}
+          anchors{right:parent.right ; rightMargin:50; top:parent.top ; topMargin:620}
           color: "pink"
-          radius: 20
+          radius: 10
           function formatText(count, modelData) {
               var data = count === 12 ? modelData + 1 : modelData;
               return data.toString().length < 2 ? "0" + data : data;
@@ -2147,88 +2150,103 @@ Window {
           }
       }
 
-        Button
-        {
-            id:distance
-            anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:130 ; anchors.bottomMargin:30
-            background: Rectangle {
-                width:170 ;height:50
-                implicitWidth: 100
-                implicitHeight: 40
-                border.color: "#d147a3"
-                gradient: Gradient {GradientStop {position: 0.0 ; color:distance.pressed? "#ff80d5" :  "#ff3399"  }
-                                   GradientStop {position: 1.0 ; color:distance.pressed? "#ff80d5" : "#ff00ff"  }}
-                border.width: distance.pressed ? 8 : 6
-                radius: 50
-                Text {text:"<b>MIN_DISTANCE</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
-            }
-          onClicked:
-          {
-              if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
-              {
-                  s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
-                  back.get_nodeName(origin , distination , s_time ,0 , minimum_dis , minimum_cost , minimum_time);
-                  d_flag=false; anim_1.running=false ; anim_2.running=false
-              }
-              else{message.visible=true}
-          }
-       }
 
-        Button
+  Rectangle {
+     anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:50 ; anchors.bottomMargin:30
+     width:170 ;height:50
+     implicitWidth: 100
+     implicitHeight: 40
+     border.color: "#d147a3"
+     gradient: Gradient {GradientStop {position: 0.0 ; color:distance.pressed? "#ff80d5" :  "#ff3399"  }
+               GradientStop {position: 1.0 ; color:distance.pressed? "#ff80d5" : "#ff00ff"  }}
+     border.width: distance.pressed ? 8 : 6
+     radius: 50
+     Text {text:"<b>MIN_DISTANCE</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
+     MouseArea
+     {
+       id:distance
+       anchors.fill:parent
+       onClicked:{
+        if(origin==="null" || distination==="null"){message.visible=true}
+        if(origin!=="null" && distination!=="null" && d_flag)
         {
-            id:cost
-            anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:130 ; anchors.bottomMargin:100
-            background: Rectangle {
-                width:170 ;height:50
-                implicitWidth: 100
-                implicitHeight: 40
-                border.color: "#d147a3"
-                gradient: Gradient {GradientStop {position: 0.0 ; color:cost.pressed? "#ff80d5" :  "#ff3399"  }
-                                   GradientStop {position: 1.0 ; color:cost.pressed? "#ff80d5" : "#ff00ff"  }}
-                border.width: cost.pressed ? 8 : 6
-                radius: 50
-                Text {text:"<b>LOW_COST</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
-            }
-          onClicked:
-          {
-              if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
-              {
-                  s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
-                  back.get_nodeName(origin , distination , s_time , 1 , minimum_dis , minimum_cost , minimum_time);
-                  c_flag=false; anim_1.running=false ; anim_2.running=false
-              }
-              else{message.visible=true}
-          }
-       }
+            if(!c_flag || !t_flag) { back.reset()}
+            s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
+            back.get_nodeName(origin , distination , s_time , 0 , minimum_dis , minimum_cost , minimum_time);
+            c_flag=true ; t_flag=true ; d_flag=false ; anim_1.running=false ; anim_2.running=false
 
-        Button
+        }
+
+       }
+     }
+
+ }
+
+  Rectangle {
+     anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:50 ; anchors.bottomMargin:100
+     width:170 ;height:50
+     implicitWidth: 100
+     implicitHeight: 40
+     border.color: "#d147a3"
+     gradient: Gradient {GradientStop {position: 0.0 ; color:cost.pressed? "#ff80d5" :  "#ff3399"  }
+               GradientStop {position: 1.0 ; color:cost.pressed? "#ff80d5" : "#ff00ff"  }}
+     border.width: cost.pressed ? 8 : 6
+     radius: 50
+     Text {text:"<b>LOW_COST</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
+     MouseArea
+     {
+       id:cost
+       anchors.fill:parent
+       onClicked:{
+        if(origin==="null" || distination==="null"){message.visible=true}
+        if(origin!=="null" && distination!=="null" && c_flag)
         {
-            id:time
-            anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:130 ; anchors.bottomMargin:170
-            background: Rectangle {
-                width:170 ;height:50
-                implicitWidth: 100
-                implicitHeight: 40
-                border.color: "#d147a3"
-                gradient: Gradient {GradientStop {position: 0.0 ; color:time.pressed? "#ff80d5" :  "#ff3399"  }
-                                   GradientStop {position: 1.0 ; color:time.pressed? "#ff80d5" : "#ff00ff"  }}
-                border.width: time.pressed ? 8 : 6
-                radius: 50
-                Text {text:"<b>BEST_TIME</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
-            }
-          onClicked:
-          {
-              if(c_flag && t_flag && d_flag && origin!=="null" && distination!=="null")
-              {
+            if(!d_flag || !t_flag) { back.reset()}
+            s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
+            back.get_nodeName(origin , distination , s_time , 1 , minimum_dis , minimum_cost , minimum_time);
+            d_flag=true ; t_flag=true ; c_flag=false ; anim_1.running=false ; anim_2.running=false
 
-                  s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
-                  back.get_nodeName(origin , distination , s_time , 2 , minimum_dis , minimum_cost , minimum_time);
-                  t_flag=false; anim_1.running=false ; anim_2.running=false
-              }
-              else{message.visible=true}
-          }
+        }
+
        }
-        Button
+     }
+
+ }
+
+  Rectangle {
+     anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:50 ; anchors.bottomMargin:170
+     width:170 ;height:50
+     implicitWidth: 100
+     implicitHeight: 40
+     border.color: "#d147a3"
+     gradient: Gradient {GradientStop {position: 0.0 ; color:time.pressed? "#ff80d5" :  "#ff3399"  }
+               GradientStop {position: 1.0 ; color:time.pressed? "#ff80d5" : "#ff00ff"  }}
+     border.width: time.pressed ? 8 : 6
+     radius: 50
+     Text {text:"<b>BEST_TIME</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
+     MouseArea
+     {
+       id:time
+       anchors.fill:parent
+       onClicked:{
+        if(origin==="null" || distination==="null"){message.visible=true}
+        if(origin!=="null" && distination!=="null" && t_flag)
+        {
+            if(!c_flag || !d_flag) { back.reset()}
+            s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
+            back.get_nodeName(origin , distination , s_time , 2 , minimum_dis , minimum_cost , minimum_time);
+            d_flag=true ; c_flag=true ; t_flag=false ; anim_1.running=false ; anim_2.running=false
+
+        }
+
+       }
+     }
+
+ }
+
+
+
+      /*  Button
         {
             id:reset
             anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:130 ; anchors.bottomMargin:240
