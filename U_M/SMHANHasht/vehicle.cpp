@@ -71,7 +71,8 @@ void Vehicle::distanceFromSrc(unordered_set<NodeNeighbour,NodeNeighbour::myHash>
     }
 }
 
-void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table,priority_queue<NodeNeighbour,vector<NodeNeighbour>,greater<NodeNeighbour>>&minHeap, const std::string& srcNode )
+void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table,priority_queue<NodeNeighbour,vector<NodeNeighbour>
+,greater<NodeNeighbour>>&minHeap, const std::string& srcNode ,Time currentTime)
 {
     unordered_set<NodeNeighbour,NodeNeighbour::myHash> distanceSet;
     distanceFromSrc(distanceSet,srcNode);
@@ -81,31 +82,33 @@ void Vehicle::calculateMinTime(unordered_map<string,NodeInfo>& table,priority_qu
     {
 
         if(!table[currentNode.nodeName].getVis() &&
-            table[currentNode.nodeName].getTimeInt() > table[srcNode].getTimeInt() + calculateTime(currentNode.distance))
+            table[currentNode.nodeName].getTimeInt() > table[srcNode].getTimeInt() + calculateTime(currentNode.distance,currentTime))
         {
-            modifyDijkstraTable(table,srcNode,currentNode.nodeName,currentNode.distance);
+            modifyDijkstraTable(table,srcNode,currentNode.nodeName,currentNode.distance,currentTime);
             if(table[currentNode.nodeName].getIntersection())
-                minHeap.push({currentNode.nodeName,table[srcNode].getTimeInt() + calculateTime(currentNode.distance)});
+                minHeap.push({currentNode.nodeName,table[srcNode].getTimeInt() + calculateTime(currentNode.distance,currentTime)});
         }
     }
 }
 
-void Vehicle::calculateMinCost (unordered_map<string,NodeInfo>& table,priority_queue<NodeNeighbour,vector<NodeNeighbour>,greater<NodeNeighbour>>&minHeap, const std::string& srcNode)
+void Vehicle::calculateMinCost (unordered_map<string,NodeInfo>& table,priority_queue<NodeNeighbour,vector<NodeNeighbour>,
+greater<NodeNeighbour>>&minHeap, const std::string& srcNode,Time currentTime)
 {
     unordered_set<NodeNeighbour,NodeNeighbour::myHash> distanceSet;
     distanceFromSrc(distanceSet,srcNode);
     
     for(const auto &currentNode : distanceSet)
         if(!table[currentNode.nodeName].getVis() &&
-            table[currentNode.nodeName].getCost() > table[srcNode].getCost() + calculateCost(currentNode.distance))
+            table[currentNode.nodeName].getCost() > table[srcNode].getCost() + calculateCost(currentNode.distance,currentTime))
         {
-            modifyDijkstraTable(table,srcNode,currentNode.nodeName,currentNode.distance);
+            modifyDijkstraTable(table,srcNode,currentNode.nodeName,currentNode.distance,currentTime);
             if(table[currentNode.nodeName].getIntersection())
-                minHeap.push({currentNode.nodeName,table[srcNode].getCost() + calculateCost(currentNode.distance)});
+                minHeap.push({currentNode.nodeName,table[srcNode].getCost() + calculateCost(currentNode.distance,currentTime)});
         }    
 }
 
-void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table,priority_queue<NodeNeighbour,vector<NodeNeighbour>,greater<NodeNeighbour>>&minHeap, const std::string& srcNode )
+void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table,priority_queue<NodeNeighbour,vector<NodeNeighbour>
+,greater<NodeNeighbour>>&minHeap, const std::string& srcNode,Time currentTime )
 {
     unordered_set<NodeNeighbour,NodeNeighbour::myHash> distanceSet;
     distanceFromSrc(distanceSet,srcNode);
@@ -114,7 +117,7 @@ void Vehicle::calculateMinDistance(unordered_map<string,NodeInfo>& table,priorit
         if(!table[currentNode.nodeName].getVis() &&
             table[currentNode.nodeName].getDistance() > table[srcNode].getDistance() + currentNode.distance)
         {
-            modifyDijkstraTable(table,srcNode,currentNode.nodeName,currentNode.distance);
+            modifyDijkstraTable(table,srcNode,currentNode.nodeName,currentNode.distance,currentTime);
             if(table[currentNode.nodeName].getIntersection())
                 minHeap.push({currentNode.nodeName,table[srcNode].getDistance() + currentNode.distance});
         }
@@ -153,8 +156,13 @@ vector<string> Vehicle::backTrackPath (string start,string end)const
     return vec;
 
 }
+bool Vehicle::isOnTrafic(Time current)
+{
+    cerr << "wrong isOnTrafic\n";
+    return false;
+}
 
-int Vehicle::calculateTime(int distance)
+int Vehicle::calculateTime(int distance,Time currentTime)
 {
     return this->speedPerKilometre * distance + this->changeLineTime * 2;
 }
@@ -170,11 +178,11 @@ void Vehicle::addNewVertex(const string& firstVertex ,const string& secondVertex
     neighbours[secondVertex].insert(NodeNeighbour(firstVertex ,distance));
 }
 
-void Vehicle::modifyDijkstraTable(unordered_map<string,NodeInfo>& table,const string fatherNode,const string sonNode,int distance)
+void Vehicle::modifyDijkstraTable(unordered_map<string,NodeInfo>& table,const string fatherNode,const string sonNode,int distance,Time currentTime)
 {
     table[sonNode].setNodeVehicle(this);
     table[sonNode].setParent     (fatherNode);
     table[sonNode].setDistance   (table[fatherNode].getDistance()     + distance);
-    table[sonNode].setCost       (table[fatherNode].getCost()         + calculateCost(distance));
-    table[sonNode].setTime       (Time(table[fatherNode].getTimeInt() + calculateTime(distance)));
+    table[sonNode].setCost       (table[fatherNode].getCost()         + calculateCost(distance,currentTime));
+    table[sonNode].setTime       (Time(table[fatherNode].getTimeInt() + calculateTime(distance,currentTime)));
 }
