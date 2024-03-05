@@ -2312,33 +2312,7 @@ Window {
       }
 
 
-       Rectangle {
-           id:b_reset
-          anchors.left:parent.left ; anchors.bottom:parent.bottom ; anchors.leftMargin:250 ; anchors.bottomMargin:20
-          width:170 ;height:50
-          implicitWidth: 100
-          implicitHeight: 40
-          border.color: "#0000FF" ; color: reset.pressed ?  "#1589FF" : "#00BFFF"
-          border.width: reset.pressed ? 8 : 6
-          radius: 50
-          Text {text:"<b>RESET</b>" ;color:"white" ; anchors.centerIn: parent ; font.pixelSize:15 }
-          MouseArea
-          {
-            id:reset
-            anchors.fill:parent
-            onClicked:{
 
-                b_dis.border.color="#d147a3"; b_cost.border.color="#d147a3" ; b_time.border.color="#d147a3"
-                 b_dis.color="#ff3399"; b_cost.color="#ff3399" ; b_time.color="#ff3399";
-                minimum_cost.text="" ; minimum_dis.text="" ; minimum_time.text=""
-                back.reset();
-                c_flag=true;d_flag=true;t_flag=true;
-                origin="null" ;   distination="null"
-                n_origin.text=""   ;   n_distination.text=""
-             }
-
-            }
-          }
 
        Rectangle {
            id:b_exit
