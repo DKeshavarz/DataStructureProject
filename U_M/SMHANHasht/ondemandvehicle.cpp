@@ -17,7 +17,6 @@ OnDemandVehicle::~OnDemandVehicle()
 int OnDemandVehicle::calculateCost(int km,Time currentTime)
 {
     float trafic = (isOnTrafic(currentTime)? 1.5 :  1);
-    //bug on float .......... 3.6
     return km*getCostPerKilometre()*trafic;
 }
 int OnDemandVehicle::calculateTime(int distance,Time currentTime)

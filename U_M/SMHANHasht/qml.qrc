@@ -2,5 +2,17 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>M_window.qml</file>
+        <file>clock.png</file>
+        <file>distance.png</file>
+        <file>money.png</file>
+        <file>bus_pic.png</file>
+        <file>taxt_pic.png</file>
+        <file>subway.png</file>
+        <file>bus_picture.png</file>
+        <file>taxi_picture.png</file>
+        <file>subway_picture.png</file>
+        <file>S_page.qml</file>
+        <file>lock.png</file>
+        <file>Tehran_city.jpg</file>
     </qresource>
 </RCC>

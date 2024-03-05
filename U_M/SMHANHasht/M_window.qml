@@ -36,18 +36,77 @@ Window {
 
     property string origin: "null" ;  property string  distination: "null" ; property var current ; property var curr_anim
     property string  c_type; property bool d_flag:true ; property bool c_flag:true ; property bool t_flag:true
-    property var anim_1 ; property var anim_2
+    property var anim_1 ; property var anim_2 ; property bool color_flag:true
     property string  s_time
-    Text{id:n_origin ;}
-    Text{id:n_distination ; x:100}
-    Text{id:minimum_dis ; text:"minimum_dis" ; anchors{bottom:parent.bottom ; left:parent.left ; bottomMargin:30 ; leftMargin:50}}
-    Text{id:minimum_cost ; text:"minimum_cost";anchors{bottom:parent.bottom ; left:parent.left ; bottomMargin:50 ; leftMargin:50}}
-    Text{id:minimum_time ; text:"minimum_time";anchors{bottom:parent.bottom ; left:parent.left ; bottomMargin:70 ; leftMargin:50}}
+    Text{id:n_origin ; anchors{top:parent.top ; right:parent.right ; topMargin:120 ; rightMargin:500}
+    font.pointSize:14 ; color:"#FF33AA"}
+    Text{id:n_distination ; x:100 ; anchors{top:parent.top ; right:parent.right ; topMargin:120 ; rightMargin:150}
+    font.pointSize:14 ; color:"#FF33AA"}
+    Text{id:minimum_dis ; text:"" ; anchors{bottom:car.bottom ; left:car.right ; bottomMargin:40 ; leftMargin:20}
+      font.pixelSize: 20 }
+    Text{id:minimum_cost ;text:"";anchors{bottom:money.bottom ; left:money.right ; bottomMargin:40 ; leftMargin:20}
+    font.pixelSize: 20}
+    Text{id:minimum_time ; text:"";anchors{bottom:clock.bottom ; left:clock.right ; bottomMargin:40 ; leftMargin:20}
+    font.pixelSize: 20}
+    Image {
+        id: clock
+        source: "clock.png"
+        anchors{bottom:parent.bottom ; left:parent.left ; bottomMargin:300 ; leftMargin:40}
+    }
+    Image {
+        id: money
+        source: "money.png"
+        anchors{bottom:parent.bottom ; left:parent.left ; bottomMargin:200 ; leftMargin:40}
+    }
+    Image {
+        id: car
+        source: "distance.png"
+        anchors{bottom:parent.bottom ; left:parent.left ; bottomMargin:90 ; leftMargin:40}
+    }
+    Image {
+        id: bus
+        source: "bus_picture.png"
+        anchors{top:parent.top ; right:parent.right ; topMargin:530 ; rightMargin:50}
+    }
+    Image {
+        id: taxi
+        source: "taxt_pic.png"
+        anchors{top:parent.top ; right:parent.right ; topMargin:480 ; rightMargin:60}
+    }
+    Image {
+        id: sub
+        source: "subway_picture.png"
+        anchors{top:parent.top ; right:parent.right ; topMargin:400 ; rightMargin:45}
+    }
+    Rectangle
+    {
+        width:50 ; height:3 ; color:"#00FFFF";
+         anchors{top:sub.top ; right:sub.left ; topMargin:40 }
+    }
+    Rectangle
+    {
+        width:50 ; height:3 ; color:"#FFA500";
+         anchors{top:taxi.top ; right:taxi.left ; topMargin:30 ; rightMargin:10 }
+    }
+    Rectangle
+    {
+         width:50 ; height:3 ; color:"lightblue";
+         anchors{top:bus.top ; right:bus.left ; topMargin:40 ; rightMargin:10 }
+    }
+    Rectangle
+    {
+         width:50 ; height:3 ; color:"lightblue";
+         anchors{top:bus.top ; right:bus.left ; topMargin:45 ; rightMargin:10 }
+    }
+
+
     function a(s ,  anim , name , type)
     {
         if(!c_flag || !t_flag || !d_flag)
         {
-
+            b_dis.border.color="#d147a3"; b_cost.border.color="#d147a3" ; b_time.border.color="#d147a3"
+             b_dis.color="#ff3399"; b_cost.color="#ff3399" ; b_time.color="#ff3399";
+            minimum_cost.text="" ; minimum_dis.text="" ; minimum_time.text=""
             back.reset();
             c_flag=true;d_flag=true;t_flag=true;
             origin="null" ;   distination="null"
@@ -85,6 +144,7 @@ Window {
            }
 
     }
+
 
     InputPanel {
         id: inputPanel
@@ -2093,6 +2153,7 @@ Window {
        Text{text:"Jonoub Terminal";anchors{top:jonoub.top ; right:jonoub.left ; topMargin:7 ; rightMargin:10}}
        Text{text:"Shahr-e Rey";anchors{top:rey.top ; right:rey.left ; topMargin:7 ; rightMargin:10}}
 
+
        Rectangle {
           id:get_time
            width: frame.implicitWidth -10
@@ -2151,143 +2212,134 @@ Window {
       }
 
 
-  Rectangle {
-     anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:50 ; anchors.bottomMargin:30
-     width:170 ;height:50
-     implicitWidth: 100
-     implicitHeight: 40
-     border.color: "#d147a3"
-     gradient: Gradient {GradientStop {position: 0.0 ; color:distance.pressed? "#ff80d5" :  "#ff3399"  }
-               GradientStop {position: 1.0 ; color:distance.pressed? "#ff80d5" : "#ff00ff"  }}
-     border.width: distance.pressed ? 8 : 6
-     radius: 50
-     Text {text:"<b>MIN_DISTANCE</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
-     MouseArea
-     {
-       id:distance
-       anchors.fill:parent
-       onClicked:{
-        if(origin==="null" || distination==="null"){message.visible=true}
-        if(origin!=="null" && distination!=="null" && d_flag)
-        {
-            if(!c_flag || !t_flag) { back.reset()}
-            s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
-            back.get_nodeName(origin , distination , s_time , 0 , minimum_dis , minimum_cost , minimum_time);
-            c_flag=true ; t_flag=true ; d_flag=false ; anim_1.running=false ; anim_2.running=false
-
-        }
-
-       }
-     }
-
- }
-
-  Rectangle {
-     anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:50 ; anchors.bottomMargin:100
-     width:170 ;height:50
-     implicitWidth: 100
-     implicitHeight: 40
-     border.color: "#d147a3"
-     gradient: Gradient {GradientStop {position: 0.0 ; color:cost.pressed? "#ff80d5" :  "#ff3399"  }
-               GradientStop {position: 1.0 ; color:cost.pressed? "#ff80d5" : "#ff00ff"  }}
-     border.width: cost.pressed ? 8 : 6
-     radius: 50
-     Text {text:"<b>LOW_COST</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
-     MouseArea
-     {
-       id:cost
-       anchors.fill:parent
-       onClicked:{
-        if(origin==="null" || distination==="null"){message.visible=true}
-        if(origin!=="null" && distination!=="null" && c_flag)
-        {
-            if(!d_flag || !t_flag) { back.reset()}
-            s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
-            back.get_nodeName(origin , distination , s_time , 1 , minimum_dis , minimum_cost , minimum_time);
-            d_flag=true ; t_flag=true ; c_flag=false ; anim_1.running=false ; anim_2.running=false
-
-        }
-
-       }
-     }
-
- }
-
-  Rectangle {
-     anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:50 ; anchors.bottomMargin:170
-     width:170 ;height:50
-     implicitWidth: 100
-     implicitHeight: 40
-     border.color: "#d147a3"
-     gradient: Gradient {GradientStop {position: 0.0 ; color:time.pressed? "#ff80d5" :  "#ff3399"  }
-               GradientStop {position: 1.0 ; color:time.pressed? "#ff80d5" : "#ff00ff"  }}
-     border.width: time.pressed ? 8 : 6
-     radius: 50
-     Text {text:"<b>BEST_TIME</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
-     MouseArea
-     {
-       id:time
-       anchors.fill:parent
-       onClicked:{
-        if(origin==="null" || distination==="null"){message.visible=true}
-        if(origin!=="null" && distination!=="null" && t_flag)
-        {
-            if(!c_flag || !d_flag) { back.reset()}
-            s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
-            back.get_nodeName(origin , distination , s_time , 2 , minimum_dis , minimum_cost , minimum_time);
-            d_flag=true ; c_flag=true ; t_flag=false ; anim_1.running=false ; anim_2.running=false
-
-        }
-
-       }
-     }
-
- }
-
-
-
-      /*  Button
-        {
-            id:reset
-            anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:130 ; anchors.bottomMargin:240
-            background: Rectangle {
-                width:170 ;height:50
-                implicitWidth: 100
-                implicitHeight: 40
-                border.color: "#d147a3"
-                gradient: Gradient {GradientStop {position: 0.0 ; color:reset.pressed ? "#ff80d5" :  "#ff3399"  }
-                                   GradientStop {position: 1.0 ; color:reset.pressed ? "#ff80d5" : "#ff00ff"  }}
-                border.width: reset.pressed  ? 8 : 6
-                radius: 50
-                Text {text:"<b>RESET</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
-            }
-          onClicked:
+       Rectangle {
+           id:b_dis
+          anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:50 ; anchors.bottomMargin:30
+          width:170 ;height:50
+          implicitWidth: 100
+          implicitHeight: 40
+          border.color: "#d147a3" ; color:"#ff3399"
+          border.width: distance.pressed ? 8 : 6
+          radius: 50
+          Text {text:"<b>MIN_DISTANCE</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
+          MouseArea
           {
-              if(!c_flag || !t_flag || !d_flag)
-              {
+            id:distance
+            anchors.fill:parent
+            onClicked:{
 
-                  back.reset();
-                  c_flag=true;d_flag=true;t_flag=true;
-                  origin="null" ;   distination="null"
-                  n_origin.text=""   ;   n_distination.text=""
-              }
-          }
-       }
+             if(origin==="null" || distination==="null"){message.visible=true}
+             if(origin!=="null" && distination!=="null" && d_flag)
+             {
+                  parent.border.color="lightgreen"; b_cost.border.color="#d147a3" ; b_time.border.color="#d147a3";
+                 parent.color="yellow"; b_cost.color="#ff3399" ; b_time.color="#ff3399";
+                 if(!c_flag || !t_flag) { back.reset()}
+                 s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
+                 back.get_nodeName(origin , distination , s_time , 0 , minimum_dis , minimum_cost , minimum_time);
+                 c_flag=true ; t_flag=true ; d_flag=false ; anim_1.running=false ; anim_2.running=false
 
+             }
 
-      /*  Button
-        {
-            id:exit
-            text:"EXIT"
-            anchors.right:parent.right
-            anchors.bottom:parent.bottom
-            anchors.rightMargin:100
-            anchors.bottomMargin:300
-            onClicked:
-            {
-               Qt.quit()
             }
-        }*/
+          }
+
+      }
+
+       Rectangle {
+           id:b_cost
+          anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:50 ; anchors.bottomMargin:100
+          width:170 ;height:50
+          implicitWidth: 100
+          implicitHeight: 40
+          border.color: "#d147a3" ; color:"#ff3399"
+          border.width: cost.pressed ? 8 : 6
+          radius: 50
+          Text {text:"<b>LOW_COST</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
+          MouseArea
+          {
+            id:cost
+            anchors.fill:parent
+            onClicked:{
+
+             if(origin==="null" || distination==="null"){message.visible=true}
+             if(origin!=="null" && distination!=="null" && c_flag)
+             {
+                  parent.border.color="lightgreen" ; b_dis.border.color="#d147a3" ; b_time.border.color="#d147a3"
+                  parent.color="yellow"; b_dis.color="#ff3399" ; b_time.color="#ff3399";
+                 if(!d_flag || !t_flag) { back.reset()}
+                 s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
+                 back.get_nodeName(origin , distination , s_time , 1 , minimum_dis , minimum_cost , minimum_time);
+                 d_flag=true ; t_flag=true ; c_flag=false ; anim_1.running=false ; anim_2.running=false
+
+             }
+
+            }
+          }
+
+      }
+
+       Rectangle {
+           id:b_time
+          anchors.right:parent.right ; anchors.bottom:parent.bottom ; anchors.rightMargin:50 ; anchors.bottomMargin:170
+          width:170 ;height:50
+          implicitWidth: 100
+          implicitHeight: 40
+          border.color: "#d147a3" ; color:"#ff3399"
+          border.width: time.pressed ? 8 : 6
+          radius: 50
+          Text {text:"<b>BEST_TIME</b>" ;color:"lightblue" ; anchors.centerIn: parent ; font.pixelSize:15 }
+          MouseArea
+          {
+            id:time
+            anchors.fill:parent
+            onClicked:{
+
+             if(origin==="null" || distination==="null"){message.visible=true}
+             if(origin!=="null" && distination!=="null" && t_flag)
+             {
+                 parent.border.color="lightgreen" ; b_dis.border.color="#d147a3" ; b_cost.border.color="#d147a3"
+                  parent.color="yellow"; b_cost.color="#ff3399" ; b_dis.color="#ff3399";
+                 if(!c_flag || !d_flag) { back.reset()}
+                 s_time=(hours.currentItem.text)+":"+(minutes.currentItem.text)+" "+(pm_am.currentItem.text);
+                 back.get_nodeName(origin , distination , s_time , 2 , minimum_dis , minimum_cost , minimum_time);
+                 d_flag=true ; c_flag=true ; t_flag=false ; anim_1.running=false ; anim_2.running=false
+
+             }
+
+            }
+          }
+
+      }
+
+
+
+
+       Rectangle {
+           id:b_exit
+          anchors.left:parent.left ; anchors.bottom:parent.bottom ; anchors.leftMargin:30 ; anchors.bottomMargin:20
+          width:170 ;height:50
+          implicitWidth: 100
+          implicitHeight: 40
+          border.color: "#0000FF" ; color: exit.pressed ?  "#1589FF" : "#00BFFF"
+          border.width: exit.pressed ? 8 : 6
+          radius: 50
+          Text {text:"<b>EXIT</b>" ;color:"white" ; anchors.centerIn: parent ; font.pixelSize:15 }
+          MouseArea
+          {
+            id:exit
+            anchors.fill:parent
+            onClicked:{
+
+                 Qt.quit();
+             }
+
+            }
+          }
+
+
+
+
+
 
 
     MessageDialog
