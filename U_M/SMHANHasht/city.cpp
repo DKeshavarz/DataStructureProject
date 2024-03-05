@@ -96,17 +96,17 @@ void City::readFile()
     file.close();
 }
 
-unordered_map <string , NodeInfo > City::calculateMin(const string& start,const string& end,MeasurementMetric metric,Time CurrentTime)
+unordered_map <string , NodeInfo > City::calculateMin(const string& start,const string& end,MeasurementMetric metric,Time currentTime)
 {
     unordered_map <string , NodeInfo >dijkstraTable ;
     priority_queue<NodeNeighbour,vector<NodeNeighbour>,greater<NodeNeighbour>> minHeap;
 
     for(const auto& i : this->nodesMap)
-        dijkstraTable[i.first].setTime(INT_MAX);
+        dijkstraTable[i.first].setIntersection((i.second).size()>2);
 
     dijkstraTable[start].setCost(0);
     dijkstraTable[start].setDistance(0);
-    dijkstraTable[start].setTime(CurrentTime);
+    dijkstraTable[start].setTime(currentTime);
     minHeap.push({start,0});
 
     while(!minHeap.empty())
@@ -121,14 +121,14 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
             switch(metric)
             {
                 case DISTANCE:
-                    currentVihecle->calculateMinDistance(dijkstraTable,minHeap,strMinNode); break;
+                    currentVihecle->calculateMinDistance(dijkstraTable,minHeap,strMinNode,currentTime); break;
                 case COST:
-                    currentVihecle->calculateMinCost    (dijkstraTable,minHeap,strMinNode); break;
+                    currentVihecle->calculateMinCost    (dijkstraTable,minHeap,strMinNode,currentTime); break;
                 case TIME:
-                    currentVihecle->calculateMinTime    (dijkstraTable,minHeap,strMinNode); break;
+                    currentVihecle->calculateMinTime    (dijkstraTable,minHeap,strMinNode,currentTime); break;
 
                 default :
-                    cerr << "City::calculateMin eroro\n\n";
+                    cerr << "City::calculateMin erorr\n\n";
             }
         }
 
@@ -138,8 +138,7 @@ unordered_map <string , NodeInfo > City::calculateMin(const string& start,const 
     cerr << "City::calculateMin end is:" << end << '\n';
     for(const auto& i : dijkstraTable)
     {
-        if(i.first == end)
-            cerr <<  i.first << string(32-(i.first).size(),' ')  << (i.second).print() << '\n';
+        cerr <<  i.first << string(32-(i.first).size(),' ')  << (i.second).print() << '\n';
     }
 
     return dijkstraTable;
