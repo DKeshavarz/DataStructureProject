@@ -89,7 +89,7 @@ void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
 
               if(j.type[0]=='L')
               {
-                j.obj_name->setProperty("color" , "lightblue");
+                j.obj_name->setProperty("color" , "#FFA500");
                 objects.push_back(j);
               }
            }
@@ -102,7 +102,7 @@ void Samhanhash::set_color(std::vector<string> Distance, std::vector<string> T)
 
               if(j.type[0]=='L')
               {
-                j.obj_name->setProperty("color" , "lightblue");
+                j.obj_name->setProperty("color" , "#00FFFF");
                  objects.push_back(j);
               }
            }
@@ -132,7 +132,7 @@ void Samhanhash::set_Node_color(std::vector<string> Distance)
     {
          for(auto &j : get_object[Distance[i]])
          {
-             j.obj_name->setProperty("color" , "blue");
+             j.obj_name->setProperty("color" , "#306EFF");
               objects.push_back(j);
          }
     }
