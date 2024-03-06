@@ -11,7 +11,8 @@ class LinearVehicle:public Vehicle
     private:
 
     protected:
-        int calculateCost(int)override;
-
+        virtual int calculateCost(int,Time)override;
+        virtual int calculateTime(int,Time)override;
+        virtual bool isOnTrafic  (Time)    override;
 };
 #endif
